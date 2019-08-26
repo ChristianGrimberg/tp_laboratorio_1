@@ -20,3 +20,14 @@ Desktop.ini
 
 # Recycle Bin used on file shares
 $RECYCLE.BIN/
+
+# =====================
+# Compiled binary files
+# =====================
+
+# Extensions
+*.o
+*.a
+
+# TP1
+tp1/bin/*
