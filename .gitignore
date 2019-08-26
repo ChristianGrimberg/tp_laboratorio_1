@@ -28,6 +28,7 @@ $RECYCLE.BIN/
 # Extensions
 *.o
 *.a
+*.layout
 
 # TP1
 tp1/bin/*
