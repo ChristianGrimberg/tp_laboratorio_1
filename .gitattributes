@@ -9,4 +9,4 @@ SUPPORT.md              export-ignore
 .github/css/            export-ignore
 .vscode/                export-ignore
 .azuredatastudio/       export-ignore
-# /css/*                  linguist-vendored
+/tp1/                   linguist-vendored
