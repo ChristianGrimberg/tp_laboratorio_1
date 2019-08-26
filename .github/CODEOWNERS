@@ -1,0 +1,68 @@
+# -> # =======================================
+# -> # Explicación de como funciona CODEOWNERS
+# -> # =======================================
+# -> 
+# -> # Las líneas que comenciencen con "#" serán anuladas.
+# -> 
+# -> # Podemos utilizar comodines utilizando el símbolo "*":
+# -> * @default-codeowner
+# -> 
+# -> # Las reglas definidas al final del archivo tienen prioridad por sobre las anteriores.
+# ->
+# -> # Este ejemplo se aplicará a todos los archivos que terminen en ".rb":
+# -> *.rb @ruby-owner
+# -> 
+# -> # Archivos que utilicen el símbolo `#` pueden utilizar el símbolo de escape previo con "\#":
+# -> \#file.rb @owner-file
+# -> 
+# -> # Se pueden especificar múltiples CODEOWNERS separados por espacio o tabulación:
+# -> CODEOWNERS @multiple @owners	@tab-separated
+# -> 
+# -> # Se pueden utilizar los usuarios de GitHub/GitLab o su correspondiente correo electrónico.
+# -> # Lo que no exista será ignorado, por ejemplo @legal y janedoe@gitlab.com son propietarios de LICENCE
+# -> LICENSE @legal this_does_not_match janedoe@gitlab.com
+# -> 
+# -> # Finalizando la ruta de un directorio con "/" indica que aplicará a todos los archivos contenidos
+# -> # y a sus subcarpetas con sus respectos archivos contenidos, bajo cualquier nivel:
+# -> /docs/ @all-docs
+# -> 
+# -> # Finalizando la ruta de un directorio con "/*" solo aplicará a los archivos que estén allí contenidos
+# -> # pero no a sus subcarpetas, es decir aplicará a "docs/index.md" pero no a "docs/projects/index.md":
+# -> /docs/* @root-docs
+# -> 
+# -> # Nombrando la ruta por ejemplo como "lib/", aplicará sobre todas las carpetas de cualquier nivel
+# -> # que conincidan con el nombre "lib":
+# -> lib/ @lib-owner
+# -> 
+# -> # Esto sólo aplicará al directorio "/config/" de la raíz del repositorio:
+# -> /config/ @config-owner
+# -> 
+# -> # Si la ruta del directorio contiene espacios se debe utilizar el caracter de escape "\":
+# -> path\ with\ spaces/ @space-owner
+# ->
+# -> # Patrones o comodines que nieguen la aplicación de CODEOWNERS aún no está implementado
+# ->
+# -> # =====================
+# -> # Fin de la Explicación
+# -> # =====================
+
+# Los cambios en los archivos de configuracion del repositorio están protegidos por:
+/.github/               @ChristianGrimberg
+.gitignore              @ChristianGrimberg
+.gitattributes          @ChristianGrimberg
+CODEOWNERS              @ChristianGrimberg
+SUPPORT.md              @ChristianGrimberg
+CONTRIBUTING.md         @ChristianGrimberg
+LICENCE                 @ChristianGrimberg
+
+# Los cambios en los templates de documentación están protegidos por:
+*_TEMPLATE.md           @ChristianGrimberg
+/templates/             @ChristianGrimberg
+
+# Los cambios en las configuraciones de los editores de código están protegidos por:
+/.vscode/               @ChristianGrimberg
+/.azuredatastudio/      @ChristianGrimberg
+/.github/css/           @ChristianGrimberg
+
+# Los cambios en la documentación del repositorio están protegidos por:
+README.md               @ChristianGrimberg

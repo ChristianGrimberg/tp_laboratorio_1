@@ -1,0 +1,12 @@
+# Ignore this files and folders to download with zip version
+.gitignore              export-ignore
+.gitattributes          export-ignore
+CODEOWNERS              export-ignore
+CONTRIBUTING            export-ignore
+SUPPORT.md              export-ignore
+*_TEMPLATE.md           export-ignore
+.github/                export-ignore
+.github/css/            export-ignore
+.vscode/                export-ignore
+.azuredatastudio/       export-ignore
+# /css/*                  linguist-vendored
