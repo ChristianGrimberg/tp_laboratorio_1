@@ -24,7 +24,7 @@ int main()
     {
         option = menu_main(operand1, operand2);
 
-        if(option == OPTION_MAX)
+        if(option == OPTION_MAX || option == OPTION_ERROR)
         {
             break;
         }

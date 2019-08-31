@@ -1,18 +1,36 @@
 {
     "tasks": [
         {
+            "label": "UNIX: Trabajo Practico 1",
+            "command": "cc",
             "type": "shell",
-            "label": "gcc build active file",
-            "command": "/usr/bin/gcc",
             "args": [
-                "-g",
-                "${file}",
                 "-o",
-                "${fileDirname}/${fileBasenameNoExtension}"
+                "tp1/bin/Debug/Program",
+                "tp1/input.c",
+                "tp1/menu.c",
+                "tp1/main.c"
             ],
-            "options": {
-                "cwd": "/usr/bin"
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
             }
+        },
+        {
+            "label": "WINDOWS: Trabajo Practico 1",
+            "command": "C:/Program Files (x86)/CodeBlocks/MinGW/bin/mingw32-gcc.exe",
+            "type": "shell",
+            "args": [
+                "-o",
+                "tp1/bin/Debug/Program",
+                "tp1/input.c",
+                "tp1/menu.c",
+                "tp1/main.c"
+            ],
+            "problemMatcher": []
         }
     ],
     "version": "2.0.0"

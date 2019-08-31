@@ -22,7 +22,8 @@ void menu_pauseScreen(void)
 
 int menu_main(double x, double y)
 {
-    int option;
+    int aux;
+    int option = OPTION_ERROR;
 
     clearScreen();
 
@@ -39,7 +40,11 @@ int menu_main(double x, double y)
     printf("9- Salir\n");
     printf("===================================\n");
 
-    option = getIntOfARange(OPTION_MIN, OPTION_MAX);
+    if(input_getInt(&aux, "Elija una opción del menu",
+        "Opción incorrecta, ingrese nuevamente", OPTION_MIN, OPTION_MAX) == 0)
+    {
+        option = aux;
+    }
 
     return option;
 }

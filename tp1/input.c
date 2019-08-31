@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "input.h"
 
 void input_clearBuffer()
@@ -14,17 +15,38 @@ void input_clearBuffer()
     }
 }
 
-int getIntOfARange(int minNumber, int maxNumber)
+int input_getInt(int* input,char message[],char eMessage[], int lowLimit, int hiLimit)
 {
-    int userOption = 0;
-    int numberOption;
+    int returnValue = -1;
+    int convertedNumber;
+    int counter = 0;
+    char stringNumber[STRING_AS_INT32_MAX];
 
-    do
+    if(hiLimit >= lowLimit && input != NULL && message != NULL && eMessage != NULL)
     {
-        printf("Ingrese un valor del [%d al %d]: ", minNumber, maxNumber);
-        numberOption = scanf("%d", &userOption);
-        input_clearBuffer();
-    } while (!numberOption || (userOption < minNumber || userOption > maxNumber));
+        do
+        {
+            if(counter == 0)
+            {
+                printf("%s: ", message);
+            }
+            else
+            {
+                printf("%s: ", eMessage);
+            }
+            
+            scanf("%s", stringNumber);
 
-    return userOption;
+            convertedNumber = atoi(stringNumber);
+            counter++;
+        } while (convertedNumber < lowLimit || convertedNumber > hiLimit);
+        
+        if(convertedNumber != 0)
+        {
+            *input = convertedNumber;
+            returnValue = 0;
+        }
+    }
+
+    return returnValue;
 }

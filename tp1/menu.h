@@ -2,6 +2,7 @@
 #define MENU_H_INCLUDED
 #define OPTION_MIN 1
 #define OPTION_MAX 9
+#define OPTION_ERROR -1
 
 /** \brief Funcion que interrumpe la ejecucion del programa
  * hasta que se presiona la tecla Enter
