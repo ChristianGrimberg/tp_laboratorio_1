@@ -1,7 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "menu.h"
-#include "input.h"
 
 /** \brief Funcion que limpia la pantalla de la consola en los diferentes SO
  *
@@ -9,7 +6,7 @@
  * \return void No retorna valores
  *
  */
-void clearScreen(void);
+static void clearScreen(void);
 
 void menu_pauseScreen(void)
 {
@@ -49,7 +46,7 @@ int menu_main(double x, double y)
     return option;
 }
 
-void clearScreen()
+static void clearScreen()
 {
     #if defined (__unix__) || (defined (__APPLE__) && defined (__MACH__))
     {

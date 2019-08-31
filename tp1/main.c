@@ -9,7 +9,6 @@
  * Autor: Christian Grimberg
  *
  ********************************************************************/
-#include <stdio.h>
 #include "menu.h"
 #define TRUE 1
 
