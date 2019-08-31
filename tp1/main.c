@@ -22,7 +22,7 @@ int main()
 
     do
     {
-        option = mainMenu(operand1, operand2);
+        option = menu_main(operand1, operand2);
 
         if(option == OPTION_MAX)
         {
@@ -49,7 +49,7 @@ int main()
                 break;
         }
 
-        pauseScreen();
+        menu_pauseScreen();
 
     }while(TRUE);
 

@@ -11,7 +11,7 @@
  */
 void clearScreen(void);
 
-void pauseScreen(void)
+void menu_pauseScreen(void)
 {
     printf("Presione la tecla Enter para continuar...");
     /**< Metodo para parar la ejecucion del programa
@@ -20,7 +20,7 @@ void pauseScreen(void)
     getchar();
 }
 
-int mainMenu(double x, double y)
+int menu_main(double x, double y)
 {
     int option;
 

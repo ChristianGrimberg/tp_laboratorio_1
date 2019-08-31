@@ -7,7 +7,7 @@
  * \return void No retorna valores
  *
  */
-void clearBuffer(void);
+void menu_clearBuffer(void);
 
 /** \brief
  *

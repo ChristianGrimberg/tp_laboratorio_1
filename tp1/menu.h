@@ -10,7 +10,7 @@
  * \return void No retorna valores
  *
  */
-void pauseScreen(void);
+void menu_pauseScreen(void);
 
 /** \brief Funcion que imprime un menu en pantalla
  * para que el usuario ingrese la opcion elegida
@@ -20,6 +20,6 @@ void pauseScreen(void);
  * \return int Retorna la opcion elegida en el menu
  *
  */
-int mainMenu(double x, double y);
+int menu_main(double x, double y);
 
 #endif // MENU_H_INCLUDED

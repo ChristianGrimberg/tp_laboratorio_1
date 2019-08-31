@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "inputs.h"
 
-void clearBuffer()
+void menu_clearBuffer()
 {
     char memoryBuffer = '\n';
 
@@ -23,7 +23,7 @@ int getIntOfARange(int minNumber, int maxNumber)
     {
         printf("Ingrese un valor del [%d al %d]: ", minNumber, maxNumber);
         numberOption = scanf("%d", &userOption);
-        clearBuffer();
+        menu_clearBuffer();
     } while (!numberOption || (userOption < minNumber || userOption > maxNumber));
 
     return userOption;
