@@ -3,7 +3,7 @@
 #include "menu.h"
 #include "inputs.h"
 
-/** \brief Funci—n que limpia la pantalla de la consola en los diferentes SO
+/** \brief Funcion que limpia la pantalla de la consola en los diferentes SO
  *
  * \param void No requiere paramteros
  * \return void No retorna valores
@@ -14,7 +14,8 @@ void clearScreen(void);
 void pauseScreen(void)
 {
     printf("Presione la tecla Enter para continuar...");
-    /**< Metodo de vaciado de buffer de entrada del teclado para diferentes SO */
+    /**< Metodo para parar la ejecucion del programa
+    hasta presionar Enter para diferentes SO */
     setbuf(stdin, NULL);
     getchar();
 }

@@ -1,14 +1,12 @@
 #ifndef INPUTS_H_INCLUDED
 #define INPUTS_H_INCLUDED
 
-/** \brief
+/** \brief Funcion que limpia el buffer de entrada
  *
- * \param
- * \param
- * \return
+ * \param void No requiere parametros
+ * \return void No retorna valores
  *
  */
-
 void clearBuffer(void);
 
 /** \brief

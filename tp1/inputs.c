@@ -6,7 +6,8 @@ void clearBuffer()
 {
     char memoryBuffer = '\n';
 
-    /**< Mientras que en el buffer no exista un Enter, la funcion getchar toma sus valores */
+    /**< Mientras que en el buffer no exista un Enter
+    la funcion getchar toma sus valores */
     while (getchar() != memoryBuffer)
     {
         /**< No requiere implementacion */
