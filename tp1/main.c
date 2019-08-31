@@ -10,10 +10,48 @@
  *
  ********************************************************************/
 #include <stdio.h>
-//#include <stdlib.h>
+#include "menu.h"
+#define TRUE 1
 
 int main()
 {
-    printf("Calculadora\n");
+    /**< Operandos de entrada del usuario */
+    float operand1 = 0;
+    float operand2 = 0;
+    int option; /**< Opcion para elegir del menu principal */
+
+    do
+    {
+        option = mainMenu(operand1, operand2);
+
+        if(option == OPTION_MAX)
+        {
+            break;
+        }
+
+        switch(option)
+        {
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+            case 5:
+                break;
+            case 6:
+                break;
+            case 7:
+                break;
+            case 8:
+                break;
+        }
+
+        pauseScreen();
+
+    }while(TRUE);
+
     return 0;
 }
