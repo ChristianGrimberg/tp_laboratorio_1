@@ -1,6 +1,6 @@
 #ifndef INPUT_H_INCLUDED
 #define INPUT_H_INCLUDED
-#define STRING_AS_INT32_MAX 10
+#define STRING_AS_INT32_MAX 64 /**< Buffer de entrada maximo para cadenas numericas */
 
 /** \brief Funcion que limpia el buffer de entrada
  *
