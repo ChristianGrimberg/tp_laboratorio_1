@@ -10,15 +10,6 @@
  */
 void input_clearBuffer(void);
 
-/** \brief
- *
- * \param minNumber int
- * \param maxNumber int
- * \return int
- *
- */
-int getIntOfARange(int minNumber, int maxNumber);
-
 /** \brief Solicita un numero al usuario y lo valida
  *
  * \param input* int Se carga el numero ingresado
