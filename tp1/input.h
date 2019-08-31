@@ -1,5 +1,5 @@
-#ifndef INPUTS_H_INCLUDED
-#define INPUTS_H_INCLUDED
+#ifndef INPUT_H_INCLUDED
+#define INPUT_H_INCLUDED
 
 /** \brief Funcion que limpia el buffer de entrada
  *
@@ -7,7 +7,7 @@
  * \return void No retorna valores
  *
  */
-void menu_clearBuffer(void);
+void input_clearBuffer(void);
 
 /** \brief
  *
@@ -18,4 +18,4 @@ void menu_clearBuffer(void);
  */
 int getIntOfARange(int minNumber, int maxNumber);
 
-#endif // INPUTS_H_INCLUDED
+#endif // INPUT_H_INCLUDED

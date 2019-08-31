@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "menu.h"
-#include "inputs.h"
+#include "input.h"
 
 /** \brief Funcion que limpia la pantalla de la consola en los diferentes SO
  *
