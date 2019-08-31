@@ -1,51 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "menu.h"
+#include "inputs.h"
 
-void clearBuffer(void)
-{
-    char memoryBuffer = '\n';
-
-    /**< Mientras que en el buffer no exista un Enter, la funcion getchar toma sus valores */
-    while (getchar() != memoryBuffer)
-    {
-        /**< No requiere implementacion */
-    }
-}
-
-int getIntOfARange(int minNumber, int maxNumber)
-{
-    int userOption = 0;
-    int numberOption;
-
-    do
-    {
-        printf("Ingrese un valor del [%d al %d]: ", minNumber, maxNumber);
-        numberOption = scanf("%d", &userOption);
-        clearBuffer();
-    } while (!numberOption || (userOption < minNumber || userOption > maxNumber));
-
-    return userOption;
-}
-
-/** \brief
+/** \brief Funci—n que limpia la pantalla de la consola en los diferentes SO
  *
- * \param void
- * \return void
+ * \param void No requiere paramteros
+ * \return void No retorna valores
  *
  */
-void clearScreen(void)
-{
-    #if defined (__unix__) || (defined (__APPLE__) && defined (__MACH__))
-    {
-        system("clear");
-    }
-    #else
-    {
-        system("cls");
-    }
-    #endif
-}
+void clearScreen(void);
 
 void pauseScreen(void)
 {
@@ -79,4 +43,16 @@ int mainMenu(double x, double y)
     return option;
 }
 
+void clearScreen()
+{
+    #if defined (__unix__) || (defined (__APPLE__) && defined (__MACH__))
+    {
+        system("clear");
+    }
+    #else
+    {
+        system("cls");
+    }
+    #endif
+}
 
