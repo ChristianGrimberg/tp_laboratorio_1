@@ -1,0 +1,6 @@
+#ifndef CALCULATOR_H_INCLUDED
+#define CALCULATOR_H_INCLUDED
+
+#include <stdio.h>
+
+#endif // CALCULATOR_H_INCLUDED

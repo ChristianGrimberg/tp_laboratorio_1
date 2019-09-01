@@ -61,12 +61,12 @@ int input_getInt(int* input, char message[], char eMessage[], int lowLimit, int 
             scanf("%s", stringNumber);
             numberIndicator = isNumber(stringNumber);
 
-            if(numberIndicator == 0)
+            if(!numberIndicator)
             {
                 convertedNumber = atoi(stringNumber);
             }
-        } while(numberIndicator != 0 ||
-            (numberIndicator == 0 && (convertedNumber < lowLimit || convertedNumber > hiLimit)));
+        } while(numberIndicator ||
+            (!numberIndicator && (convertedNumber < lowLimit || convertedNumber > hiLimit)));
 
         if(convertedNumber >= lowLimit && convertedNumber <= hiLimit)
         {
@@ -95,24 +95,27 @@ int input_getFloat(float* input, char message[], char eMessage[], float lowLimit
         {
             counter++;
 
-            if(counter == 0)
+            if(counter == 1)
             {
                 printf("%s: ", message);
             }
             else
             {
-                printf("%s: ", eMessage);
+                if(counter > 1)
+                {
+                    printf("%s: ", eMessage);
+                }
             }
 
             scanf("%s", stringNumber);
             numberIndicator = isFloat(stringNumber);
 
-            if(numberIndicator == 0)
+            if(!numberIndicator)
             {
                 convertedNumber = atof(stringNumber);
             }
-        } while(numberIndicator != 0 ||
-            (numberIndicator == 0 && (convertedNumber < lowLimit || convertedNumber > hiLimit)));
+        } while(numberIndicator ||
+            (!numberIndicator && (convertedNumber < lowLimit || convertedNumber > hiLimit)));
 
         if(convertedNumber >= lowLimit && convertedNumber <= hiLimit)
         {

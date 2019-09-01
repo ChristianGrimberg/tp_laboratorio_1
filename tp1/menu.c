@@ -36,13 +36,11 @@ int menu_main(int* option, double x, double y)
     printf("    9 - Salir\n");
     printf("=======================================================\n");
 
-    if(input_getInt(option, "Elija una opción del menu",
-        "Opción incorrecta, ingrese nuevamente", OPTION_MIN, OPTION_MAX) == 0)
+    if(!input_getInt(option, "Elija una opcion del menu",
+        "Opcion incorrecta, ingrese nuevamente", OPTION_MIN, OPTION_MAX))
     {
         returnValue = 0;
     }
-
-    menu_pauseScreen();
 
     return returnValue;
 }

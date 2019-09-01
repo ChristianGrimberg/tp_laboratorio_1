@@ -10,12 +10,15 @@
  *
  ********************************************************************/
 #include "menu.h"
+#include "calculator.h"
 
 int main()
 {
     /**< Operandos de entrada del usuario */
     float operand1 = 0;
     float operand2 = 0;
+    float auxValue = 0;
+
     int option; /**< Opcion para elegir del menu principal */
     int lifeCycle;
 
@@ -31,8 +34,18 @@ int main()
         switch(option)
         {
             case 1:
+                if(!input_getFloat(&auxValue, "Ingrese el primer operando",
+                    "Valor incorrecto, intente nuevamente", FLT_MIN, FLT_MAX))
+                {
+                    operand1 = auxValue;
+                }
                 break;
             case 2:
+                if(!input_getFloat(&auxValue, "Ingrese el segundo operando",
+                    "Valor incorrecto, intente nuevamente", FLT_MIN, FLT_MAX))
+                {
+                    operand2 = auxValue;
+                }
                 break;
             case 3:
                 break;
@@ -47,7 +60,9 @@ int main()
             case 8:
                 break;
         }
-    } while(lifeCycle == 0);
+
+        menu_pauseScreen();
+    } while(!lifeCycle);
 
     return 0;
 }
