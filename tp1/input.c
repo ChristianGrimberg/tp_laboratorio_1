@@ -1,6 +1,22 @@
 #include "input.h"
 
+/** \brief Funcion que evalua si una cadena ingresada por teclado
+ *  es un numero decimal.
+ *
+ * \param stringValue char* Direccion de la cadena a evaluar
+ * \return int Si es un numero decimal retorna [0] si no [-1]
+ *
+ */
 static int isNumber(char* stringValue);
+
+/** \brief Funcion que evalua si una cadena ingresada por teclado
+ *  es un numero flontante.
+ *
+ * \param stringValue char* Direccion de la cadena a evaluar
+ * \return int Si es un numero flotante retorna [0] si no [-1]
+ *
+ */
+static int isFloat(char* stringValue);
 
 void input_clearBuffer()
 {
@@ -18,8 +34,8 @@ int input_getInt(int* input, char message[], char eMessage[], int lowLimit, int 
 {
     int returnValue = -1;
     int counter = 0;
-    int convertedNumber;
     int numberIndicator = -1;
+    int convertedNumber;
 
     char stringNumber[STRING_AS_NUMBER_MAX];
 
@@ -66,6 +82,7 @@ int input_getFloat(float* input, char message[], char eMessage[], float lowLimit
 {
     int returnValue = -1;
     int counter = 0;
+    int numberIndicator = -1;
 
     float convertedNumber;
 
@@ -76,6 +93,8 @@ int input_getFloat(float* input, char message[], char eMessage[], float lowLimit
     {
         do
         {
+            counter++;
+
             if(counter == 0)
             {
                 printf("%s: ", message);
@@ -86,12 +105,16 @@ int input_getFloat(float* input, char message[], char eMessage[], float lowLimit
             }
 
             scanf("%s", stringNumber);
-            convertedNumber = atof(stringNumber);
+            numberIndicator = isFloat(stringNumber);
 
-            counter++;
-        } while (convertedNumber < lowLimit || convertedNumber > hiLimit);
-        
-        if(counter > 0)
+            if(numberIndicator == 0)
+            {
+                convertedNumber = atof(stringNumber);
+            }
+        } while(numberIndicator != 0 ||
+            (numberIndicator == 0 && (convertedNumber < lowLimit || convertedNumber > hiLimit)));
+
+        if(convertedNumber >= lowLimit && convertedNumber <= hiLimit)
         {
             *input = convertedNumber;
             returnValue = 0;
@@ -114,7 +137,7 @@ static int isNumber(char* stringValue)
         {
             i = 1;
         }
-        
+
         if((int)charAux >= (int)'0' && (int)charAux <= (int)'9')
         {
             returnValue = 0;
@@ -123,6 +146,43 @@ static int isNumber(char* stringValue)
         {
             returnValue = -1;
             break;
+        }
+        i++;
+    }
+
+    return returnValue;
+}
+
+static int isFloat(char* stringValue)
+{
+    int returnValue = -1;
+    int pointerCounter = 0;
+    int i = 0;
+
+    while(stringValue[i] != (int)EXIT_BUFFER)
+    {
+        if(i == 0 && ((int)stringValue[0] == (int)'-'
+        || (int)stringValue[0] == (int)'+'))
+        {
+            i = 1;
+        }
+
+        if(stringValue[i] == '.')
+        {
+            pointerCounter++;
+        }
+        else
+        {
+            if((int)stringValue[i] >= (int)'0'
+                && (int)stringValue[i] <= (int)'9' && pointerCounter <= 1)
+            {
+                returnValue = 0;
+            }
+            else
+            {
+                returnValue = -1;
+                break;
+            }
         }
         i++;
     }
