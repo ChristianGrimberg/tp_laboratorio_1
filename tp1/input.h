@@ -42,4 +42,15 @@ int input_getInt(int* input, char message[], char eMessage[], int lowLimit, int 
  */
 int input_getFloat(float* input, char message[], char eMessage[], float lowLimit, float hiLimit);
 
+/** \brief Solicita un numero flotante al usuario e indica su tipo
+ * 
+ * \param number float Numero con o sin decimales a evaluar
+ * \return int
+ *      Si devuelve [0] no puede reconocer el tipo
+ *      Si devuelve [1] el numero es de tipo entero
+ *      Si devuelve [2] el numero es de tipo flotante
+ *
+ */
+int getNumberType(float number);
+
 #endif // INPUT_H_INCLUDED

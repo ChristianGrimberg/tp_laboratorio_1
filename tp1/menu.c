@@ -25,14 +25,14 @@ int menu_main(int* option, double x, double y)
 
     /**< Impresion del menu con los valores dentro */
     printf("=======================================================\n");
-    printf("    1 - Ingresar 1er operando (A = %.2f)\n", x);
-    printf("    2 - Ingresar 2do operando (B = %.2f)\n", y);
-    printf("    3 - Calcular la suma (%.2f + %.2f)\n", x, y);
-    printf("    4 - Calcular la resta (%.2f - %.2f)\n", x, y);
-    printf("    5 - Calcular la division (%.2f / %.2f)\n", x, y);
-    printf("    6 - Calcular la multiplicacion (%.2f * %.2f)\n", x, y);
-    printf("    7 - Calcular el factorial (%.2f!)\n", x);
-    printf("    8 - Calcular el factorial (%.2f!)\n", y);
+    printNumberByType("    1 - Ingresar 1er operando A =", x);
+    printNumberByType("    2 - Ingresar 2do operando B =", y);
+    printf("    3 - Calcular la suma (A + B)\n");
+    printf("    4 - Calcular la resta (A - B)\n");
+    printf("    5 - Calcular la division (A / B)\n");
+    printf("    6 - Calcular la multiplicacion (A * B)\n");
+    printf("    7 - Calcular el factorial (A!)\n");
+    printf("    8 - Calcular el factorial (B!)\n");
     printf("    9 - Salir\n");
     printf("=======================================================\n");
 
@@ -43,6 +43,21 @@ int menu_main(int* option, double x, double y)
     }
 
     return returnValue;
+}
+
+void printNumberByType(char message[], float number)
+{
+    switch (getNumberType(number))
+    {
+        case 1:
+            /**< Se imprime en consola el numero como entero */
+            printf("%s %d\n", message, (int)number); 
+            break;
+        case 2:
+            /**< Se imprime en consola el numero como flotante con tres decimales */
+            printf("%s %.3f\n", message, number);
+            break;
+    }
 }
 
 static void clearScreen()
