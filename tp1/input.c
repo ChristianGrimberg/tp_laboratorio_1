@@ -18,6 +18,17 @@ static int isNumber(char* stringValue);
  */
 static int isFloat(char* stringValue);
 
+/** \brief Solicita un numero flotante al usuario e indica su tipo
+ * 
+ * \param number float Numero con o sin decimales a evaluar
+ * \return int
+ *      Si devuelve [0] no puede reconocer el tipo
+ *      Si devuelve [1] el numero es de tipo entero
+ *      Si devuelve [2] el numero es de tipo flotante
+ *
+ */
+static int getNumberType(float number);
+
 void input_clearBuffer()
 {
     char memoryBuffer = '\n';
@@ -191,4 +202,32 @@ static int isFloat(char* stringValue)
     }
 
     return returnValue;
+}
+
+static int getNumberType(float number)
+{
+    int returnEvaluation; /**< Se almacena el tipo numerico */
+    float floorNumber; /**< Se almacena la parte entera de un numero */
+
+    floorNumber = floor(number); /**< Se obtiene la parte entera del numero */
+
+    /**< Diferencias en un numero con decimales y su parte entera */
+    if (number - floorNumber != 0.0f)
+    {
+        returnEvaluation = 2; /**< Indica tipo de dato flotante */
+    }
+    else
+    {
+        /**< Igualdad de numero decimal con su parte entera, incluyendo el cero */
+        if (number == floorNumber || (float)number == 0)
+        {
+            returnEvaluation = 1; /**< Indica tipo de dato entero */
+        }
+        else /**< No se puede determinar el tipo de numero */
+        {
+            returnEvaluation = 0;
+        }
+    }
+
+    return returnEvaluation;
 }
