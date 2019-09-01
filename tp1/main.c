@@ -10,7 +10,6 @@
  *
  ********************************************************************/
 #include "menu.h"
-#define TRUE 1
 
 int main()
 {
@@ -18,10 +17,11 @@ int main()
     float operand1 = 0;
     float operand2 = 0;
     int option; /**< Opcion para elegir del menu principal */
+    int lifeCycle;
 
     do
     {
-        option = menu_main(operand1, operand2);
+        lifeCycle = menu_main(&option, operand1, operand2);
 
         if(option == OPTION_MAX || option == OPTION_ERROR)
         {
@@ -47,10 +47,7 @@ int main()
             case 8:
                 break;
         }
-
-        menu_pauseScreen();
-
-    }while(TRUE);
+    } while(lifeCycle == 0);
 
     return 0;
 }

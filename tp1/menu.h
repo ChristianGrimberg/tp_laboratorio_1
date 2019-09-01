@@ -21,11 +21,12 @@ void menu_pauseScreen(void);
 /** \brief Funcion que imprime un menu en pantalla
  * para que el usuario ingrese la opcion elegida
  *
+ * \param option int* Opcion elegida del menu
  * \param x double Valor del primer operando
  * \param y double Valor del segundo operando
  * \return int Retorna la opcion elegida en el menu
  *
  */
-int menu_main(double x, double y);
+int menu_main(int* option, double x, double y);
 
 #endif // MENU_H_INCLUDED

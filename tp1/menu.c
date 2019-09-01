@@ -17,33 +17,34 @@ void menu_pauseScreen(void)
     getchar();
 }
 
-int menu_main(double x, double y)
+int menu_main(int* option, double x, double y)
 {
-    int aux;
-    int option = OPTION_ERROR;
+    int returnValue = -1;
 
     clearScreen();
 
     /**< Impresion del menu con los valores dentro */
-    printf("===================================\n");
-    printf("1- Ingresar 1er operando (A=%.2f)\n", x);
-    printf("2- Ingresar 2do operando (B=%.2f)\n", y);
-    printf("3- Calcular la suma (%.2f + %.2f)\n", x, y);
-    printf("4- Calcular la resta (%.2f - %.2f)\n", x, y);
-    printf("5- Calcular la division (%.2f / %.2f)\n", x, y);
-    printf("6- Calcular la multiplicacion (%.2f * %.2f)\n", x, y);
-    printf("7- Calcular el factorial (%.2f!)\n", x);
-    printf("8- Calcular el factorial (%.2f!)\n", y);
-    printf("9- Salir\n");
-    printf("===================================\n");
+    printf("=======================================================\n");
+    printf("    1 - Ingresar 1er operando (A = %.2f)\n", x);
+    printf("    2 - Ingresar 2do operando (B = %.2f)\n", y);
+    printf("    3 - Calcular la suma (%.2f + %.2f)\n", x, y);
+    printf("    4 - Calcular la resta (%.2f - %.2f)\n", x, y);
+    printf("    5 - Calcular la division (%.2f / %.2f)\n", x, y);
+    printf("    6 - Calcular la multiplicacion (%.2f * %.2f)\n", x, y);
+    printf("    7 - Calcular el factorial (%.2f!)\n", x);
+    printf("    8 - Calcular el factorial (%.2f!)\n", y);
+    printf("    9 - Salir\n");
+    printf("=======================================================\n");
 
-    if(input_getInt(&aux, "Elija una opción del menu",
+    if(input_getInt(option, "Elija una opción del menu",
         "Opción incorrecta, ingrese nuevamente", OPTION_MIN, OPTION_MAX) == 0)
     {
-        option = aux;
+        returnValue = 0;
     }
 
-    return option;
+    menu_pauseScreen();
+
+    return returnValue;
 }
 
 static void clearScreen()
