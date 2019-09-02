@@ -47,8 +47,32 @@ int main()
                 }
                 break;
             case 3:
+                switch(addOperands(operand1, operand2, &auxValue))
+                {
+                    case -1:
+                        printf("El resultado de A+B es un desbordamiento\n");
+                        break;
+                    case 0:
+                        printNumberByType("El resultado de A+B es:", auxValue);
+                        break;
+                    case 1:
+                        printf("Los datos ingresados no estan dentro de los limites aceptados\n");
+                        break;
+                }
                 break;
             case 4:
+                switch(addOperands(operand1, -operand2, &auxValue))
+                {
+                    case -1:
+                        printf("El resultado de A-B es un desbordamiento\n");
+                        break;
+                    case 0:
+                        printNumberByType("El resultado de A-B es:", auxValue);
+                        break;
+                    case 1:
+                        printf("Los datos ingresados no estan dentro de los limites aceptados\n");
+                        break;
+                }
                 break;
             case 5:
                 break;

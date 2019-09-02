@@ -4,7 +4,7 @@
 #include "calculator.h"
 
 #define OPTION_MIN 1
-#define OPTION_MAX 9
+#define OPTION_MAX 8
 #define OPTION_ERROR -1
 
 /** \brief Funcion que interrumpe la ejecucion del programa
