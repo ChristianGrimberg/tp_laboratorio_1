@@ -1,6 +1,8 @@
 #ifndef CALCULATOR_H_INCLUDED
 #define CALCULATOR_H_INCLUDED
 
+#define INTERGER_FACTORIAL_MAX 13
+
 #include <stdio.h>
 #include "input.h"
 
@@ -16,7 +18,7 @@
  *      Retorna [-1] si el resultado es overflow
  *
  */
-int addOperands(float operand1, float operand2, float* result);
+int calculator_addOperands(float operand1, float operand2, float* result);
 
 /** \brief Funcion que calcula la resta de 2 operandos
  *      y devuelve el resultado
@@ -30,7 +32,7 @@ int addOperands(float operand1, float operand2, float* result);
  *      Retorna [-1] si el resultado es overflow
  *
  */
-int subtractOperands(float operand1, float operand2, float* result);
+int calculator_subtractOperands(float operand1, float operand2, float* result);
 
 /** \brief Funcion que calcula la multiplicacion de 2 operandos
  *      y devuelve el resultado
@@ -44,7 +46,7 @@ int subtractOperands(float operand1, float operand2, float* result);
  *      Retorna [-1] si el resultado es overflow
  *
  */
-int multiplyOperands(float operand1, float operand2, float* result);
+int calculator_multiplyOperands(float operand1, float operand2, float* result);
 
 /** \brief Funcion que calcula la division de 2 operandos
  *      y devuelve el resultado
@@ -59,6 +61,18 @@ int multiplyOperands(float operand1, float operand2, float* result);
  *      Retorna [-2] si no se puede dividir por cero
  *
  */
-int divideOperands(float operand1, float operand2, float* result);
+int calculator_divideOperands(float operand1, float operand2, float* result);
+
+/** \brief Funcion que calcula el factorial de un operando
+ *      y devuelve el resultado
+ * 
+ * \param operand float Operando a calcular
+ * \param result float* Variable donde se carga el resultado
+ * \return int
+ *      Retorna [0] si la operacion fue exitosa
+ *      Retorna [1] si los valores ingresados esta fuera de limite
+ *
+ */
+int calculator_factorialOperand(float operand, float* result);
 
 #endif // CALCULATOR_H_INCLUDED

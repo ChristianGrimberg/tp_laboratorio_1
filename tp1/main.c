@@ -47,13 +47,13 @@ int main()
                 }
                 break;
             case 3:
-                switch(addOperands(operand1, operand2, &auxValue))
+                switch(calculator_addOperands(operand1, operand2, &auxValue))
                 {
                     case -1:
                         printf("El resultado es un desbordamiento\n");
                         break;
                     case 0:
-                        printNumberByType("El resultado de A+B es:", auxValue);
+                        menu_printNumberByType("El resultado de A+B es:", auxValue);
                         break;
                     case 1:
                         printf("Los datos ingresados no estan dentro de los limites aceptados\n");
@@ -61,13 +61,13 @@ int main()
                 }
                 break;
             case 4:
-                switch(subtractOperands(operand1, operand2, &auxValue))
+                switch(calculator_subtractOperands(operand1, operand2, &auxValue))
                 {
                     case -1:
                         printf("El resultado es un desbordamiento\n");
                         break;
                     case 0:
-                        printNumberByType("El resultado de A-B es:", auxValue);
+                        menu_printNumberByType("El resultado de A-B es:", auxValue);
                         break;
                     case 1:
                         printf("Los datos ingresados no estan dentro de los limites aceptados\n");
@@ -75,7 +75,7 @@ int main()
                 }
                 break;
             case 5:
-                switch(divideOperands(operand1, operand2, &auxValue))
+                switch(calculator_divideOperands(operand1, operand2, &auxValue))
                 {
                     case -2:
                         printf("No es posible dividir por cero\n");
@@ -84,7 +84,7 @@ int main()
                         printf("El resultado es un desbordamiento\n");
                         break;
                     case 0:
-                        printNumberByType("El resultado de A/B es:", auxValue);
+                        menu_printNumberByType("El resultado de A/B es:", auxValue);
                         break;
                     case 1:
                         printf("Los datos ingresados no estan dentro de los limites aceptados\n");
@@ -92,13 +92,13 @@ int main()
                 }
                 break;
             case 6:
-                switch(multiplyOperands(operand1, operand2, &auxValue))
+                switch(calculator_multiplyOperands(operand1, operand2, &auxValue))
                 {
                     case -1:
                         printf("El resultado es un desbordamiento\n");
                         break;
                     case 0:
-                        printNumberByType("El resultado de A*B es:", auxValue);
+                        menu_printNumberByType("El resultado de A*B es:", auxValue);
                         break;
                     case 1:
                         printf("Los datos ingresados no estan dentro de los limites aceptados\n");
@@ -106,6 +106,25 @@ int main()
                 }
                 break;
             case 7:
+                switch(calculator_factorialOperand(operand1, &auxValue))
+                {
+                    case 0:
+                        menu_printNumberByType("El factorial de A es:", auxValue);
+                        break;
+                    case 1:
+                        printf("El operando A no esta dentro de los limites aceptados\n");
+                        break;
+                }
+
+                switch(calculator_factorialOperand(operand2, &auxValue))
+                {
+                    case 0:
+                        menu_printNumberByType("El factorial de B es:", auxValue);
+                        break;
+                    case 1:
+                        printf("El operando B no esta dentro de los limites aceptados\n");
+                        break;
+                }
                 break;
         }
 

@@ -51,6 +51,6 @@ int input_getFloat(float* input, char message[], char eMessage[], float lowLimit
  *      Si devuelve [2] el numero es de tipo flotante
  *
  */
-int getNumberType(float number);
+int input_getNumberType(float number);
 
 #endif // INPUT_H_INCLUDED

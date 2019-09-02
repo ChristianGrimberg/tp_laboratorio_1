@@ -35,6 +35,6 @@ int menu_main(int* option, double x, double y);
  * \return void No retorna valores
  *
  */
-void printNumberByType(char message[], float number);
+void menu_printNumberByType(char message[], float number);
 
 #endif // MENU_H_INCLUDED

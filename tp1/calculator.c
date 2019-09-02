@@ -1,9 +1,9 @@
 #include "calculator.h"
 
-int addOperands(float operand1, float operand2, float* result)
+int calculator_addOperands(float operand1, float operand2, float* result)
 {
     int returnValue = 1;
-    float auxResult;
+    float auxResult = 0;
 
     if((operand1 > -FLT_MAX && operand1 <= FLT_MAX)
         && (operand2 > -FLT_MAX && operand2 <= FLT_MAX))
@@ -25,10 +25,10 @@ int addOperands(float operand1, float operand2, float* result)
     return returnValue;
 }
 
-int subtractOperands(float operand1, float operand2, float* result)
+int calculator_subtractOperands(float operand1, float operand2, float* result)
 {
     int returnValue = 1;
-    float auxResult;
+    float auxResult = 0;
 
     if((operand1 > -FLT_MAX && operand1 <= FLT_MAX)
         && (operand2 > -FLT_MAX && operand2 <= FLT_MAX))
@@ -50,10 +50,10 @@ int subtractOperands(float operand1, float operand2, float* result)
     return returnValue;
 }
 
-int multiplyOperands(float operand1, float operand2, float* result)
+int calculator_multiplyOperands(float operand1, float operand2, float* result)
 {
     int returnValue = 1;
-    float auxResult;
+    float auxResult = 0;
 
     if((operand1 > -FLT_MAX && operand1 <= FLT_MAX)
         && (operand2 > -FLT_MAX && operand2 <= FLT_MAX))
@@ -77,10 +77,10 @@ int multiplyOperands(float operand1, float operand2, float* result)
     return returnValue;
 }
 
-int divideOperands(float operand1, float operand2, float* result)
+int calculator_divideOperands(float operand1, float operand2, float* result)
 {
     int returnValue = 1;
-    float auxResult;
+    float auxResult = 0;
 
     if((operand1 > -FLT_MAX && operand1 <= FLT_MAX)
         && (operand2 > -FLT_MAX && operand2 <= FLT_MAX))
@@ -103,6 +103,42 @@ int divideOperands(float operand1, float operand2, float* result)
             else
             {
                 *result = auxResult;
+                returnValue = 0;
+            }
+        }
+    }
+
+    return returnValue;
+}
+
+int calculator_factorialOperand(float operand, float* result)
+{
+    int returnValue = 1;
+    int i;
+    
+    float auxResult = 0;
+    
+    *result = 0;
+
+    if(input_getNumberType(operand) == 1)
+    {
+        if(operand > 0 && operand < INTERGER_FACTORIAL_MAX)
+        {
+            auxResult = 1;
+
+            for(i = 1; i <= operand; i++)
+            {
+                auxResult = auxResult * i;
+            }
+
+            *result = auxResult;
+            returnValue = 0;
+        }
+        else
+        {
+            if(operand == 0)
+            {
+                *result = 1;
                 returnValue = 0;
             }
         }

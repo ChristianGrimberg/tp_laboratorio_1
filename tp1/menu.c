@@ -25,8 +25,8 @@ int menu_main(int* option, double x, double y)
 
     /**< Impresion del menu con los valores dentro */
     printf("=======================================================\n");
-    printNumberByType("    1 - Ingresar 1er operando A =", x);
-    printNumberByType("    2 - Ingresar 2do operando B =", y);
+    menu_printNumberByType("    1 - Ingresar 1er operando A =", x);
+    menu_printNumberByType("    2 - Ingresar 2do operando B =", y);
     printf("    3 - Calcular la suma (A + B)\n");
     printf("    4 - Calcular la resta (A - B)\n");
     printf("    5 - Calcular la division (A / B)\n");
@@ -44,9 +44,9 @@ int menu_main(int* option, double x, double y)
     return returnValue;
 }
 
-void printNumberByType(char message[], float number)
+void menu_printNumberByType(char message[], float number)
 {
-    switch (getNumberType(number))
+    switch (input_getNumberType(number))
     {
         case 1:
             /**< Se imprime en consola el numero como entero */

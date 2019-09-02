@@ -127,7 +127,7 @@ int input_getFloat(float* input, char message[], char eMessage[], float lowLimit
     return returnValue;
 }
 
-int getNumberType(float number)
+int input_getNumberType(float number)
 {
     int returnEvaluation; /**< Se almacena el tipo numerico */
     float floorNumber; /**< Se almacena la parte entera de un numero */
