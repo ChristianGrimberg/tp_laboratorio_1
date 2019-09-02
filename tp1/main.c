@@ -50,7 +50,7 @@ int main()
                 switch(addOperands(operand1, operand2, &auxValue))
                 {
                     case -1:
-                        printf("El resultado de A+B es un desbordamiento\n");
+                        printf("El resultado es un desbordamiento\n");
                         break;
                     case 0:
                         printNumberByType("El resultado de A+B es:", auxValue);
@@ -61,10 +61,10 @@ int main()
                 }
                 break;
             case 4:
-                switch(addOperands(operand1, -operand2, &auxValue))
+                switch(subtractOperands(operand1, operand2, &auxValue))
                 {
                     case -1:
-                        printf("El resultado de A-B es un desbordamiento\n");
+                        printf("El resultado es un desbordamiento\n");
                         break;
                     case 0:
                         printNumberByType("El resultado de A-B es:", auxValue);
@@ -75,12 +75,37 @@ int main()
                 }
                 break;
             case 5:
+                switch(divideOperands(operand1, operand2, &auxValue))
+                {
+                    case -2:
+                        printf("No es posible dividir por cero\n");
+                        break;
+                    case -1:
+                        printf("El resultado es un desbordamiento\n");
+                        break;
+                    case 0:
+                        printNumberByType("El resultado de A/B es:", auxValue);
+                        break;
+                    case 1:
+                        printf("Los datos ingresados no estan dentro de los limites aceptados\n");
+                        break;
+                }
                 break;
             case 6:
+                switch(multiplyOperands(operand1, operand2, &auxValue))
+                {
+                    case -1:
+                        printf("El resultado es un desbordamiento\n");
+                        break;
+                    case 0:
+                        printNumberByType("El resultado de A*B es:", auxValue);
+                        break;
+                    case 1:
+                        printf("Los datos ingresados no estan dentro de los limites aceptados\n");
+                        break;
+                }
                 break;
             case 7:
-                break;
-            case 8:
                 break;
         }
 
