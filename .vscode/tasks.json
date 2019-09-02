@@ -7,6 +7,7 @@
             "args": [
                 "-o",
                 "tp1/bin/Debug/tp1",
+                "tp1/calculator.c",
                 "tp1/input.c",
                 "tp1/menu.c",
                 "tp1/main.c"

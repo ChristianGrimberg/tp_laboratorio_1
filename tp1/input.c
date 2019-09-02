@@ -61,12 +61,12 @@ int input_getInt(int* input, char message[], char eMessage[], int lowLimit, int 
             scanf("%s", stringNumber);
             numberIndicator = isNumber(stringNumber);
 
-            if(numberIndicator == 0)
+            if(!numberIndicator)
             {
                 convertedNumber = atoi(stringNumber);
             }
-        } while(numberIndicator != 0 ||
-            (numberIndicator == 0 && (convertedNumber < lowLimit || convertedNumber > hiLimit)));
+        } while(numberIndicator ||
+            (!numberIndicator && (convertedNumber < lowLimit || convertedNumber > hiLimit)));
 
         if(convertedNumber >= lowLimit && convertedNumber <= hiLimit)
         {
@@ -95,24 +95,27 @@ int input_getFloat(float* input, char message[], char eMessage[], float lowLimit
         {
             counter++;
 
-            if(counter == 0)
+            if(counter == 1)
             {
                 printf("%s: ", message);
             }
             else
             {
-                printf("%s: ", eMessage);
+                if(counter > 1)
+                {
+                    printf("%s: ", eMessage);
+                }
             }
 
             scanf("%s", stringNumber);
             numberIndicator = isFloat(stringNumber);
 
-            if(numberIndicator == 0)
+            if(!numberIndicator)
             {
                 convertedNumber = atof(stringNumber);
             }
-        } while(numberIndicator != 0 ||
-            (numberIndicator == 0 && (convertedNumber < lowLimit || convertedNumber > hiLimit)));
+        } while(numberIndicator ||
+            (!numberIndicator && (convertedNumber < lowLimit || convertedNumber > hiLimit)));
 
         if(convertedNumber >= lowLimit && convertedNumber <= hiLimit)
         {
@@ -122,6 +125,34 @@ int input_getFloat(float* input, char message[], char eMessage[], float lowLimit
     }
 
     return returnValue;
+}
+
+int input_getNumberType(float number)
+{
+    int returnEvaluation; /**< Se almacena el tipo numerico */
+    float floorNumber; /**< Se almacena la parte entera de un numero */
+
+    floorNumber = floor(number); /**< Se obtiene la parte entera del numero */
+
+    /**< Diferencias en un numero con decimales y su parte entera */
+    if (number - floorNumber != 0.0f)
+    {
+        returnEvaluation = 2; /**< Indica tipo de dato flotante */
+    }
+    else
+    {
+        /**< Igualdad de numero decimal con su parte entera, incluyendo el cero */
+        if (number == floorNumber || (float)number == 0)
+        {
+            returnEvaluation = 1; /**< Indica tipo de dato entero */
+        }
+        else /**< No se puede determinar el tipo de numero */
+        {
+            returnEvaluation = 0;
+        }
+    }
+
+    return returnEvaluation;
 }
 
 static int isNumber(char* stringValue)
