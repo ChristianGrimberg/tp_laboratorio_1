@@ -50,7 +50,7 @@ void menu_printNumberByType(char message[], float number)
     {
         case 1:
             /**< Se imprime en consola el numero como entero */
-            printf("%s %d\n", message, (int)number); 
+            printf("%s %.0f\n", message, number); 
             break;
         case 2:
             /**< Se imprime en consola el numero como flotante con tres decimales */
