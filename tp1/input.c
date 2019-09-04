@@ -39,7 +39,7 @@ int input_getInt(int* input, char message[], char eMessage[], int lowLimit, int 
 
     char stringNumber[STRING_AS_NUMBER_MAX];
 
-    if(hiLimit >= lowLimit && lowLimit >= INT32_MIN && hiLimit <= INT32_MAX
+    if(hiLimit >= lowLimit && lowLimit > INT_MIN && hiLimit < INT_MAX
         && input != NULL && message != NULL && eMessage != NULL)
     {
         do
@@ -66,7 +66,7 @@ int input_getInt(int* input, char message[], char eMessage[], int lowLimit, int 
                 convertedNumber = atoi(stringNumber);
             }
         } while(numberIndicator ||
-            (!numberIndicator && (convertedNumber < lowLimit || convertedNumber > hiLimit)));
+            (!numberIndicator && ((convertedNumber < lowLimit || convertedNumber > hiLimit))));
 
         if(convertedNumber >= lowLimit && convertedNumber <= hiLimit)
         {
