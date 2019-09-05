@@ -27,10 +27,10 @@ int menu_main(int* option, double x, double y)
     printf("=======================================================\n");
     menu_printNumberByType("    1 - Ingresar 1er operando A =", x);
     menu_printNumberByType("    2 - Ingresar 2do operando B =", y);
-    printf("    3 - Calcular la suma (A + B)\n");
-    printf("    4 - Calcular la resta (A - B)\n");
-    printf("    5 - Calcular la division (A / B)\n");
-    printf("    6 - Calcular la multiplicacion (A * B)\n");
+    printf("    3 - Calcular la suma (A+B)\n");
+    printf("    4 - Calcular la resta (A-B)\n");
+    printf("    5 - Calcular la division (A/B)\n");
+    printf("    6 - Calcular la multiplicacion (A*B)\n");
     printf("    7 - Calcular el factorial (A!) (B!)\n");
     printf("    8 - Salir\n");
     printf("=======================================================\n");
