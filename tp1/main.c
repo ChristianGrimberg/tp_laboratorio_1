@@ -5,7 +5,10 @@
  *      Realizar una calculadora que realice operaciones de suma,
  *      resta, multiplicacion, division y factorial de dos numeros.
  *
- * Version: 0.1 - 25 de agosto de 2019
+ * Version:
+ *      v0.1 - 25 de agosto de 2019
+ *      v1.0 - 5 de septiembre de 2019
+ *
  * Autor: Christian Grimberg
  *
  ********************************************************************/
