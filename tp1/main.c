@@ -34,14 +34,14 @@ int main()
         {
             case 1:
                 if(!input_getFloat(&auxValue, "Ingrese el primer operando",
-                    "Valor incorrecto, intente nuevamente", FLT_MIN, FLT_MAX))
+                    "Valor incorrecto, intente nuevamente", -FLT_MAX, FLT_MAX))
                 {
                     operand1 = auxValue;
                 }
                 break;
             case 2:
                 if(!input_getFloat(&auxValue, "Ingrese el segundo operando",
-                    "Valor incorrecto, intente nuevamente", FLT_MIN, FLT_MAX))
+                    "Valor incorrecto, intente nuevamente", -FLT_MAX, FLT_MAX))
                 {
                     operand2 = auxValue;
                 }

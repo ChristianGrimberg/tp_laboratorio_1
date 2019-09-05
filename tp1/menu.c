@@ -27,10 +27,10 @@ int menu_main(int* option, double x, double y)
     printf("=======================================================\n");
     menu_printNumberByType("    1 - Ingresar 1er operando A =", x);
     menu_printNumberByType("    2 - Ingresar 2do operando B =", y);
-    printf("    3 - Calcular la suma (A + B)\n");
-    printf("    4 - Calcular la resta (A - B)\n");
-    printf("    5 - Calcular la division (A / B)\n");
-    printf("    6 - Calcular la multiplicacion (A * B)\n");
+    printf("    3 - Calcular la suma (A+B)\n");
+    printf("    4 - Calcular la resta (A-B)\n");
+    printf("    5 - Calcular la division (A/B)\n");
+    printf("    6 - Calcular la multiplicacion (A*B)\n");
     printf("    7 - Calcular el factorial (A!) (B!)\n");
     printf("    8 - Salir\n");
     printf("=======================================================\n");
@@ -50,18 +50,18 @@ void menu_printNumberByType(char message[], float number)
     {
         case 1:
             /**< Se imprime en consola el numero como entero */
-            printf("%s %d\n", message, (int)number); 
+            printf("%s %.0lf\n", message, number); 
             break;
         case 2:
             /**< Se imprime en consola el numero como flotante con tres decimales */
-            printf("%s %.3f\n", message, number);
+            printf("%s %.3lf\n", message, number);
             break;
     }
 }
 
 static void clearScreen()
 {
-    #if defined (__unix__) || (defined (__APPLE__) && defined (__MACH__))
+    #if defined (__unix__) || defined (__APPLE__) || defined (__MACH__)
     {
         system("clear");
     }

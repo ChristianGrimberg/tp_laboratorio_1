@@ -39,7 +39,7 @@ int input_getInt(int* input, char message[], char eMessage[], int lowLimit, int 
 
     char stringNumber[STRING_AS_NUMBER_MAX];
 
-    if(hiLimit >= lowLimit && lowLimit >= INT32_MIN && hiLimit <= INT32_MAX
+    if(hiLimit >= lowLimit && lowLimit > INT_MIN && hiLimit < INT_MAX
         && input != NULL && message != NULL && eMessage != NULL)
     {
         do
@@ -66,7 +66,7 @@ int input_getInt(int* input, char message[], char eMessage[], int lowLimit, int 
                 convertedNumber = atoi(stringNumber);
             }
         } while(numberIndicator ||
-            (!numberIndicator && (convertedNumber < lowLimit || convertedNumber > hiLimit)));
+            (!numberIndicator && ((convertedNumber < lowLimit || convertedNumber > hiLimit))));
 
         if(convertedNumber >= lowLimit && convertedNumber <= hiLimit)
         {
@@ -88,7 +88,7 @@ int input_getFloat(float* input, char message[], char eMessage[], float lowLimit
 
     char stringNumber[STRING_AS_NUMBER_MAX];
 
-    if(hiLimit >= lowLimit && lowLimit >= FLT_MIN && hiLimit <= FLT_MAX
+    if(hiLimit >= lowLimit && lowLimit >= -FLT_MAX && hiLimit <= FLT_MAX
         && input != NULL && message != NULL && eMessage != NULL)
     {
         do
@@ -129,26 +129,21 @@ int input_getFloat(float* input, char message[], char eMessage[], float lowLimit
 
 int input_getNumberType(float number)
 {
-    int returnEvaluation; /**< Se almacena el tipo numerico */
-    float floorNumber; /**< Se almacena la parte entera de un numero */
+    int returnEvaluation = 0; /**< Se almacena el tipo numerico */
+    float auxNumber; /**< Se almacena la parte entera de un numero */
 
-    floorNumber = floor(number); /**< Se obtiene la parte entera del numero */
+    auxNumber = (float)((int)number); /**< Se obtiene la parte entera del numero */
 
     /**< Diferencias en un numero con decimales y su parte entera */
-    if (number - floorNumber != 0.0f)
+    if (number == auxNumber)
     {
-        returnEvaluation = 2; /**< Indica tipo de dato flotante */
+        returnEvaluation = 1; /**< Indica tipo de dato entero */
     }
     else
     {
-        /**< Igualdad de numero decimal con su parte entera, incluyendo el cero */
-        if (number == floorNumber || (float)number == 0)
+        if (number - auxNumber != 0.0f)
         {
-            returnEvaluation = 1; /**< Indica tipo de dato entero */
-        }
-        else /**< No se puede determinar el tipo de numero */
-        {
-            returnEvaluation = 0;
+            returnEvaluation = 2; /**< Indica tipo de dato flotante */
         }
     }
 
