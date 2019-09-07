@@ -1,5 +1,5 @@
 <h1 align="center">
-    <img src=".github/css/logo-utnfra.png">
+    <img src=".github/img/logo-utnfra.png">
     <br/>
     Repositorio de Trabajos Prácticos de Programación/Laboratorio 1
     <br/>
