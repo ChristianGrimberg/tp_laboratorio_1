@@ -30,5 +30,6 @@ $RECYCLE.BIN/
 *.a
 *.layout
 
-# TP1
+# TP´s
 tp1/bin/*
+tp2/bin/*
