@@ -4,8 +4,8 @@
 Una empresa requiere un sistema para administrar su nómina de empleados. Se sabe que dicha nómina bajo ninguna circunstancia superara los 1000 empleados.
 
 * Datos:
-<p style="max-width: 250px; display:block; margin:auto;">
-    <img src="../.github/img/employee.png">
+<p align="center">
+    <img src="../.github/img/employee.png" width="300">
 </p>
 
 El sistema deberá tener el siguiente menú de opciones:
