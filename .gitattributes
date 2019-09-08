@@ -5,8 +5,8 @@ CODEOWNERS              export-ignore
 CONTRIBUTING            export-ignore
 SUPPORT.md              export-ignore
 *_TEMPLATE.md           export-ignore
-.github/                export-ignore
+.github/*               export-ignore
 .github/css/            export-ignore
 .vscode/                export-ignore
 .azuredatastudio/       export-ignore
-/tp1/                   linguist-vendored
+/tp*/*                  linguist-vendored
