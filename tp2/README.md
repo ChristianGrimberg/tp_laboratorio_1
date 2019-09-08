@@ -174,3 +174,14 @@ int printEmployees(Employee* list, int length)
 ```c
 r = printEmployees(arrayEmployees, ELEMENTS);
 ```
+## 3. Cómo realizar y entregar el trabajo práctico
+El trabajo práctico deberá ser entregado en el repositorio de GIT correspondiente al TP2 de la materia.
+
+El mismo consistirá en el proyecto de `Code::Blocks` con el programa funcionando y comentado, respetando las reglas de estilo de la cátedra. La compilación no deberá arrojar mensajes de error ni de warnings.
+
+El proyecto deberá contar con la biblioteca descripta en la sección número dos, y se deberá hacer uso de dichas funciones para resolver la lógica del programa.
+### 3.1. Objetivo
+El objetivo del siguiente trabajo es que el alumno sea capaz de demostrar que puede integrar los conocimientos aprendidos hasta la clase 12. Los conocimientos necesarios para la realización del TP son los siguientes:
+* Manejo de arrays.
+* Manejo de pasaje por referencia.
+* Manejo de estructuras.
