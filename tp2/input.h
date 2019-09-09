@@ -11,6 +11,14 @@
 #define STRING_AS_NUMBER_MAX 64 /**< Buffer de entrada maximo para cadenas numericas */
 #define EXIT_BUFFER '\0' /**< Valor de terminacion de cadena de caracteres. */
 
+/** \brief Funcion que limpia la pantalla de la consola en los diferentes SO
+ *
+ * \param void No requiere paramteros
+ * \return void No retorna valores
+ *
+ */
+void clearScreen(void);
+
 /** \brief Funcion que limpia el buffer de entrada
  *
  * \param void No requiere parametros

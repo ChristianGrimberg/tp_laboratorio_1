@@ -14,6 +14,7 @@
 
 int main()
 {
+    clearScreen();
     printf("Trabajo Practico 2\n");
     return 0;
 }

@@ -18,6 +18,19 @@ static int isNumber(char* stringValue);
  */
 static int isFloat(char* stringValue);
 
+void clearScreen()
+{
+    #if defined (__unix__) || defined (__APPLE__) || defined (__MACH__)
+    {
+        system("clear");
+    }
+    #else
+    {
+        system("cls");
+    }
+    #endif
+}
+
 void input_clearBuffer()
 {
     char memoryBuffer = '\n';

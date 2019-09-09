@@ -27,6 +27,7 @@
             "args": [
                 "-o",
                 "tp2/bin/Debug/tp2",
+                "tp2/input.c",
                 "tp2/main.c"
             ],
             "problemMatcher": [
