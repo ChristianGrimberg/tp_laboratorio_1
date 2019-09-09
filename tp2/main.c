@@ -14,7 +14,11 @@
 
 int main()
 {
-    clearScreen();
+    input_clearScreen();
+
     printf("Trabajo Practico 2\n");
+
+    input_pauseScreen();
+
     return 0;
 }

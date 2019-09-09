@@ -18,7 +18,7 @@ static int isNumber(char* stringValue);
  */
 static int isFloat(char* stringValue);
 
-void clearScreen()
+void input_clearScreen()
 {
     #if defined (__unix__) || defined (__APPLE__) || defined (__MACH__)
     {
@@ -29,6 +29,15 @@ void clearScreen()
         system("cls");
     }
     #endif
+}
+
+void input_pauseScreen(void)
+{
+    printf("Presione la tecla Enter para continuar...");
+    /**< Metodo para parar la ejecucion del programa
+    hasta presionar Enter para diferentes SO */
+    setbuf(stdin, NULL);
+    getchar();
 }
 
 void input_clearBuffer()

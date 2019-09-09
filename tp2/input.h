@@ -17,7 +17,16 @@
  * \return void No retorna valores
  *
  */
-void clearScreen(void);
+void input_clearScreen(void);
+
+/** \brief Funcion que interrumpe la ejecucion del programa
+ *      hasta que se presiona la tecla Enter
+ *
+ * \param void No requiere parametros
+ * \return void No retorna valores
+ *
+ */
+void input_pauseScreen(void);
 
 /** \brief Funcion que limpia el buffer de entrada
  *
