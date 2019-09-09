@@ -6,17 +6,20 @@ CFLAGS = -c
 WFLAGS = -Wall
 SRC = main.c
 OBJ = main.o
+INPC = input.c
+INPH = input.h
+INPO = input.o
 PROJECT = tp2
 
-$(PROJECT): $(OBJDIR)input.o $(OBJDIR)$(OBJ)
+$(PROJECT): $(OBJDIR)$(INPO) $(OBJDIR)$(OBJ)
 	$(CC) $(WFLAGS) $^ -o $(EXEDIR)$@
-$(OBJDIR)$(OBJ): input.h $(SRC)
+$(OBJDIR)$(OBJ): $(INPH) $(SRC)
 	cd $(OBJDIR) \
 	&& $(CC) $(CFLAGS) $(UPDIR)$(SRC)
-$(OBJDIR)input.o: input.c
+$(OBJDIR)$(INPO): $(INPC)
 	cd $(OBJDIR) \
 	&& $(CC) $(CFLAGS) $(UPDIR)$^
 clean:
-	$(RM) *.layout $(OBJDIR)*.o $(EXEDIR)$(PROJECT)
+	$(RM) $(PROJECT).layout $(OBJDIR)*.o $(EXEDIR)$(PROJECT)
 debug: $(PROJECT)
 	./$(EXEDIR)$^
