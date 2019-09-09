@@ -10,7 +10,7 @@
  * Autor: Christian Grimberg
  *
  ********************************************************************/
-#include "menu.h"
+#include "input.h"
 
 int main()
 {

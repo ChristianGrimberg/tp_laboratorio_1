@@ -8,12 +8,15 @@ SRC = main.c
 OBJ = main.o
 PROJECT = tp2
 
-$(PROJECT): $(OBJDIR)$(OBJ)
+$(PROJECT): $(OBJDIR)input.o $(OBJDIR)$(OBJ)
 	$(CC) $(WFLAGS) $^ -o $(EXEDIR)$@
-$(OBJDIR)$(OBJ): $(SRC)
+$(OBJDIR)$(OBJ): input.h $(SRC)
+	cd $(OBJDIR) \
+	&& $(CC) $(CFLAGS) $(UPDIR)$(SRC)
+$(OBJDIR)input.o: input.c
 	cd $(OBJDIR) \
 	&& $(CC) $(CFLAGS) $(UPDIR)$^
 clean:
-	$(RM) $(OBJDIR)*.o $(EXEDIR)$(PROJECT)
+	$(RM) *.layout $(OBJDIR)*.o $(EXEDIR)$(PROJECT)
 debug: $(PROJECT)
 	./$(EXEDIR)$^
