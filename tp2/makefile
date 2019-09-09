@@ -15,3 +15,5 @@ $(OBJDIR)$(OBJ): $(SRC)
 	&& $(CC) $(CFLAGS) $(UPDIR)$^
 clean:
 	$(RM) $(OBJDIR)*.o $(EXEDIR)$(PROJECT)
+debug: $(PROJECT)
+	./$(EXEDIR)$^
