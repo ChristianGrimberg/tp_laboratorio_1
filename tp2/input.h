@@ -43,7 +43,9 @@ void input_clearBuffer(void);
  * \param eMessage[] char Es el mensaje a ser mostrado en caso de error
  * \param lowLimit int Limite inferior a validar
  * \param hiLimit int Limite superior a validar
- * \return int Si obtuvo el numero [0] si no [-1]
+ * \return int
+ *      [0] Si obtuvo el numero requerido
+ *      [-1] Si hubo un error
  *
  */
 int input_getInt(int* input, char message[], char eMessage[], int lowLimit, int hiLimit);
@@ -55,7 +57,9 @@ int input_getInt(int* input, char message[], char eMessage[], int lowLimit, int 
  * \param eMessage[] char Es el mensaje a ser mostrado en caso de error
  * \param lowLimit float Limite inferior a validar
  * \param hiLimit float Limite superior a validar
- * \return int Si obtuvo el numero [0] si no [-1]
+ * \return int
+ *      [0] Si obtuvo el numero requerido
+ *      [-1] Si hubo un error
  *
  */
 int input_getFloat(float* input, char message[], char eMessage[], float lowLimit, float hiLimit);
