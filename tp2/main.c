@@ -5,20 +5,36 @@
  *      Se requiere administrar el ABM de una nomina de 100 empleados.
  *
  * Version:
- *      v0.1 - 7 de septiembre de 2019
+ *      v1.1 - 7 de septiembre de 2019
  *
  * Autor: Christian Grimberg
  *
  ********************************************************************/
-#include "input.h"
+#include "menu.h"
 
 int main()
 {
-    input_clearScreen();
+    int lifeCycle;
+    int option;
 
-    printf("Trabajo Practico 2\n");
+    do
+    {
+        lifeCycle = menu_main(&option);
 
-    input_pauseScreen();
+        if(option == MAIN_MAX || option == OPTION_ERROR)
+        {
+            break;
+        }
+
+        switch (option)
+        {
+            case 1:
+                /* code */
+                break;
+        }
+
+        input_pauseScreen();
+    } while (!lifeCycle);
 
     return 0;
 }

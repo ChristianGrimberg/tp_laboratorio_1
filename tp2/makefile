@@ -9,13 +9,19 @@ OBJ = main.o
 INPC = input.c
 INPH = input.h
 INPO = input.o
+MENUC = menu.c
+MENUH = menu.h
+MENUO = menu.o
 PROJECT = tp2
 
-$(PROJECT): $(OBJDIR)$(INPO) $(OBJDIR)$(OBJ)
+$(PROJECT): $(OBJDIR)$(INPO) $(OBJDIR)$(MENUO) $(OBJDIR)$(OBJ)
 	$(CC) $(WFLAGS) $^ -o $(EXEDIR)$@
-$(OBJDIR)$(OBJ): $(INPH) $(SRC)
+$(OBJDIR)$(OBJ): $(MENUH) $(SRC)
 	cd $(OBJDIR) \
 	&& $(CC) $(CFLAGS) $(UPDIR)$(SRC)
+$(OBJDIR)$(MENUO): $(MENUC)
+	cd $(OBJDIR) \
+	&& $(CC) $(CFLAGS) $(UPDIR)$^
 $(OBJDIR)$(INPO): $(INPC)
 	cd $(OBJDIR) \
 	&& $(CC) $(CFLAGS) $(UPDIR)$^
