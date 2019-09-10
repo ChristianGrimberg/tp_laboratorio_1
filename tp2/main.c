@@ -17,6 +17,7 @@ int main()
     int lifeCycle; /**< Indicador del ciclo de vida de cada menu >*/
     int optionMainMenu; /**< Opcion elegida por el usuario del menu principal >*/
     int optionCreateMenu; /**< Opcion elegida por el usuario del menu de alta >*/
+    int optionUpdateMenu; /**< Opcion elegida por el usuario del menu de modificacion >*/
 
     do
     {
@@ -40,6 +41,26 @@ int main()
                     }
 
                     switch (optionCreateMenu)
+                    {
+                        case 1: // Opcion elegida: Ingreso del Nombre
+                            /* code */
+                            break;
+                    }
+
+                    input_pauseScreen();
+                } while (!lifeCycle);
+                break;
+            case 2: // Opcion elegida: Modificar un Empleado
+                do
+                {
+                    lifeCycle = menu_update(&optionUpdateMenu);
+
+                    if(optionUpdateMenu == UPDATE_MAX || optionUpdateMenu == OPTION_ERROR)
+                    {
+                        break;
+                    }
+
+                    switch (optionUpdateMenu)
                     {
                         case 1: // Opcion elegida: Ingreso del Nombre
                             /* code */
