@@ -18,6 +18,7 @@ int main()
     int optionMainMenu; /**< Opcion elegida por el usuario del menu principal >*/
     int optionCreateMenu; /**< Opcion elegida por el usuario del menu de alta >*/
     int optionUpdateMenu; /**< Opcion elegida por el usuario del menu de modificacion >*/
+    int optionDeleteMenu; /**< Opcion elegida por el usuario del menu de eliminacion >*/
 
     do
     {
@@ -64,6 +65,26 @@ int main()
                     switch (optionUpdateMenu)
                     {
                         case 1: // Opcion elegida: Ingreso del Nombre
+                            /* code */
+                            break;
+                    }
+
+                    input_pauseScreen("Presione la tecla Enter para continuar");
+                } while (!lifeCycle);
+                break;
+            case 3:
+                do
+                {
+                    lifeCycle = menu_delete(&optionDeleteMenu);
+
+                    if(optionDeleteMenu == DELETE_MAX || optionUpdateMenu == OPTION_ERROR)
+                    {
+                        break;
+                    }
+
+                    switch (optionDeleteMenu)
+                    {
+                        case 1: // Opcion elegida: Ingreso del ID a dar de baja
                             /* code */
                             break;
                     }

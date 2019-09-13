@@ -74,3 +74,25 @@ int menu_update(int* option)
 
     return returnValue;
 }
+
+int menu_delete(int* option)
+{
+    int returnValue = -1;
+
+    input_clearScreen();
+
+    printf("=======================================================\n");
+    printf("                DAR DE BAJA A EMPLEADO\n");
+    printf("=======================================================\n");
+    printf("    1 - Ingresar el ID del Empleado a dar de baja\n");
+    printf("    2 - Volver al menu principal\n");
+    printf("=======================================================\n");
+
+    if(!input_getInt(option, "Elija una opcion del menu",
+        "Opcion incorrecta, ingrese nuevamente", OPTION_MIN, DELETE_MAX))
+    {
+        returnValue = 0;
+    }
+
+    return returnValue;
+}
