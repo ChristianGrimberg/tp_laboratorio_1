@@ -9,5 +9,5 @@ SUPPORT.md              export-ignore
 .github/css/            export-ignore
 .vscode/                export-ignore
 .azuredatastudio/       export-ignore
-tp1/*                   linguist-vendored
-tp2/*                   linguist-vendored
+tp1/                    linguist-vendored
+tp2/                    linguist-vendored
