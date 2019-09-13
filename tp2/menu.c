@@ -82,7 +82,7 @@ int menu_delete(int* option)
     input_clearScreen();
 
     printf("=======================================================\n");
-    printf("                DAR DE BAJA A EMPLEADO\n");
+    printf("                BAJA DE EMPLEADO\n");
     printf("=======================================================\n");
     printf("    1 - Ingresar el ID del Empleado a dar de baja\n");
     printf("    2 - Volver al menu principal\n");
@@ -90,6 +90,30 @@ int menu_delete(int* option)
 
     if(!input_getInt(option, "Elija una opcion del menu",
         "Opcion incorrecta, ingrese nuevamente", OPTION_MIN, DELETE_MAX))
+    {
+        returnValue = 0;
+    }
+
+    return returnValue;
+}
+
+int menu_printReports(int* option)
+{
+    int returnValue = -1;
+
+    input_clearScreen();
+
+    printf("=======================================================\n");
+    printf("                INFORMES DE EMPLEADO\n");
+    printf("=======================================================\n");
+    printf("    1 - Listado ordenado de Empleados\n");
+    printf("    2 - Total y promedio de salarios de Empleados\n");
+    printf("    3 - Empleados que superan el salario promedio\n");
+    printf("    4 - Volver al menu principal\n");
+    printf("=======================================================\n");
+
+    if(!input_getInt(option, "Elija una opcion del menu",
+        "Opcion incorrecta, ingrese nuevamente", OPTION_MIN, REPORT_MAX))
     {
         returnValue = 0;
     }
