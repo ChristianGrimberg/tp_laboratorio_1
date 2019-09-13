@@ -7,6 +7,7 @@
 #include <float.h>
 #include <math.h>
 #include <ctype.h>
+#include <limits.h>
 
 #define ENTER_CHARACTER '\n' /**< Caracter de tecla enter por teclado. >*/
 #define EXIT_BUFFER '\0' /**< Valor de terminacion de cadena de caracteres. >*/
