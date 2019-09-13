@@ -60,7 +60,7 @@ int input_getInt(int* input, char message[], char eMessage[], int lowLimit, int 
 
     char stringNumber[STRING_AS_NUMBER_MAX]; /**< Variable para almacenar la cadena ingresada por teclado. >*/
 
-    if(hiLimit >= lowLimit && lowLimit >= INT32_MIN && hiLimit <= INT32_MAX
+    if(hiLimit >= lowLimit && lowLimit >= INT_MIN && hiLimit <= INT_MAX
         && input != NULL && message != NULL && eMessage != NULL)
     {
         do
