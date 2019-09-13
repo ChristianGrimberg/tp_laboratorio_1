@@ -6,10 +6,20 @@
 #include <string.h>
 #include <float.h>
 #include <math.h>
-#include <limits.h>
+#include <ctype.h>
 
-#define STRING_AS_NUMBER_MAX 64 /**< Buffer de entrada maximo para cadenas numericas */
-#define EXIT_BUFFER '\0' /**< Valor de terminacion de cadena de caracteres. */
+#define ENTER_CHARACTER '\n' /**< Caracter de tecla enter por teclado. >*/
+#define EXIT_BUFFER '\0' /**< Valor de terminacion de cadena de caracteres. >*/
+#define STRING_AS_NUMBER_MAX 64 /**< Buffer de entrada maximo para cadenas numericas. >*/
+#define STRING_MAX 255 /**< Se define la maxima cantidad de caracteres. >*/
+
+/** \brief Funcion que limpia el buffer de entrada a posterior del ingreso por teclado
+ *
+ * \param void No requiere parametros
+ * \return void No retorna valores
+ *
+ */
+void input_clearBufferAfter(void);
 
 /** \brief Funcion que limpia la pantalla de la consola en los diferentes SO
  *
@@ -22,19 +32,11 @@ void input_clearScreen(void);
 /** \brief Funcion que interrumpe la ejecucion del programa
  *      hasta que se presiona la tecla Enter
  *
- * \param void No requiere parametros
+ * \param message[] char Es el mensaje a ser mostrado
  * \return void No retorna valores
  *
  */
-void input_pauseScreen(void);
-
-/** \brief Funcion que limpia el buffer de entrada
- *
- * \param void No requiere parametros
- * \return void No retorna valores
- *
- */
-void input_clearBuffer(void);
+void input_pauseScreen(char message[]);
 
 /** \brief Solicita un numero al usuario y lo valida
  *
@@ -43,9 +45,7 @@ void input_clearBuffer(void);
  * \param eMessage[] char Es el mensaje a ser mostrado en caso de error
  * \param lowLimit int Limite inferior a validar
  * \param hiLimit int Limite superior a validar
- * \return int
- *      [0] Si obtuvo el numero requerido
- *      [-1] Si hubo un error
+ * \return int Si obtuvo el numero [0] si no [-1]
  *
  */
 int input_getInt(int* input, char message[], char eMessage[], int lowLimit, int hiLimit);
@@ -57,12 +57,35 @@ int input_getInt(int* input, char message[], char eMessage[], int lowLimit, int 
  * \param eMessage[] char Es el mensaje a ser mostrado en caso de error
  * \param lowLimit float Limite inferior a validar
  * \param hiLimit float Limite superior a validar
- * \return int
- *      [0] Si obtuvo el numero requerido
- *      [-1] Si hubo un error
+ * \return int Si obtuvo el numero [0] si no [-1]
  *
  */
 int input_getFloat(float* input, char message[], char eMessage[], float lowLimit, float hiLimit);
+
+
+/** \brief Solicita un caracter al usuario y lo valida
+ * 
+ * \param input char* Se carga el caracter ingresado
+ * \param message[] char Es el mensaje a ser mostrado
+ * \param eMessage[] char Es el mensaje a ser mostrado en caso de error
+ * \param lowLimit char Limite inferior a validar
+ * \param hiLimit char Limite superior a validar
+ * \return int Si obtuvo el caracter [0] si no [-1]
+ *
+ */
+int input_getChar(char* input, char message[], char eMessage[], char lowLimit, char hiLimit);
+
+/** \brief Solicita una cadena de caracteres al usuario y la valida.
+ * 
+ * \param input char* Se carga el string ingresado
+ * \param message[] char Es el mensaje a ser mostrado
+ * \param eMessage[] char Es el mensaje a ser mostrado en caso de error
+ * \param lowLimit int Longitud mínima de la cadena
+ * \param hiLimit int Longitud máxima de la cadena
+ * \return int Si obtuvo la cadena [0] si no [-1]
+ *
+ */
+int input_getString(char* input, char message[], char eMessage[], int lowLimit, int hiLimit);
 
 /** \brief Solicita un numero flotante al usuario e indica su tipo
  * 
@@ -74,5 +97,15 @@ int input_getFloat(float* input, char message[], char eMessage[], float lowLimit
  *
  */
 int input_getNumberType(float number);
+
+/** \brief Funcion que imprime un numero
+ *      en pantalla segun su tipo
+ *
+ * \param message[] char Mensaje a imprimir antes del numero
+ * \param number float Numero con o sin decimales a imprimir
+ * \return void No retorna valores
+ *
+ */
+void input_printNumberByType(char message[], float number);
 
 #endif // INPUT_H_INCLUDED
