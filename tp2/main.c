@@ -4,8 +4,11 @@
  * Objetivo:
  *      Se requiere administrar el ABM de una nomina de 100 empleados.
  *
- * Version:
- *      v1.1 - 7 de septiembre de 2019
+ * Versiones:
+ *      v1.1 - Ciclo de vida de menus en pantalla
+ *          Fecha: 13 de septiembre de 2019
+ *      v1.2 - Esqueleto de estructuras de Empleados
+ *          Fecha: 13 de septiembre de 2019
  *
  * Autor: Christian Grimberg
  *

@@ -9,15 +9,15 @@ OBJ = main.o
 MENUC = menu.c
 MENUH = menu.h
 MENUO = menu.o
-EMPLOYEEC = employee.c
-EMPLOYEEH = employee.h
-EMPLOYEEO = employee.o
+ARRAYEMPLOYEESC = arrayEmployees.c
+ARRAYEMPLOYEESH = arrayEmployees.h
+ARRAYEMPLOYEESO = arrayEmployees.o
 INPC = input.c
 INPH = input.h
 INPO = input.o
 PROJECT = tp2
 
-$(PROJECT): $(OBJDIR)$(INPO) $(OBJDIR)$(EMPLOYEEO) $(OBJDIR)$(MENUO) $(OBJDIR)$(OBJ)
+$(PROJECT): $(OBJDIR)$(INPO) $(OBJDIR)$(ARRAYEMPLOYEESO) $(OBJDIR)$(MENUO) $(OBJDIR)$(OBJ)
 	$(CC) $(WFLAGS) $^ -o $(EXEDIR)$@
 $(OBJDIR)$(OBJ): $(MENUH) $(SRC)
 	cd $(OBJDIR) \
@@ -25,7 +25,7 @@ $(OBJDIR)$(OBJ): $(MENUH) $(SRC)
 $(OBJDIR)$(MENUO): $(MENUC)
 	cd $(OBJDIR) \
 	&& $(CC) $(CFLAGS) $(UPDIR)$^
-$(OBJDIR)$(EMPLOYEEO): $(EMPLOYEEC)
+$(OBJDIR)$(ARRAYEMPLOYEESO): $(ARRAYEMPLOYEESC)
 	cd $(OBJDIR) \
 	&& $(CC) $(CFLAGS) $(UPDIR)$^
 $(OBJDIR)$(INPO): $(INPC)

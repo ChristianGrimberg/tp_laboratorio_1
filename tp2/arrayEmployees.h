@@ -1,0 +1,6 @@
+#ifndef ARRAYEMPLOYEES_H_INCLUDED
+#define ARRAYEMPLOYEES_H_INCLUDED
+
+#include "input.h"
+
+#endif // ARRAYEMPLOYEES_H_INCLUDED
