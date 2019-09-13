@@ -19,6 +19,10 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="employee.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="employee.h" />
 		<Unit filename="input.c">
 			<Option compilerVar="CC" />
 		</Unit>

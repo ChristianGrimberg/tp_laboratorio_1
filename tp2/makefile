@@ -6,20 +6,26 @@ CFLAGS = -c
 WFLAGS = -Wall
 SRC = main.c
 OBJ = main.o
-INPC = input.c
-INPH = input.h
-INPO = input.o
 MENUC = menu.c
 MENUH = menu.h
 MENUO = menu.o
+EMPLOYEEC = employee.c
+EMPLOYEEH = employee.h
+EMPLOYEEO = employee.o
+INPC = input.c
+INPH = input.h
+INPO = input.o
 PROJECT = tp2
 
-$(PROJECT): $(OBJDIR)$(INPO) $(OBJDIR)$(MENUO) $(OBJDIR)$(OBJ)
+$(PROJECT): $(OBJDIR)$(INPO) $(OBJDIR)$(EMPLOYEEO) $(OBJDIR)$(MENUO) $(OBJDIR)$(OBJ)
 	$(CC) $(WFLAGS) $^ -o $(EXEDIR)$@
 $(OBJDIR)$(OBJ): $(MENUH) $(SRC)
 	cd $(OBJDIR) \
 	&& $(CC) $(CFLAGS) $(UPDIR)$(SRC)
 $(OBJDIR)$(MENUO): $(MENUC)
+	cd $(OBJDIR) \
+	&& $(CC) $(CFLAGS) $(UPDIR)$^
+$(OBJDIR)$(EMPLOYEEO): $(EMPLOYEEC)
 	cd $(OBJDIR) \
 	&& $(CC) $(CFLAGS) $(UPDIR)$^
 $(OBJDIR)$(INPO): $(INPC)

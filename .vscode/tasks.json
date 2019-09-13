@@ -28,6 +28,7 @@
                 "-o",
                 "tp2/bin/Debug/tp2",
                 "tp2/input.c",
+                "tp2/employee.c",
                 "tp2/menu.c",
                 "tp2/main.c"
             ],
