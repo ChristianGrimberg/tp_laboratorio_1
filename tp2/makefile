@@ -1,37 +1,53 @@
+PROJECT = tp2
 OBJDIR = obj/Debug/
-EXEDIR = bin/Debug/
+DEBUGDIR = bin/Debug/
 prefix = /usr/bin
 UPDIR = ../../
 CFLAGS = -c
+RMFLAGS = -rf
 WFLAGS = -Wall
 SRC = main.c
 OBJ = main.o
-MENUC = menu.c
-MENUH = menu.h
-MENUO = menu.o
 ARRAYEMPLOYEESC = arrayEmployees.c
 ARRAYEMPLOYEESH = arrayEmployees.h
 ARRAYEMPLOYEESO = arrayEmployees.o
-INPC = input.c
-INPH = input.h
-INPO = input.o
-PROJECT = tp2
+MENUC = menu.c
+MENUH = menu.h
+MENUO = menu.o
+INPC = inputs.c
+INPH = inputs.h
+INPO = inputs.o
+ARRC = arrays.c
+ARRH = arrays.h
+ARRO = arrays.o
+STRC = structs.c
+STRH = structs.h
+STRO = structs.o
 
-$(PROJECT): $(OBJDIR)$(INPO) $(OBJDIR)$(ARRAYEMPLOYEESO) $(OBJDIR)$(MENUO) $(OBJDIR)$(OBJ)
-	$(CC) $(WFLAGS) $^ -o $(EXEDIR)$@
-$(OBJDIR)$(OBJ): $(MENUH) $(SRC)
+debug: $(PROJECT)
+	./$(DEBUGDIR)$^
+$(PROJECT): $(OBJDIR)$(STRO) $(OBJDIR)$(ARRO) $(OBJDIR)$(INPO) $(OBJDIR)$(MENUO) $(OBJDIR)$(ARRAYEMPLOYEESO) $(OBJDIR)$(OBJ)
+	$(CC) $(WFLAGS) $^ -o $(DEBUGDIR)$@
+$(OBJDIR)$(OBJ): $(ARRAYEMPLOYEESH) $(SRC)
 	cd $(OBJDIR) \
 	&& $(CC) $(CFLAGS) $(UPDIR)$(SRC)
-$(OBJDIR)$(MENUO): $(MENUC)
+$(OBJDIR)$(ARRAYEMPLOYEESO): $(ARRAYEMPLOYEESC)
 	cd $(OBJDIR) \
 	&& $(CC) $(CFLAGS) $(UPDIR)$^
-$(OBJDIR)$(ARRAYEMPLOYEESO): $(ARRAYEMPLOYEESC)
+$(OBJDIR)$(MENUO): $(MENUC)
 	cd $(OBJDIR) \
 	&& $(CC) $(CFLAGS) $(UPDIR)$^
 $(OBJDIR)$(INPO): $(INPC)
 	cd $(OBJDIR) \
 	&& $(CC) $(CFLAGS) $(UPDIR)$^
+$(OBJDIR)$(ARRO): $(ARRC)
+	cd $(OBJDIR) \
+	&& $(CC) $(CFLAGS) $(UPDIR)$^
+$(OBJDIR)$(STRO): $(STRC)
+	mkdir -p $(OBJDIR) \
+	&& mkdir -p $(DEBUGDIR) \
+	&& cd $(OBJDIR) \
+	&& $(CC) $(CFLAGS) $(UPDIR)$^
 clean:
-	$(RM) $(PROJECT).layout $(OBJDIR)*.o $(EXEDIR)$(PROJECT)
-debug: $(PROJECT)
-	./$(EXEDIR)$^
+	$(RM) $(PROJECT).layout $(PROJECT).depend *.gch \
+	&& $(RM) $(RMFLAGS) bin/ obj/
