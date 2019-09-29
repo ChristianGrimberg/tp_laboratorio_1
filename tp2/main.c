@@ -27,7 +27,7 @@ int main()
 
         if(optionMainMenu == MAIN_MAX || optionMainMenu == OPTION_ERROR)
         {
-            input_pauseScreen("Presione la tecla Enter para salir del programa");
+            inputs_pauseScreen("Presione la tecla Enter para salir del programa...");
             break;
         }
 
@@ -50,7 +50,7 @@ int main()
                             break;
                     }
 
-                    input_pauseScreen("Presione la tecla Enter para continuar");
+                    inputs_pauseScreen("Presione la tecla Enter para continuar...");
                 } while (!lifeCycle);
                 break;
             case 2: // Opcion elegida: Modificar un Empleado
@@ -70,7 +70,7 @@ int main()
                             break;
                     }
 
-                    input_pauseScreen("Presione la tecla Enter para continuar");
+                    inputs_pauseScreen("Presione la tecla Enter para continuar...");
                 } while (!lifeCycle);
                 break;
             case 3:
@@ -90,7 +90,7 @@ int main()
                             break;
                     }
 
-                    input_pauseScreen("Presione la tecla Enter para continuar");
+                    inputs_pauseScreen("Presione la tecla Enter para continuar...");
                 } while (!lifeCycle);
                 break;
             case 4:
@@ -110,12 +110,12 @@ int main()
                             break;
                     }
 
-                    input_pauseScreen("Presione la tecla Enter para continuar");
+                    inputs_pauseScreen("Presione la tecla Enter para continuar...");
                 } while (!lifeCycle);
                 break;
         }
 
-        input_pauseScreen("Presione la tecla Enter para continuar");
+        inputs_pauseScreen("Presione la tecla Enter para continuar...");
     } while (!lifeCycle);
 
     return 0;
