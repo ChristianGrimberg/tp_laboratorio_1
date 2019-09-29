@@ -4,7 +4,7 @@ int menu_main(int* option)
 {
     int returnValue = -1;
 
-    input_clearScreen();
+    inputs_clearScreen();
 
     printf("=======================================================\n");
     printf("                NOMINA DE EMPLEADOS\n");
@@ -16,8 +16,8 @@ int menu_main(int* option)
     printf("    5 - Salir\n");
     printf("=======================================================\n");
 
-    if(!input_getInt(option, "Elija una opcion del menu",
-        "Opcion incorrecta, ingrese nuevamente", OPTION_MIN, MAIN_MAX))
+    if(!inputs_getInt(option, "Elija una opcion del menu: ",
+        "Opcion incorrecta, ingrese nuevamente: ", OPTION_MIN, MAIN_MAX))
     {
         returnValue = 0;
     }
@@ -29,7 +29,7 @@ int menu_create(int* option)
 {
     int returnValue = -1;
 
-    input_clearScreen();
+    inputs_clearScreen();
 
     printf("=======================================================\n");
     printf("                ALTA DE EMPLEADO\n");
@@ -41,8 +41,8 @@ int menu_create(int* option)
     printf("    5 - Volver al menu principal\n");
     printf("=======================================================\n");
 
-    if(!input_getInt(option, "Elija una opcion del menu",
-        "Opcion incorrecta, ingrese nuevamente", OPTION_MIN, CREATE_MAX))
+    if(!inputs_getInt(option, "Elija una opcion del menu: ",
+        "Opcion incorrecta, ingrese nuevamente: ", OPTION_MIN, CREATE_MAX))
     {
         returnValue = 0;
     }
@@ -54,7 +54,7 @@ int menu_update(int* option)
 {
     int returnValue = -1;
 
-    input_clearScreen();
+    inputs_clearScreen();
 
     printf("=======================================================\n");
     printf("                MODIFICAR EMPLEADO\n");
@@ -66,8 +66,8 @@ int menu_update(int* option)
     printf("    5 - Volver al menu principal\n");
     printf("=======================================================\n");
 
-    if(!input_getInt(option, "Elija una opcion del menu",
-        "Opcion incorrecta, ingrese nuevamente", OPTION_MIN, UPDATE_MAX))
+    if(!inputs_getInt(option, "Elija una opcion del menu: ",
+        "Opcion incorrecta, ingrese nuevamente: ", OPTION_MIN, UPDATE_MAX))
     {
         returnValue = 0;
     }
@@ -79,7 +79,7 @@ int menu_delete(int* option)
 {
     int returnValue = -1;
 
-    input_clearScreen();
+    inputs_clearScreen();
 
     printf("=======================================================\n");
     printf("                BAJA DE EMPLEADO\n");
@@ -88,8 +88,8 @@ int menu_delete(int* option)
     printf("    2 - Volver al menu principal\n");
     printf("=======================================================\n");
 
-    if(!input_getInt(option, "Elija una opcion del menu",
-        "Opcion incorrecta, ingrese nuevamente", OPTION_MIN, DELETE_MAX))
+    if(!inputs_getInt(option, "Elija una opcion del menu: ",
+        "Opcion incorrecta, ingrese nuevamente: ", OPTION_MIN, DELETE_MAX))
     {
         returnValue = 0;
     }
@@ -101,7 +101,7 @@ int menu_printReports(int* option)
 {
     int returnValue = -1;
 
-    input_clearScreen();
+    inputs_clearScreen();
 
     printf("=======================================================\n");
     printf("                INFORMES DE EMPLEADO\n");
@@ -112,8 +112,8 @@ int menu_printReports(int* option)
     printf("    4 - Volver al menu principal\n");
     printf("=======================================================\n");
 
-    if(!input_getInt(option, "Elija una opcion del menu",
-        "Opcion incorrecta, ingrese nuevamente", OPTION_MIN, REPORT_MAX))
+    if(!inputs_getInt(option, "Elija una opcion del menu: ",
+        "Opcion incorrecta, ingrese nuevamente: ", OPTION_MIN, REPORT_MAX))
     {
         returnValue = 0;
     }
