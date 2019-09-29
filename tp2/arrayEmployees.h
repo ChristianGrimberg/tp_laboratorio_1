@@ -3,6 +3,7 @@
 
 #include "menu.h"
 
+#define EMPLOYEE_MAX 1000 /**< Cantidad maxima de la nomina de Empleados para la Empresa.>*/
 #define EMPLOYEE_NAME_MAX 51 /**< Cantidad de caracteres para el nombre de un Empleado. >*/
 #define EMPLOYEE_LASTNAME_MAX 51 /**< Cantidad de caracteres para el apellido de un Empleado. >*/
 
@@ -18,5 +19,17 @@ struct
     int sector; /**< Campo del Sector del Empleado. >*/
     int isEmpty; /**< Campo del estado de alta o baja de un Empleado. >*/
 }typedef sEmployee;
+
+/** \brief Funcion que blanquea todas las posiciones de un array de Empleados
+ *          colocando la bandera isEmpty en TRUE.
+ * 
+ * \param list[] sEmployee Direccion de memoria del inicio del array de Empleados.
+ * \param length int Longitud del array.
+ * \return
+ *      [-1] Si hubo un error.
+ *      [0] Si el blanqueo fue realizado con exito.
+ *
+ */
+int initEmployees(sEmployee list[], int length);
 
 #endif // ARRAYEMPLOYEES_H_INCLUDED
