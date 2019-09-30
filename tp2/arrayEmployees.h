@@ -41,6 +41,24 @@ typedef struct
  */
 int initEmployees(sEmployee list[], int length);
 
+/** \brief Funcion que agrega un Empleado
+ *      con los valores cargados como parametros
+ *      en el primer lugar vacio de la lista ingresada.
+ * 
+ * \param list[] sEmployee Direccion de memoria del inicio del array de Empleados.
+ * \param length int Longitud del array.
+ * \param id int ID del Empleado.
+ * \param name[] char Nombre del Empleado.
+ * \param lastName[] char Apellido del Empleado.
+ * \param salary float Salario del Empleado.
+ * \param sector int ID exteno del sector del Empleado.
+ * \return int
+ *      [-1] Si hubo un error en la carga del Empleado en la lista.
+ *      [0] Si la carga del Empleado en la lista fue exitosa.
+ *
+ */
+int addEmployee(sEmployee list[], int length, int id, char name[], char lastName[], float salary, int sector);
+
 /** \brief Funcion que obtiene el indice del array de Empleados
  *          del ID ingresado como parametro.
  * 
@@ -53,5 +71,40 @@ int initEmployees(sEmployee list[], int length);
  * 
  */
 int findEmployeeById(sEmployee list[], int length, int id);
+
+/** \brief Borra un Empleado de una lista mediante su ID
+ *      e informando el campo isEmpty como vacio.
+ *
+ * \param list[] sEmployee Direccion de memoria del inicio del array de Empleados.
+ * \param length int Longitud del array.
+ * \param id int Campo ID del Empleado a borrar.
+ * \return int
+ *      [-1] Si hubo un error para borrar el Empleado de la lista.
+ *      [0] Si el borrado del Empleado de la lista fue exitosa.
+ *
+ */
+int removeEmployee(sEmployee list[], int length, int id);
+
+/** \brief Funcion que ordena a los Empleados de la lista
+ *      de forma Ascendente o Descendente.
+ *
+ * \param list[] sEmployee Direccion de memoria del inicio del array de Empleados.
+ * \param length int Longitud del array.
+ * \param order int [ASC] Orden Ascendente - [DESC] orden Descendente.
+ * \return int
+ *      [-1] Si hubo un error para ordenar los Empleados de la lista.
+ *      [0] Si el ordenado de los Empleados de la lista fue exitosa.
+ *
+ */
+int sortEmployees(sEmployee list[], int length, int order);
+
+/** \brief Imprime en pantalla el contenido de la lista de Empleados.
+ *
+ * \param list[] sEmployee Direccion de memoria del inicio del array de Empleados.
+ * \param length int Longitud del array.
+ * \return int La cantidad de elementos del array.
+ *
+ */
+int printEmployees(sEmployee list[], int length);
 
 #endif // ARRAYEMPLOYEES_H_INCLUDED
