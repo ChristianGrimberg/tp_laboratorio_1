@@ -100,11 +100,26 @@ int sortEmployees(sEmployee list[], int length, int order);
 
 /** \brief Imprime en pantalla el contenido de la lista de Empleados.
  *
- * \param list[] sEmployee Direccion de memoria del inicio del array de Empleados.
- * \param length int Longitud del array.
+ * \param listEmployees[] sEmployee Direccion de memoria del inicio del array de Empleados.
+ * \param length int Longitud del array de Empleados.
+ * \param listSectors[] sSector Direccion de memoria del inicio del array de Sectores.
+ * \param lengthSectors int Longitud del array de Sectores.
  * \return int La cantidad de elementos del array.
  *
  */
-int printEmployees(sEmployee list[], int length);
+int printEmployees(sEmployee listEmployees[], int lengthEmployees, sSector listSectors[], int lengthSectors);
+
+/** \brief Busca el nombre del Sector por el ID.
+ *
+ * \param sectorName char* Nombre encontrado del Sector.
+ * \param list[] sSector Direccion de memoria del inicio del array de Sectores.
+ * \param length int Longitud del array.
+ * \param idSector int ID del Sector a buscar.
+ * \return char*
+ *      [-1] Si no existe el ID.
+ *      [0] Si el Sector fue encontrado con exito.
+ *
+ */
+int findSectorById(char* sectorName, sSector list[], int length, int idSector);
 
 #endif // ARRAYEMPLOYEES_H_INCLUDED
