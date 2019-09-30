@@ -43,4 +43,17 @@ struct
  */
 int initEmployees(sEmployee list[], int length);
 
+/** \brief Funcion que obtiene el indice del array de Empleados
+ *          del ID ingresado como parametro.
+ * 
+ * \param list[] sEmployee Direccion de memoria del inicio del array de Empleados.
+ * \param length int Longitud del array.
+ * \param id int Campo ID del Empleado a buscar.
+ * \return
+ *      [-1] Si no encuentra el ID ingresado.
+ *      Encuentra el valor entero del ID del Empleado buscado.
+ * 
+ */
+int findEmployeeById(sEmployee list[], int length, int id);
+
 #endif // ARRAYEMPLOYEES_H_INCLUDED

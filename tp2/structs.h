@@ -13,6 +13,8 @@
 #define MONTH_MAX 12 /**< Mes maximo de cada anio. >*/
 #define YEAR_MIN 1900 /**< Anio minimo definido por el programa. >*/
 #define YEAR_MAX 2500 /**< Anio maximo definido por el programa. >*/
+#define TRUE 1 /**< Valor booleano de verdadero. >*/
+#define FALSE 0 /**< Valor booleano de falso. >*/
 
 /*! \struct sDate
  * \brief Tipo de Dato generico para almacenar una fecha.
