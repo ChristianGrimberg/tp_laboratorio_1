@@ -2,10 +2,13 @@
  * Programa: Nomina de Empleados
  *
  * Objetivo:
- *      Se requiere administrar el ABM de una nomina de 100 empleados.
+ *      Se requiere administrar el ABM de una nomina de 1000 empleados.
  *
- * Version:
- *      v1.1 - 7 de septiembre de 2019
+ * Versiones:
+ *      v1.2 - Esqueleto de estructuras de Empleados
+ *              [Fecha: 29 de septiembre de 2019]
+ *      v1.1 - Ciclo de vida de menus en pantalla
+ *              [Fecha: 13 de septiembre de 2019]
  *
  * Autor: Christian Grimberg
  *
@@ -16,9 +19,7 @@ int main()
 {
     int lifeCycle; /**< Indicador del ciclo de vida de cada menu >*/
     int optionMainMenu; /**< Opcion elegida por el usuario del menu principal >*/
-    int optionCreateMenu; /**< Opcion elegida por el usuario para el menu de alta >*/
     int optionUpdateMenu; /**< Opcion elegida por el usuario para el menu de modificacion >*/
-    int optionDeleteMenu; /**< Opcion elegida por el usuario para el menu de eliminacion >*/
     int optionReportMenu; /**< Opcion elegida por el usuario para el menu de reportes >*/
 
     do
@@ -27,33 +28,15 @@ int main()
 
         if(optionMainMenu == MAIN_MAX || optionMainMenu == OPTION_ERROR)
         {
-            inputs_pauseScreen("Presione la tecla Enter para salir del programa...");
+            inputs_pauseScreen(EXIT_MESSAGE);
             break;
         }
 
         switch (optionMainMenu)
         {
-            case 1: // Opcion elegida: Alta de Empleado
-                do
-                {
-                    lifeCycle = menu_create(&optionCreateMenu);
-
-                    if(optionCreateMenu == CREATE_MAX || optionCreateMenu == OPTION_ERROR)
-                    {
-                        break;
-                    }
-
-                    switch (optionCreateMenu)
-                    {
-                        case 1: // Opcion elegida: Ingreso del Nombre
-                            /* code */
-                            break;
-                    }
-
-                    inputs_pauseScreen("Presione la tecla Enter para continuar...");
-                } while (!lifeCycle);
+            case 1: // Opcion elegida: Alta de Empleado.
                 break;
-            case 2: // Opcion elegida: Modificar un Empleado
+            case 2: // Opcion elegida: Modificar un Empleado.
                 do
                 {
                     lifeCycle = menu_update(&optionUpdateMenu);
@@ -65,35 +48,17 @@ int main()
 
                     switch (optionUpdateMenu)
                     {
-                        case 1: // Opcion elegida: Ingreso del Nombre
+                        case 1: // Opcion elegida: Ingreso del Nombre.
                             /* code */
                             break;
                     }
 
-                    inputs_pauseScreen("Presione la tecla Enter para continuar...");
+                    inputs_pauseScreen(CONTINUE_MESSAGE);
                 } while (!lifeCycle);
                 break;
-            case 3:
-                do
-                {
-                    lifeCycle = menu_delete(&optionDeleteMenu);
-
-                    if(optionDeleteMenu == DELETE_MAX || optionUpdateMenu == OPTION_ERROR)
-                    {
-                        break;
-                    }
-
-                    switch (optionDeleteMenu)
-                    {
-                        case 1: // Opcion elegida: Ingreso del ID a dar de baja
-                            /* code */
-                            break;
-                    }
-
-                    inputs_pauseScreen("Presione la tecla Enter para continuar...");
-                } while (!lifeCycle);
+            case 3: // Opcion elegida: Baja de un Empleado.
                 break;
-            case 4:
+            case 4: // Opcion elegida: Informes de la nomina de Empleados.
                 do
                 {
                     lifeCycle = menu_printReports(&optionReportMenu);
@@ -110,12 +75,12 @@ int main()
                             break;
                     }
 
-                    inputs_pauseScreen("Presione la tecla Enter para continuar...");
+                    inputs_pauseScreen(CONTINUE_MESSAGE);
                 } while (!lifeCycle);
                 break;
         }
 
-        inputs_pauseScreen("Presione la tecla Enter para continuar...");
+        inputs_pauseScreen(CONTINUE_MESSAGE);
     } while (!lifeCycle);
 
     return 0;

@@ -13,6 +13,8 @@
 #define MONTH_MAX 12 /**< Mes maximo de cada anio. >*/
 #define YEAR_MIN 1900 /**< Anio minimo definido por el programa. >*/
 #define YEAR_MAX 2500 /**< Anio maximo definido por el programa. >*/
+#define TRUE 1 /**< Valor booleano de verdadero. >*/
+#define FALSE 0 /**< Valor booleano de falso. >*/
 
 /*! \struct sDate
  * \brief Tipo de Dato generico para almacenar una fecha.
@@ -32,7 +34,8 @@ typedef struct
 /** \brief Funcion que evalua si la fecha ingresada es válida
  *
  * \param date sDate Fecha a evaluar.
- * \return Si es una fecha retorna [1] si no [0].
+ * \return int
+ *      Si es una fecha retorna [1] si no [0].
  *
  */
 int structs_isDate(sDate date);
@@ -41,7 +44,8 @@ int structs_isDate(sDate date);
  * 
  * \param date1 sDate Primer fecha.
  * \param date2 sDate Segunda fecha.
- * \return Si son iguales retorna [0].
+ * \return int
+ *      Si son iguales retorna [0].
  *      Si la primer fecha es posterior [1].
  *      Si la segunda fecha es posterior [-1].
  *      Si hubo un error [-2].
@@ -53,7 +57,8 @@ int structs_dateCompare(sDate date1, sDate date2);
  * 
  * \param date1 sDate Primer fecha.
  * \param date2 sDate Segunda fecha.
- * \return Si el intercambio se realizo devuelve [0] si no [-1].
+ * \return int
+ *      Si el intercambio se realizo devuelve [0] si no [-1].
  * 
  */
 int structs_swapDate(sDate* date1, sDate* date2);

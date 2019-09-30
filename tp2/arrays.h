@@ -14,7 +14,8 @@
  * 
  * \param i int* Direccion de memoria del primer numero.
  * \param j int* Direccion de memoria del segundo numero.
- * \return Si el intercambio se realizo devuelve [0] si no [-1].
+ * \return int
+ *      Si el intercambio se realizo devuelve [0] si no [-1].
  * 
  */
 int arrays_swapInt(int* i, int* j);
@@ -23,7 +24,8 @@ int arrays_swapInt(int* i, int* j);
  * 
  * \param i float* Direccion de memoria del primer numero.
  * \param j float* Direccion de memoria del segundo numero.
- * \return Si el intercambio se realizo devuelve [0] si no [-1].
+ * \return int
+ *      Si el intercambio se realizo devuelve [0] si no [-1].
  * 
  */
 int arrays_swapFloat(float* i, float* j);
@@ -32,7 +34,8 @@ int arrays_swapFloat(float* i, float* j);
  * 
  * \param i char* Direccion de memoria del primer caracter.
  * \param j char* Direccion de memoria del segundo caracter.
- * \return Si el intercambio se realizo devuelve [0] si no [-1].
+ * \return int
+ *      Si el intercambio se realizo devuelve [0] si no [-1].
  * 
  */
 int arrays_swapChar(char* i, char* j);
@@ -41,7 +44,8 @@ int arrays_swapChar(char* i, char* j);
  * 
  * \param string1[] char Primer cadena de caracteres.
  * \param strin2[] char Segunda cadena de caracteres.
- * \return Si el intercambio se realizo devuelve [0] si no [-1].
+ * \return int
+ *      Si el intercambio se realizo devuelve [0] si no [-1].
  * 
  */
 int arrays_swapString(char string1[], char string2[]);
@@ -52,7 +56,8 @@ int arrays_swapString(char string1[], char string2[]);
  * \param firstString[] char Primer cadena a concatenarse.
  * \param secondString[] char Segunda cadena a concatenarse.
  * \param maxLenght int Longitud maxima para controlar la concatenacion.
- * \return Si pudo realizar la concatenacion retorna [0] si no [-1].
+ * \return int
+ *      Si pudo realizar la concatenacion retorna [0] si no [-1].
  *
  */
 int arrays_concatStrings(char firstString[], char secondString[], int maxLenght);
@@ -61,7 +66,8 @@ int arrays_concatStrings(char firstString[], char secondString[], int maxLenght)
  * 
  *  \param string[] char Cadena de caracteres a pasar a mayusculas.
  *  \param maxLength int Longitud de la cadena de caracteres.
- *  \return Direccion de memoria de cadena de caracteres pasada a mayusculas.
+ *  \return char*
+ *      Direccion de memoria de cadena de caracteres pasada a mayusculas.
  * 
  */
 char* arrays_stringToUppercase(char string[], int maxLength);
@@ -70,7 +76,8 @@ char* arrays_stringToUppercase(char string[], int maxLength);
  * 
  *  \param string[] char Cadena de caracteres a pasar a minusculas.
  *  \param maxLength int Longitud de la cadena de caracteres.
- *  \return Direccion de memoria de cadena de caracteres pasada a minusculas.
+ *  \return char*
+ *      Direccion de memoria de cadena de caracteres pasada a minusculas.
  * 
  */
 char* arrays_stringToLowercase(char string[], int maxLength);
@@ -79,7 +86,8 @@ char* arrays_stringToLowercase(char string[], int maxLength);
  * 
  * \param string[] char Cadena de caracteres sin formatear.
  * \param maxLength int Longitud de la cadena de caracteres.
- * \return Direccion de memoria de la cadena formateada en Camel Case. 
+ * \return char* 
+ *      Direccion de memoria de la cadena formateada en Camel Case. 
  * 
  */
 char* arrays_stringToCamelCase(char string[], int maxLength);

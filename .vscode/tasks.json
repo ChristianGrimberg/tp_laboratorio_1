@@ -27,8 +27,11 @@
             "args": [
                 "-o",
                 "tp2/bin/Debug/tp2",
-                "tp2/input.c",
+                "tp2/structs.c",
+                "tp2/arrays.c",
+                "tp2/inputs.c",
                 "tp2/menu.c",
+                "tp2/arrayEmployees.c",
                 "tp2/main.c"
             ],
             "problemMatcher": [

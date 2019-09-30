@@ -1,4 +1,4 @@
-PROJECT = base-practica-c
+PROJECT = tp2
 OBJDIR = obj/Debug/
 DEBUGDIR = bin/Debug/
 prefix = /usr/bin
@@ -8,6 +8,9 @@ RMFLAGS = -rf
 WFLAGS = -Wall
 SRC = main.c
 OBJ = main.o
+ARRAYEMPLOYEESC = arrayEmployees.c
+ARRAYEMPLOYEESH = arrayEmployees.h
+ARRAYEMPLOYEESO = arrayEmployees.o
 MENUC = menu.c
 MENUH = menu.h
 MENUO = menu.o
@@ -23,11 +26,14 @@ STRO = structs.o
 
 debug: $(PROJECT)
 	./$(DEBUGDIR)$^
-$(PROJECT): $(OBJDIR)$(STRO) $(OBJDIR)$(ARRO) $(OBJDIR)$(INPO) $(OBJDIR)$(MENUO) $(OBJDIR)$(OBJ)
+$(PROJECT): $(OBJDIR)$(STRO) $(OBJDIR)$(ARRO) $(OBJDIR)$(INPO) $(OBJDIR)$(MENUO) $(OBJDIR)$(ARRAYEMPLOYEESO) $(OBJDIR)$(OBJ)
 	$(CC) $(WFLAGS) $^ -o $(DEBUGDIR)$@
-$(OBJDIR)$(OBJ): $(MENUH) $(SRC)
+$(OBJDIR)$(OBJ): $(ARRAYEMPLOYEESH) $(SRC)
 	cd $(OBJDIR) \
 	&& $(CC) $(CFLAGS) $(UPDIR)$(SRC)
+$(OBJDIR)$(ARRAYEMPLOYEESO): $(ARRAYEMPLOYEESC)
+	cd $(OBJDIR) \
+	&& $(CC) $(CFLAGS) $(UPDIR)$^
 $(OBJDIR)$(MENUO): $(MENUC)
 	cd $(OBJDIR) \
 	&& $(CC) $(CFLAGS) $(UPDIR)$^
@@ -43,5 +49,5 @@ $(OBJDIR)$(STRO): $(STRC)
 	&& cd $(OBJDIR) \
 	&& $(CC) $(CFLAGS) $(UPDIR)$^
 clean:
-	$(RM) $(PROJECT).layout $(PROJECT).depend \
+	$(RM) $(PROJECT).layout $(PROJECT).depend *.gch \
 	&& $(RM) $(RMFLAGS) bin/ obj/

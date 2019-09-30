@@ -38,7 +38,8 @@ void inputs_pauseScreen(char message[]);
  *  es un numero decimal.
  *
  * \param stringValue[] char Direccion de la cadena a evaluar.
- * \return int Si es un numero decimal retorna [1] si no [0].
+ * \return int
+ *      Si es un numero decimal retorna [1] si no [0].
  *
  */
 int inputs_isNumber(char stringValue[]);
@@ -47,7 +48,8 @@ int inputs_isNumber(char stringValue[]);
  *  es un numero flontante.
  *
  * \param stringValue[] char Direccion de la cadena a evaluar.
- * \return int Si es un numero flotante retorna [1] si no [0].
+ * \return int
+ *      Si es un numero flotante retorna [1] si no [0].
  *
  */
 int inputs_isFloat(char stringValue[]);
@@ -70,7 +72,8 @@ int inputs_getNumberType(float number);
  * \param eMessage[] char Es el mensaje a ser mostrado en caso de error.
  * \param lowLimit int Limite inferior a validar.
  * \param hiLimit int Limite superior a validar.
- * \return int Si obtuvo el numero devuelve [0] si no [-1].
+ * \return int
+ *      Si obtuvo el numero devuelve [0] si no [-1].
  *
  */
 int inputs_getInt(int* input, char message[], char eMessage[], int lowLimit, int hiLimit);
@@ -82,7 +85,8 @@ int inputs_getInt(int* input, char message[], char eMessage[], int lowLimit, int
  * \param eMessage[] char Es el mensaje a ser mostrado en caso de error.
  * \param lowLimit float Limite inferior a validar.
  * \param hiLimit float Limite superior a validar.
- * \return int Si obtuvo el numero devuelve [0] si no [-1].
+ * \return int
+ *      Si obtuvo el numero devuelve [0] si no [-1].
  *
  */
 int inputs_getFloat(float* input, char message[], char eMessage[], float lowLimit, float hiLimit);
@@ -95,7 +99,8 @@ int inputs_getFloat(float* input, char message[], char eMessage[], float lowLimi
  * \param eMessage[] char Es el mensaje a ser mostrado en caso de error.
  * \param lowLimit char Limite inferior a validar.
  * \param hiLimit char Limite superior a validar.
- * \return int Si obtuvo el caracter devuelve [0] si no [-1].
+ * \return int
+ *      Si obtuvo el caracter devuelve [0] si no [-1].
  *
  */
 int inputs_getChar(char* input, char message[], char eMessage[], char lowLimit, char hiLimit);
@@ -107,7 +112,8 @@ int inputs_getChar(char* input, char message[], char eMessage[], char lowLimit, 
  * \param eMessage[] char Es el mensaje a ser mostrado en caso de error.
  * \param lowLimit int Longitud mínima de la cadena.
  * \param hiLimit int Longitud máxima de la cadena.
- * \return int Si obtuvo la cadena devuelve [0] si no [-1].
+ * \return int
+ *      Si obtuvo la cadena devuelve [0] si no [-1].
  *
  */
 int inputs_getString(char* input, char message[], char eMessage[], int lowLimit, int hiLimit);
@@ -118,7 +124,8 @@ int inputs_getString(char* input, char message[], char eMessage[], int lowLimit,
  * \param date sDate* Puntero para almacenar el tipo de dato de fecha.
  * \param message[] char Es el mensaje a ser mostrado.
  * \param eMessage[] char Es el mensaje a ser mostrado en caso de error.
- * \return Si obtuvo una fecha devuelve [0] si no [-1].
+ * \return
+ *      Si obtuvo una fecha devuelve [0] si no [-1].
  * 
  */
 int inputs_getDate(sDate* date, char message[], char eMessage[]);
@@ -136,7 +143,8 @@ void inputs_printNumberByType(char message[], float number);
  *      y devuelve la respuesta.
  * 
  * \param message[] char Pregunta al usuario.
- * \return Si la respuesta es [S] o [Y] devuelve [1]
+ * \return int
+ *      Si la respuesta es [S] o [Y] devuelve [1]
  *      Si responde [N] devuelve [0].
  * 
  */
