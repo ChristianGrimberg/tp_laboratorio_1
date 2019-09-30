@@ -26,15 +26,6 @@
 int menu_main(int* option);
 
 /** \brief Funcion que imprime un menu en pantalla
- *      para que el usuario ingrese el alta de un Empleado.
- *
- * \param option int* Opcion elegida del menu.
- * \return int Retorna la opcion elegida en el menu.
- *
- */
-int menu_create(int* option);
-
-/** \brief Funcion que imprime un menu en pantalla
  *      para que el usuario modifique la carga de un Empleado.
  *
  * \param option int* Opcion elegida del menu.
@@ -42,15 +33,6 @@ int menu_create(int* option);
  *
  */
 int menu_update(int* option);
-
-/** \brief Funcion que imprime un menu en pantalla
- *      para que el usuario realice la baja de un Empleado.
- *
- * \param option int* Opcion elegida del menu.
- * \return int Retorna la opcion elegida en el menu.
- *
- */
-int menu_delete(int* option);
 
 /** \brief Funcion que imprime un menu en pantalla
  *      para seleccionar el informe de Empleados a imprimir.
