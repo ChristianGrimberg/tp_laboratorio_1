@@ -40,7 +40,7 @@ static int getNewSectorId(void);
  * \return void No retorna valores.
  *
  */
-static void printEmployee(sEmployee employee, sSector list[], int length);
+static void printEmployeeWithoutHeader(sEmployee employee, sSector list[], int length);
 
 int initEmployees(sEmployee list[], int length)
 {
@@ -58,6 +58,25 @@ int initEmployees(sEmployee list[], int length)
         {
             returnValue = 0;
         }
+    }
+
+    return returnValue;
+}
+
+int printEmployee(sEmployee employee, sSector list[], int length)
+{
+    int returnValue = -1;
+    char sectorName[SECTOR_NAME_MAX];
+
+    if(employee.isEmpty == FALSE)
+    {
+        printf("+======+===============+===============+=============+==============+\n");
+        printf("|  ID  |    Nombre     |   Apellido    |   Salario   |    Sector    |\n");
+        printf("+======+===============+===============+=============+==============+\n");
+        printEmployeeWithoutHeader(employee, list, length);
+        printf("+------+---------------+---------------+-------------+--------------+\n");
+
+        returnValue = 0;
     }
 
     return returnValue;
@@ -83,7 +102,7 @@ int printEmployees(sEmployee listEmployees[], int lengthEmployees, sSector listS
                     printf("+======+===============+===============+=============+==============+\n");
                 }
 
-                printEmployee(listEmployees[i], listSectors, lengthSectors);
+                printEmployeeWithoutHeader(listEmployees[i], listSectors, lengthSectors);
                 flagEmployees = 1;
             }
         }
@@ -157,7 +176,7 @@ static int getNewSectorId(void)
     return idSector;
 }
 
-static void printEmployee(sEmployee employee, sSector list[], int length)
+static void printEmployeeWithoutHeader(sEmployee employee, sSector list[], int length)
 {
     char sectorName[SECTOR_NAME_MAX];
 

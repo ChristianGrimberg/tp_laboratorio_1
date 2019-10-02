@@ -100,6 +100,19 @@ int removeEmployee(sEmployee list[], int length, int id);
  */
 int sortEmployees(sEmployee list[], int length, int order);
 
+/** \brief Funcion que imprime un Empleado formateado para impresion
+ *      con encabezado de tabla.
+ *
+ * \param employee sEmployee Tipo de Dato de Empleado.
+ * \param list[] sSector Direccion de memoria del inicio del array de Sectores.
+ * \param length int Longitud del array.
+ * \return int
+ *      [-1] Si hubo un error para imprimir al Empleado.
+ *      [0] Si el Empleado fue impreso con exito.
+ *
+ */
+int printEmployee(sEmployee employee, sSector list[], int length);
+
 /** \brief Imprime en pantalla el contenido de la lista de Empleados.
  *
  * \param listEmployees[] sEmployee Direccion de memoria del inicio del array de Empleados.
