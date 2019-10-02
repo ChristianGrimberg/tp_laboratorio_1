@@ -1,14 +1,5 @@
 #include "arrayEmployees.h"
 
-/** \brief Funcion para generar un nuevo ID de Empleados.
- *
- * \param void No requiere parametros.
- * \return int
- *      Nuevo ID incremental para cada Empleado.
- *
- */
-static int getNewIdEmployee(void);
-
 /** \brief Funcion similar a tipo constructor de un objeto
  *      que carga los parametros a un Empleado y lo devuelve.
  *
@@ -22,17 +13,66 @@ static int getNewIdEmployee(void);
  */
 static sEmployee newEmployee(char name[], char lastName[], float salary, int idSector);
 
+/** \brief Funcion para generar un nuevo ID de Empleados.
+ *
+ * \param void No requiere parametros.
+ * \return int
+ *      Nuevo ID incremental para cada Empleado.
+ *
+ */
+static int getNewEmployeeId(void);
+
+/** \brief Funcion para generar un nuevo ID de Sectores.
+ *
+ * \param void No requiere parametros.
+ * \return int
+ *      Nuevo ID incremental para cada Sector.
+ *
+ */
+static int getNewSectorId(void);
+
+/** \brief Funcion que imprime un Empleado formateado para impresion
+ *      sin encabezado de tabla.
+ *
+ * \param employee sEmployee Tipo de Dato de Empleado.
+ * \param list[] sSector Direccion de memoria del inicio del array de Sectores.
+ * \param length int Longitud del array.
+ * \return void No retorna valores.
+ *
+ */
+static void printEmployee(sEmployee employee, sSector list[], int length);
+
+int initEmployees(sEmployee list[], int length)
+{
+    int returnValue = -1;
+    int i = 0;
+
+    if(list != NULL && length > 0 && length <= EMPLOYEE_MAX)
+    {
+        for( ; i < length; i++)
+        {
+            list[i].isEmpty = TRUE;
+        }
+
+        if(i == length)
+        {
+            returnValue = 0;
+        }
+    }
+
+    return returnValue;
+}
+
 int printEmployees(sEmployee listEmployees[], int lengthEmployees, sSector listSectors[], int lengthSectors)
 {
     int itemsCounter = 0;
-    char sectorName[SECTOR_NAME_MAX];
     int flagEmployees = 0;
 
     if(listEmployees != NULL && lengthEmployees > 0 && lengthEmployees <= EMPLOYEE_MAX)
     {
         for (int i = 0; i < lengthEmployees; i++)
         {
-            if(listEmployees[i].isEmpty == FALSE && !findSectorById(sectorName, listSectors, lengthSectors, listEmployees[i].idSector))
+            if(listEmployees[i].isEmpty == FALSE)
             {
                 itemsCounter++;
 
@@ -42,10 +82,8 @@ int printEmployees(sEmployee listEmployees[], int lengthEmployees, sSector listS
                     printf("|  ID  |    Nombre     |   Apellido    |   Salario   |    Sector    |\n");
                     printf("+======+===============+===============+=============+==============+\n");
                 }
-                
-                printf("| %4d | %13s | %13s | %9.2f | %13s |",
-                    listEmployees[i].id, listEmployees[i].name, listEmployees[i].lastName,
-                    listEmployees[i].salary, sectorName);
+
+                printEmployee(listEmployees[i], listSectors, lengthSectors);
                 flagEmployees = 1;
             }
         }
@@ -56,21 +94,32 @@ int printEmployees(sEmployee listEmployees[], int lengthEmployees, sSector listS
         }
     }
 
+    if(flagEmployees == 0)
+    {
+        printf("No existen Empleados en el listado.\n");
+    }
+
     return itemsCounter;
 }
 
-int findSectorById(char* sectorName, sSector list[], int length, int idSector)
+int findSectorNameById(char* sectorName, sSector list[], int length, int idSector)
 {
     int returnValue = -1;
 
-    return returnValue;
-}
+    if(list != NULL && length > 0 && length <= SECTOR_MAX)
+    {
+        for(int i = 0; i < length; i++)
+        {
+            if(list[i].idSector == idSector)
+            {
+                strcpy(sectorName, list[i].name);
+                returnValue = 0;
+                break;
+            }
+        }
+    }
 
-static int getNewIdEmployee(void)
-{
-    static int id = ID_INIT_EMPLOYEE;
-    id++;
-    return id;
+    return returnValue;
 }
 
 static sEmployee newEmployee(char name[], char lastName[], float salary, int idSector)
@@ -79,7 +128,7 @@ static sEmployee newEmployee(char name[], char lastName[], float salary, int idS
 
     if(name != NULL && lastName != NULL)
     {
-        auxEmployee.id = getNewIdEmployee();
+        auxEmployee.id = getNewEmployeeId();
         strcpy(auxEmployee.name, name);
         strcpy(auxEmployee.lastName, lastName);
         auxEmployee.salary = salary;
@@ -92,4 +141,30 @@ static sEmployee newEmployee(char name[], char lastName[], float salary, int idS
     }
 
     return auxEmployee;
+}
+
+static int getNewEmployeeId(void)
+{
+    static int idEmployee = ID_INIT_EMPLOYEE;
+    idEmployee++;
+    return idEmployee;
+}
+
+static int getNewSectorId(void)
+{
+    static int idSector = ID_INIT_SECTOR;
+    idSector++;
+    return idSector;
+}
+
+static void printEmployee(sEmployee employee, sSector list[], int length)
+{
+    char sectorName[SECTOR_NAME_MAX];
+
+    if(list != NULL && length > 0 && length <= SECTOR_MAX
+        && !findSectorNameById(sectorName, list, length, employee.idSector))
+    {
+        printf("| %4d | %13s | %13s | %9.2f | %13s |",
+            employee.id, employee.name, employee.lastName, employee.salary, sectorName);
+    }
 }

@@ -7,6 +7,8 @@
 #define EMPLOYEE_MAX 1000 /**< Cantidad maxima de la nomina de Empleados para la Empresa. >*/
 #define EMPLOYEE_NAME_MAX 51 /**< Cantidad de caracteres para el nombre de un Empleado. >*/
 #define EMPLOYEE_LASTNAME_MAX 51 /**< Cantidad de caracteres para el apellido de un Empleado. >*/
+#define ID_INIT_SECTOR 0 /**< Valor inicial de un ID de Sectores. >*/
+#define SECTOR_MAX 20 /**< Cantidad maxima de Sectores que gestiona la aplicacion. >*/
 #define SECTOR_NAME_MAX 51 /**< Cantidad de caracteres para el nombre del sector. >*/
 
 /*! \struct sEmployee
@@ -120,6 +122,6 @@ int printEmployees(sEmployee listEmployees[], int lengthEmployees, sSector listS
  *      [0] Si el Sector fue encontrado con exito.
  *
  */
-int findSectorById(char* sectorName, sSector list[], int length, int idSector);
+int findSectorNameById(char* sectorName, sSector list[], int length, int idSector);
 
 #endif // ARRAYEMPLOYEES_H_INCLUDED

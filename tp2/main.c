@@ -13,7 +13,7 @@
  * Autor: Christian Grimberg
  *
  ************************************************************************/
-#include "menu.h"
+#include "arrayEmployees.h"
 
 int main()
 {
@@ -22,66 +22,78 @@ int main()
     int optionUpdateMenu; /**< Opcion elegida por el usuario para el menu de modificacion >*/
     int optionReportMenu; /**< Opcion elegida por el usuario para el menu de reportes >*/
 
-    do
+    sEmployee employees[EMPLOYEE_MAX];
+    sSector sectors[SECTOR_MAX];
+
+    if(!initEmployees(employees, EMPLOYEE_MAX))
     {
-        lifeCycle = menu_main(&optionMainMenu);
-
-        if(optionMainMenu == MAIN_MAX || optionMainMenu == OPTION_ERROR)
+        do
         {
-            inputs_pauseScreen(EXIT_MESSAGE);
-            break;
-        }
+            lifeCycle = menu_main(&optionMainMenu);
 
-        switch (optionMainMenu)
-        {
-            case 1: // Opcion elegida: Alta de Empleado.
+            if(optionMainMenu == MAIN_MAX || optionMainMenu == OPTION_ERROR)
+            {
+                inputs_pauseScreen(EXIT_MESSAGE);
                 break;
-            case 2: // Opcion elegida: Modificar un Empleado.
-                do
-                {
-                    lifeCycle = menu_update(&optionUpdateMenu);
+            }
 
-                    if(optionUpdateMenu == UPDATE_MAX || optionUpdateMenu == OPTION_ERROR)
+            switch (optionMainMenu)
+            {
+                case 1: // Opcion elegida: Alta de Empleado.
+                    break;
+                case 2: // Opcion elegida: Modificar un Empleado.
+                    do
                     {
-                        break;
-                    }
+                        lifeCycle = menu_update(&optionUpdateMenu);
 
-                    switch (optionUpdateMenu)
-                    {
-                        case 1: // Opcion elegida: Ingreso del Nombre.
-                            /* code */
+                        if(optionUpdateMenu == UPDATE_MAX || optionUpdateMenu == OPTION_ERROR)
+                        {
                             break;
-                    }
+                        }
 
-                    inputs_pauseScreen(CONTINUE_MESSAGE);
-                } while (!lifeCycle);
-                break;
-            case 3: // Opcion elegida: Baja de un Empleado.
-                break;
-            case 4: // Opcion elegida: Informes de la nomina de Empleados.
-                do
-                {
-                    lifeCycle = menu_printReports(&optionReportMenu);
+                        switch (optionUpdateMenu)
+                        {
+                            case 1: // Opcion elegida: Ingreso del Nombre.
+                                /* code */
+                                break;
+                        }
 
-                    if(optionReportMenu == REPORT_MAX || optionReportMenu == OPTION_ERROR)
+                        inputs_pauseScreen(CONTINUE_MESSAGE);
+                    } while (!lifeCycle);
+                    break;
+                case 3: // Opcion elegida: Baja de un Empleado.
+                    break;
+                case 4: // Opcion elegida: Informes de la nomina de Empleados.
+                    do
                     {
-                        break;
-                    }
+                        lifeCycle = menu_printReports(&optionReportMenu);
 
-                    switch (optionReportMenu)
-                    {
-                        case 1: // Opcion elegida: Listado ordenado de Empleados
-                            /* code */
+                        if(optionReportMenu == REPORT_MAX || optionReportMenu == OPTION_ERROR)
+                        {
                             break;
-                    }
+                        }
 
-                    inputs_pauseScreen(CONTINUE_MESSAGE);
-                } while (!lifeCycle);
-                break;
-        }
+                        switch (optionReportMenu)
+                        {
+                            case 1: // Opcion elegida: Listado ordenado de Empleados
+                                inputs_clearScreen();
+                                printEmployees(employees, EMPLOYEE_MAX, sectors, SECTOR_MAX);
+                                break;
+                        }
 
-        inputs_pauseScreen(CONTINUE_MESSAGE);
-    } while (!lifeCycle);
+                        inputs_pauseScreen(CONTINUE_MESSAGE);
+                    } while (!lifeCycle);
+                    break;
+            }
+
+            inputs_pauseScreen(CONTINUE_MESSAGE);
+        } while (!lifeCycle);
+    }
+    else
+    {
+        printf("Hubo un error al inicializar el listado de alumnos.\n");
+        inputs_pauseScreen(EXIT_MESSAGE);
+    }
 
     return 0;
 }
