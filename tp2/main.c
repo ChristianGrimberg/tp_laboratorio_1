@@ -5,6 +5,8 @@
  *      Se requiere administrar el ABM de una nomina de 1000 empleados.
  *
  * Versiones:
+ *      v1.3 - Funciones ABM de Empleados
+ *              [Fecha:]
  *      v1.2 - Esqueleto de estructuras de Empleados
  *              [Fecha: 29 de septiembre de 2019]
  *      v1.1 - Ciclo de vida de menus en pantalla
