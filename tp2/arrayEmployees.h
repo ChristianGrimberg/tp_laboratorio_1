@@ -44,6 +44,30 @@ typedef struct
  */
 int initEmployees(sEmployee list[], int length);
 
+/** \brief Funcion que obtiene el primer indice vacio de un arreglo de Empleados.
+ * 
+ * \param list[] sEmployee Direccion de memoria del inicio del array de Empleados.
+ * \param length int Longitud del array.
+ * \return int
+ *      [-1] Si no hay ninguna posicion libre del arreglo.
+ *      Indice del arreglo donde se encuentra un lugar vacio.
+ * 
+ */
+int getEmptyIndexOfEmployees(sEmployee list[], int length);
+
+/** \brief Funcion que obtiene el indice del array de Empleados
+ *          del ID ingresado como parametro.
+ * 
+ * \param list[] sEmployee Direccion de memoria del inicio del array de Empleados.
+ * \param length int Longitud del array.
+ * \param id int Campo ID del Empleado a buscar.
+ * \return int
+ *      [-1] Si no encuentra el ID ingresado.
+ *      Encuentra el indice del Empleado buscado.
+ * 
+ */
+int findEmployeeById(sEmployee list[], int length, int id);
+
 /** \brief Funcion que agrega un Empleado
  *      con los valores cargados como parametros
  *      en el primer lugar vacio de la lista ingresada.
@@ -61,19 +85,6 @@ int initEmployees(sEmployee list[], int length);
  *
  */
 int addEmployee(sEmployee list[], int length, int id, char name[], char lastName[], float salary, int sector);
-
-/** \brief Funcion que obtiene el indice del array de Empleados
- *          del ID ingresado como parametro.
- * 
- * \param list[] sEmployee Direccion de memoria del inicio del array de Empleados.
- * \param length int Longitud del array.
- * \param id int Campo ID del Empleado a buscar.
- * \return int
- *      [-1] Si no encuentra el ID ingresado.
- *      Encuentra el valor entero del ID del Empleado buscado.
- * 
- */
-int findEmployeeById(sEmployee list[], int length, int id);
 
 /** \brief Borra un Empleado de una lista mediante su ID
  *      e informando el campo isEmpty como vacio.
@@ -138,14 +149,24 @@ int printEmployees(sEmployee listEmployees[], int lengthEmployees, sSector listS
  */
 int findSectorNameById(char* sectorName, sSector list[], int length, int idSector);
 
+/** \brief Funcion que carga valores de muestra a un vector de Sectores
+ *      dependiendo de la cantidad definida como parametro.
+ *
+ * \param list[] sSector Direccion de memoria del inicio del array de Sectores.
+ * \param length int Longitud del array.
+ * \param quantity unt Cantidad de valores a cargar en el arreglo.
+ * \return void No retorna valores.
+ *
+ */
 void sector_hardcode(sSector list[], int length, int quantity);
 
-/** \brief
+/** \brief Funcion que carga valores de muestra a un vector de Empleados
+ *      dependiendo de la cantidad definida como parametro.
  *
- * \param
- * \param
- * \param
- * \return void
+ * \param list[] sEmployee Direccion de memoria del inicio del array de Empleados.
+ * \param length int Longitud del array.
+ * \param quantity unt Cantidad de valores a cargar en el arreglo.
+ * \return void No retorna valores.
  *
  */
 void employee_hardocde(sEmployee list[], int length, int quantity);

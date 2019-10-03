@@ -63,6 +63,77 @@ int initEmployees(sEmployee list[], int length)
     return returnValue;
 }
 
+int getEmptyIndexOfEmployees(sEmployee list[], int length)
+{
+    int returnValue = -1;
+
+    if(list != NULL && length > 0 && length <= EMPLOYEE_MAX)
+    {
+        for (int i = 0; i < length; i++)
+        {
+            if(list[i].isEmpty == TRUE)
+            {
+                returnValue = i;
+                break;
+            }
+        }
+    }
+
+    return returnValue;
+}
+
+int findEmployeeById(sEmployee list[], int length, int id)
+{
+    int returnValue = -1;
+
+    if(list != NULL && length > 0 && length <= EMPLOYEE_MAX)
+    {
+        for (int i = 0; i < length; i++)
+        {
+            if(list[i].id == id)
+            {
+                returnValue = i;
+                break;
+            }
+        }
+    }
+
+    return returnValue;
+}
+
+int addEmployee(sEmployee list[], int length, int id, char name[], char lastName[], float salary, int sector)
+{
+    int returnValue = -1;
+    int emptyIndex;
+
+    if(list != NULL && length > 0 && length <= EMPLOYEE_MAX
+        && name != NULL && lastName != NULL)
+    {
+        if(findEmployeeById(list, length, id) != -1)
+        {
+            printf("El ID ingresado ya esta en uso.\n");
+        }
+        else
+        {
+            emptyIndex = getEmptyIndexOfEmployees(list, length);
+
+            if(emptyIndex != -1)
+            {
+                list[emptyIndex].id = id;
+                strcpy(list[emptyIndex].name, name);
+                strcpy(list[emptyIndex].lastName, lastName);
+                list[emptyIndex].salary = salary;
+                list[emptyIndex].idSector = sector;
+                list[emptyIndex].isEmpty = FALSE;
+
+                returnValue = 0;
+            }
+        }
+    }
+
+    return returnValue;
+}
+
 int printEmployee(sEmployee employee, sSector list[], int length)
 {
     int returnValue = -1;
