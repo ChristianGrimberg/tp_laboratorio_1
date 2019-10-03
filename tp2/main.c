@@ -52,14 +52,14 @@ int main()
             {
                 case 1: // Opcion elegida: Alta de Empleado.
                     if(!inputs_getString(employeeAux.name, "Ingrese el nombre: ",
-                            "Error, intente nuevamente: ", 1, EMPLOYEE_NAME_MAX)
+                            ERROR_MESSAGE, 1, EMPLOYEE_NAME_MAX)
                         && !inputs_getString(employeeAux.lastName, "Ingrese el apellido: ",
-                            "Error, intente nuevamente: ", 1, EMPLOYEE_LASTNAME_MAX)
+                            ERROR_MESSAGE, 1, EMPLOYEE_LASTNAME_MAX)
                         && !inputs_getFloat(&employeeAux.salary, "Ingrese el salario [hasta $10.000.000]: ",
-                                "Error, intente nuevamente: ", 1, 10000000)
+                            ERROR_MESSAGE, 1, SALARY_MAX)
                         && printSectors(sectors, SECTOR_MAX) > 0
                         && !inputs_getInt(&employeeAux.idSector, "Elija el ID del Sector: ",
-                            "Error, intente nuevamente: ", (ID_INIT_SECTOR + 1), (ID_INIT_SECTOR + SECTOR_MAX))
+                            ERROR_MESSAGE, (ID_INIT_SECTOR + 1), (ID_INIT_SECTOR + SECTOR_MAX))
                         && !addEmployee(employees, EMPLOYEE_MAX, getNewEmployeeId(),
                             employeeAux.name, employeeAux.lastName, employeeAux.salary, employeeAux.idSector))
                     {
@@ -68,7 +68,7 @@ int main()
                     break;
                 case 2: // Opcion elegida: Modificar un Empleado.
                     inputs_clearScreen();
-                    id = selectEmployee("Ingrese el ID del Empleado a modificar: ", "Error, intente nuevamente: ",
+                    id = selectEmployee("Ingrese el ID del Empleado a modificar: ", ERROR_MESSAGE,
                         employees, EMPLOYEE_MAX, sectors, SECTOR_MAX);
                     index = findEmployeeById(employees, EMPLOYEE_MAX, id);
 
@@ -85,7 +85,7 @@ int main()
                         {
                             case 1: // Opcion elegida: Cambio del Nombre.
                                 if(!inputs_getString(employees[index].name, "Ingrese el nuevo nombre: ",
-                                    "Error, intente nuevamente: ", 1, SECTOR_NAME_MAX))
+                                    ERROR_MESSAGE, 1, SECTOR_NAME_MAX))
                                 {
                                     inputs_clearScreen();
                                     printf("Nombre modificado con exito:\n");
@@ -94,7 +94,7 @@ int main()
                                 break;
                             case 2: // Opcion elegida: Cambio del Apellido.
                                 if(!inputs_getString(employees[index].lastName, "Ingrese el nuevo apellido: ",
-                                    "Error, intente nuevamente: ", 1, SECTOR_NAME_MAX))
+                                    ERROR_MESSAGE, 1, SECTOR_NAME_MAX))
                                 {
                                     inputs_clearScreen();
                                     printf("Apellido modificado con exito:\n");
@@ -102,7 +102,14 @@ int main()
                                 }
                                 break;
                             case 3: // Opcion elegida: Cambio del salario.
-                                /* code */
+                                if(!inputs_getFloat(&employees[index].salary,
+                                    "Ingrese el nuevo salario [hasta $10.000.000]: ",
+                                    ERROR_MESSAGE, 0, SALARY_MAX))
+                                {
+                                    inputs_clearScreen();
+                                    printf("Salario modificado con exito:\n");
+                                    printEmployee(employees[index], sectors, SECTOR_MAX);
+                                }
                                 break;
                             case 4: // Opcion elegida: Cambio del Sector.
                                 /* code */
@@ -114,7 +121,7 @@ int main()
                     break;
                 case 3: // Opcion elegida: Baja de un Empleado.
                     inputs_clearScreen();
-                    id = selectEmployee("Ingrese el ID del Empleado a dar de baja: ", "Error, intente nuevamente: ",
+                    id = selectEmployee("Ingrese el ID del Empleado a dar de baja: ", ERROR_MESSAGE,
                         employees, EMPLOYEE_MAX, sectors, SECTOR_MAX);
 
                     if(id != -1 && !removeEmployee(employees, EMPLOYEE_MAX, sectors, SECTOR_MAX, id))
