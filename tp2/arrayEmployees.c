@@ -199,8 +199,9 @@ int removeEmployee(sEmployee listEmployees[], int lengthEmployees, sSector listS
         else
         {
             inputs_clearScreen();
+            printf("ATENCION! ESTA A PUNTO DE DAR DE BAJA AL SIGUIENTE EMPLEADO:\n");
             printEmployee(listEmployees[employeeIndex], listSectors, lengthSectors);
-            if(inputs_userResponse("Esta a punto de eliminar el Empleado, esta de acuerdo? [S] [N]: "))
+            if(inputs_userResponse("ESTA DE ACUERDO? [S] [N]: "))
             {
                 listEmployees[employeeIndex].isEmpty = TRUE;
                 returnValue = 0;

@@ -10,7 +10,7 @@
 #define ID_INIT_SECTOR 10 /**< Valor inicial de un ID de Sectores. >*/
 #define SECTOR_MAX 8 /**< Cantidad maxima de Sectores que gestiona la aplicacion. >*/
 #define SECTOR_NAME_MAX 51 /**< Cantidad de caracteres para el nombre del sector. >*/
-#define WITH_HARDCODE 1 /**< Opcion para precargar las estructuras con datos de ejemplo. >*/
+#define WITH_HARDCODE TRUE /**< Opcion para precargar las estructuras con datos de ejemplo. >*/
 
 /*! \struct sEmployee
     \brief Tipo de Dato de Empleado definido por el usuario.

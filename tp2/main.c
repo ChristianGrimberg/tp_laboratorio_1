@@ -23,15 +23,17 @@ int main()
     int optionMainMenu; /**< Opcion elegida por el usuario del menu principal. >*/
     int optionUpdateMenu; /**< Opcion elegida por el usuario para el menu de modificacion. >*/
     int optionReportMenu; /**< Opcion elegida por el usuario para el menu de reportes. >*/
+    int updateId; /**< Opcion elegida por el usuario para el menu de modificar. >*/
+    int updateIndex; /**< Indice del Empleado buscado para actualizar. >*/
     int deleteId; /**< ID del Empleado a dar de baja elegido por el usuario. >*/
 
-    sEmployee employees[EMPLOYEE_MAX];
-    sEmployee employeeAux;
-    sSector sectors[SECTOR_MAX];
+    sEmployee employees[EMPLOYEE_MAX]; /**< Arreglo de Empleados que se utiliza durante todo el ciclo de vida del programa. >*/
+    sEmployee employeeAux; /**< Empleado auxiliar para uso de validacion. >*/
+    sSector sectors[SECTOR_MAX]; /**< Arreglo de Sectores que se utiliza durante todo el ciclo de vida del programa. >*/
 
     if(!initEmployees(employees, EMPLOYEE_MAX))
     {
-        if(WITH_HARDCODE == TRUE)
+        if(WITH_HARDCODE == TRUE) // Opcion definida desde el pre-procesador para hacer uso del hardcodeo de Empleados y Sectores.
         {
             sector_hardcode(sectors, SECTOR_MAX, SECTOR_MAX);
             employee_hardocde(employees, EMPLOYEE_MAX, 8);
@@ -66,6 +68,11 @@ int main()
                     }
                     break;
                 case 2: // Opcion elegida: Modificar un Empleado.
+                    inputs_clearScreen();
+                    updateId = selectEmployee("Ingrese el ID del Empleado a modificar: ", "Error, intente nuevamente: ",
+                        employees, EMPLOYEE_MAX, sectors, SECTOR_MAX);
+                    updateIndex = findEmployeeById(employees, EMPLOYEE_MAX, updateId);
+
                     do
                     {
                         lifeCycle = menu_update(&optionUpdateMenu);
@@ -77,7 +84,22 @@ int main()
 
                         switch (optionUpdateMenu)
                         {
-                            case 1: // Opcion elegida: Ingreso del Nombre.
+                            case 1: // Opcion elegida: Cambio del Nombre.
+                                if(!inputs_getString(employees[updateIndex].name, "Ingrese el nuevo nombre: ",
+                                    "Error, intente nuevamente: ", 1, SECTOR_NAME_MAX))
+                                {
+                                    inputs_clearScreen();
+                                    printf("Empleado modificado con exito:\n");
+                                    printEmployee(employees[updateIndex], sectors, SECTOR_MAX);
+                                }
+                                break;
+                            case 2: // Opcion elegida: Cambio del Apellido.
+                                /* code */
+                                break;
+                            case 3: // Opcion elegida: Cambio del salario.
+                                /* code */
+                                break;
+                            case 4: // Opcion elegida: Cambio del Sector.
                                 /* code */
                                 break;
                         }
@@ -93,6 +115,10 @@ int main()
                     if(deleteId != -1 && !removeEmployee(employees, EMPLOYEE_MAX, sectors, SECTOR_MAX, deleteId))
                     {
                         printf("Empleado dado de baja con exito.\n");
+                    }
+                    else
+                    {
+                        printf("Operacion cancelada.\n");
                     }
                     break;
                 case 4: // Opcion elegida: Informes de la nomina de Empleados.
