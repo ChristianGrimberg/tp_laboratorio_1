@@ -109,17 +109,19 @@ int findSectorNameById(char* sectorName, sSector list[], int length, int idSecto
 int addEmployee(sEmployee list[], int length, int id, char name[], char lastName[], float salary, int sector);
 
 /** \brief Borra un Empleado de una lista mediante su ID
- *      e informando el campo isEmpty como vacio.
+ *      informando el campo isEmpty como vacio.
  *
- * \param list[] sEmployee Direccion de memoria del inicio del array de Empleados.
- * \param length int Longitud del array.
+ * \param listEmployees[] sEmployee Direccion de memoria del inicio del array de Empleados.
+ * \param length int Longitud del array de Empleados.
+ * \param listSectors[] sSector Direccion de memoria del inicio del array de Sectores.
+ * \param lengthSectors int Longitud del array de Sectores.
  * \param id int Campo ID del Empleado a borrar.
  * \return int
  *      [-1] Si hubo un error para borrar el Empleado de la lista.
  *      [0] Si el borrado del Empleado de la lista fue exitosa.
  *
  */
-int removeEmployee(sEmployee list[], int length, int id);
+int removeEmployee(sEmployee listEmployees[], int lengthEmployees, sSector listSectors[], int lengthSectors, int id);
 
 /** \brief Funcion que ordena a los Empleados de la lista
  *      de forma Ascendente o Descendente.

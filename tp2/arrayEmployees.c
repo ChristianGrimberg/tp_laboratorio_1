@@ -157,6 +157,34 @@ int addEmployee(sEmployee list[], int length, int id, char name[], char lastName
     return returnValue;
 }
 
+int removeEmployee(sEmployee listEmployees[], int lengthEmployees, sSector listSectors[], int lengthSectors, int id)
+{
+    int returnValue = -1;
+    int employeeIndex;
+
+    if(listEmployees != NULL && lengthEmployees > 0 && lengthEmployees <= EMPLOYEE_MAX
+        && listSectors != NULL && lengthSectors > 0 && lengthSectors <= SECTOR_MAX)
+    {
+        employeeIndex = findEmployeeById(listEmployees, lengthEmployees, id);
+        if(employeeIndex == -1)
+        {
+            printf("No se encuentra el ID del Empleado en el sistema.\n");
+        }
+        else
+        {
+            printEmployee(listEmployees[employeeIndex], listSectors, lengthSectors);
+            if(inputs_userResponse("Esta a punto de eliminar el Empleado, esta de acuerdo? [S] [N]: "))
+            {
+                listEmployees[employeeIndex].isEmpty = TRUE;
+                returnValue = 0;
+            }
+        }
+        
+    }
+
+    return returnValue;
+}
+
 int printEmployee(sEmployee employee, sSector list[], int length)
 {
     int returnValue = -1;
