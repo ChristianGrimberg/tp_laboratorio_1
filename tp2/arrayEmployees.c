@@ -124,6 +124,32 @@ int findSectorNameById(char* sectorName, sSector list[], int length, int idSecto
     return returnValue;
 }
 
+int selectEmployee(char message[], char eMessage[], sEmployee listEmployees[], int lengthEmployees, sSector listSectors[], int lengthSectors)
+{
+    int returnValue = -1;
+    int auxId = 0;
+    int auxIndex = 0;
+
+    if(message != NULL && eMessage != NULL && listEmployees != NULL && listSectors != NULL
+        && lengthEmployees > 0 && lengthEmployees <= EMPLOYEE_MAX && lengthEmployees > 0 && lengthSectors <= SECTOR_MAX
+        && printEmployees(listEmployees, lengthEmployees, listSectors, lengthSectors) > 0
+        && !inputs_getInt(&auxId, message, eMessage, ID_INIT_EMPLOYEE + 1, ID_INIT_EMPLOYEE + lengthEmployees))
+    {
+        auxIndex = findEmployeeById(listEmployees, lengthEmployees, auxId);
+
+        if(auxIndex != -1)
+        {
+            returnValue = auxId;
+        }
+        else
+        {
+            printf("No se encuentra el ID del Empleado en el sistema.\n");
+        }
+    }
+
+    return returnValue;
+}
+
 int addEmployee(sEmployee list[], int length, int id, char name[], char lastName[], float salary, int sector)
 {
     int returnValue = -1;
@@ -172,6 +198,7 @@ int removeEmployee(sEmployee listEmployees[], int lengthEmployees, sSector listS
         }
         else
         {
+            inputs_clearScreen();
             printEmployee(listEmployees[employeeIndex], listSectors, lengthSectors);
             if(inputs_userResponse("Esta a punto de eliminar el Empleado, esta de acuerdo? [S] [N]: "))
             {
@@ -179,7 +206,7 @@ int removeEmployee(sEmployee listEmployees[], int lengthEmployees, sSector listS
                 returnValue = 0;
             }
         }
-        
+
     }
 
     return returnValue;
@@ -189,7 +216,7 @@ int printEmployee(sEmployee employee, sSector list[], int length)
 {
     int returnValue = -1;
 
-    if(list != NULL && length > 0 && length <= SECTOR_MAX 
+    if(list != NULL && length > 0 && length <= SECTOR_MAX
         && employee.isEmpty == FALSE)
     {
         printf("+======+===============+===============+=============+============================+\n");
@@ -242,7 +269,7 @@ int printEmployees(sEmployee listEmployees[], int lengthEmployees, sSector listS
                     flagEmployees = 0;
                     break;
                 }
-                
+
             }
         }
 

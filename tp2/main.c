@@ -19,11 +19,11 @@
 
 int main()
 {
-    int lifeCycle; /**< Indicador del ciclo de vida de cada menu >*/
-    int optionMainMenu; /**< Opcion elegida por el usuario del menu principal >*/
-    int optionUpdateMenu; /**< Opcion elegida por el usuario para el menu de modificacion >*/
-    int optionReportMenu; /**< Opcion elegida por el usuario para el menu de reportes >*/
-    int deleteId;
+    int lifeCycle; /**< Indicador del ciclo de vida de cada menu. >*/
+    int optionMainMenu; /**< Opcion elegida por el usuario del menu principal. >*/
+    int optionUpdateMenu; /**< Opcion elegida por el usuario para el menu de modificacion. >*/
+    int optionReportMenu; /**< Opcion elegida por el usuario para el menu de reportes. >*/
+    int deleteId; /**< ID del Empleado a dar de baja elegido por el usuario. >*/
 
     sEmployee employees[EMPLOYEE_MAX];
     sEmployee employeeAux;
@@ -86,10 +86,11 @@ int main()
                     } while (!lifeCycle);
                     break;
                 case 3: // Opcion elegida: Baja de un Empleado.
-                    if(printEmployees(employees, EMPLOYEE_MAX, sectors, SECTOR_MAX) > 0
-                        && !inputs_getInt(&deleteId, "Ingrese el ID del Empleado a dar de baja: ",
-                            "Error, intente nuevamente: ", ID_INIT_EMPLOYEE + 1, ID_INIT_EMPLOYEE + EMPLOYEE_MAX)
-                        && !removeEmployee(employees, EMPLOYEE_MAX, sectors, SECTOR_MAX, deleteId))
+                    inputs_clearScreen();
+                    deleteId = selectEmployee("Ingrese el ID del Empleado a dar de baja: ", "Error, intente nuevamente: ",
+                        employees, EMPLOYEE_MAX, sectors, SECTOR_MAX);
+
+                    if(deleteId != -1 && !removeEmployee(employees, EMPLOYEE_MAX, sectors, SECTOR_MAX, deleteId))
                     {
                         printf("Empleado dado de baja con exito.\n");
                     }

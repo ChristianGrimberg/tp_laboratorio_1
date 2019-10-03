@@ -83,12 +83,28 @@ int findEmployeeById(sEmployee list[], int length, int id);
  * \param list[] sSector Direccion de memoria del inicio del array de Sectores.
  * \param length int Longitud del array.
  * \param idSector int ID del Sector a buscar.
- * \return char*
+ * \return int
  *      [-1] Si no existe el ID.
  *      [0] Si el Sector fue encontrado con exito.
  *
  */
 int findSectorNameById(char* sectorName, sSector list[], int length, int idSector);
+
+/** \brief Funcion para obtener un empleado consultando
+ *      al usuario por pantalla.
+ * 
+ * \param message[] char Es el mensaje a ser mostrado.
+ * \param eMessage[] char Es el mensaje a ser mostrado en caso de error.
+ * \param listEmployees[] sEmployee Direccion de memoria del inicio del array de Empleados.
+ * \param length int Longitud del array de Empleados.
+ * \param listSectors[] sSector Direccion de memoria del inicio del array de Sectores.
+ * \param lengthSectors int Longitud del array de Sectores.
+ * \return int
+ *      [-1] Si no encuentra el ID ingresado.
+ *      Devuelve el ID del Empleado seleccionado.
+ * 
+ */
+int selectEmployee(char message[], char eMessage[], sEmployee listEmployees[], int lengthEmployees, sSector listSectors[], int lengthSectors);
 
 /** \brief Funcion que agrega un Empleado
  *      con los valores cargados como parametros
