@@ -3,13 +3,14 @@
 
 #include "menu.h"
 
-#define ID_INIT_EMPLOYEE 0 /**< Valor inicial de un ID de Empleado. >*/
+#define ID_INIT_EMPLOYEE 1000 /**< Valor inicial de un ID de Empleado. >*/
 #define EMPLOYEE_MAX 1000 /**< Cantidad maxima de la nomina de Empleados para la Empresa. >*/
 #define EMPLOYEE_NAME_MAX 51 /**< Cantidad de caracteres para el nombre de un Empleado. >*/
 #define EMPLOYEE_LASTNAME_MAX 51 /**< Cantidad de caracteres para el apellido de un Empleado. >*/
-#define ID_INIT_SECTOR 0 /**< Valor inicial de un ID de Sectores. >*/
-#define SECTOR_MAX 20 /**< Cantidad maxima de Sectores que gestiona la aplicacion. >*/
+#define ID_INIT_SECTOR 10 /**< Valor inicial de un ID de Sectores. >*/
+#define SECTOR_MAX 8 /**< Cantidad maxima de Sectores que gestiona la aplicacion. >*/
 #define SECTOR_NAME_MAX 51 /**< Cantidad de caracteres para el nombre del sector. >*/
+#define WITH_HARDCODE 1 /**< Opcion para precargar las estructuras con datos de ejemplo. >*/
 
 /*! \struct sEmployee
     \brief Tipo de Dato de Empleado definido por el usuario.
@@ -136,5 +137,17 @@ int printEmployees(sEmployee listEmployees[], int lengthEmployees, sSector listS
  *
  */
 int findSectorNameById(char* sectorName, sSector list[], int length, int idSector);
+
+void sector_hardcode(sSector list[], int length, int quantity);
+
+/** \brief
+ *
+ * \param
+ * \param
+ * \param
+ * \return void
+ *
+ */
+void employee_hardocde(sEmployee list[], int length, int quantity);
 
 #endif // ARRAYEMPLOYEES_H_INCLUDED

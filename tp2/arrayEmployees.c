@@ -66,15 +66,14 @@ int initEmployees(sEmployee list[], int length)
 int printEmployee(sEmployee employee, sSector list[], int length)
 {
     int returnValue = -1;
-    char sectorName[SECTOR_NAME_MAX];
 
     if(employee.isEmpty == FALSE)
     {
-        printf("+======+===============+===============+=============+==============+\n");
-        printf("|  ID  |    Nombre     |   Apellido    |   Salario   |    Sector    |\n");
-        printf("+======+===============+===============+=============+==============+\n");
+        printf("+======+===============+===============+=============+============================+\n");
+        printf("|  ID  |    Nombre     |   Apellido    |   Salario   |           Sector           |\n");
+        printf("+======+===============+===============+=============+============================+\n");
         printEmployeeWithoutHeader(employee, list, length);
-        printf("+------+---------------+---------------+-------------+--------------+\n");
+        printf("+------+---------------+---------------+-------------+----------------------------+\n");
 
         returnValue = 0;
     }
@@ -97,9 +96,9 @@ int printEmployees(sEmployee listEmployees[], int lengthEmployees, sSector listS
 
                 if(itemsCounter == 1)
                 {
-                    printf("+======+===============+===============+=============+==============+\n");
-                    printf("|  ID  |    Nombre     |   Apellido    |   Salario   |    Sector    |\n");
-                    printf("+======+===============+===============+=============+==============+\n");
+                    printf("+======+===============+===============+=============+============================+\n");
+                    printf("|  ID  |    Nombre     |   Apellido    |   Salario   |           Sector           |\n");
+                    printf("+======+===============+===============+=============+============================+\n");
                 }
 
                 printEmployeeWithoutHeader(listEmployees[i], listSectors, lengthSectors);
@@ -109,7 +108,7 @@ int printEmployees(sEmployee listEmployees[], int lengthEmployees, sSector listS
 
         if(flagEmployees == 1)
         {
-            printf("+------+---------------+---------------+-------------+--------------+\n");
+            printf("+------+---------------+---------------+-------------+----------------------------+\n");
         }
     }
 
@@ -183,7 +182,51 @@ static void printEmployeeWithoutHeader(sEmployee employee, sSector list[], int l
     if(list != NULL && length > 0 && length <= SECTOR_MAX
         && !findSectorNameById(sectorName, list, length, employee.idSector))
     {
-        printf("| %4d | %13s | %13s | %9.2f | %13s |",
+        printf("| %4d | %13s | %13s | %11.2f | %26s |\n",
             employee.id, employee.name, employee.lastName, employee.salary, sectorName);
+    }
+}
+
+void sector_hardcode(sSector list[], int length, int quantity)
+{
+    sSector auxSector[] = {
+        {getNewSectorId(), "Finanzas"},
+        {getNewSectorId(), "Sistemas"},
+        {getNewSectorId(), "Recursos Humanos"},
+        {getNewSectorId(), "Ventas"},
+        {getNewSectorId(), "Compras"},
+        {getNewSectorId(), "Atencion Clientes"},
+        {getNewSectorId(), "Administracion"},
+        {getNewSectorId(), "Ingenieria"}
+    };
+
+    if(list != NULL && quantity <= SECTOR_MAX && length >= quantity)
+    {
+        for (int i = 0; i < quantity; i++)
+        {
+            list[i] = auxSector[i];
+        }
+    }
+}
+
+void employee_hardocde(sEmployee list[], int length, int quantity)
+{
+    sEmployee auxEmployess[] = {
+        {getNewEmployeeId(), "Marcelo", "Tinelli", 25500, 15, FALSE},
+        {getNewEmployeeId(), "Susana", "Gimenez", 135400, 14, FALSE},
+        {getNewEmployeeId(), "Ricardo", "Darin", 75600, 11, FALSE},
+        {getNewEmployeeId(), "Moria", "Casan", 99400, 13, FALSE},
+        {getNewEmployeeId(), "Marley", "Wieber", 55300, 12, FALSE},
+        {getNewEmployeeId(), "Mirtha", "Legrand", 67400, 17, FALSE},
+        {getNewEmployeeId(), "Veronica", "Lozano", 38700, 16, FALSE},
+        {getNewEmployeeId(), "Pampita", "Ardohain", 32750, 13, FALSE}
+    };
+
+    if(list != NULL && quantity <= 8 && length >= quantity)
+    {
+        for (int i = 0; i < quantity; i++)
+        {
+            list[i] = auxEmployess[i];
+        }
     }
 }

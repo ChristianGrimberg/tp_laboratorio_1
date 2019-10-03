@@ -6,7 +6,7 @@
  *
  * Versiones:
  *      v1.3 - Funciones ABM de Empleados
- *              [Fecha:]
+ *              [Fecha: 2 de octubre de 2019]
  *      v1.2 - Esqueleto de estructuras de Empleados
  *              [Fecha: 29 de septiembre de 2019]
  *      v1.1 - Ciclo de vida de menus en pantalla
@@ -29,6 +29,12 @@ int main()
 
     if(!initEmployees(employees, EMPLOYEE_MAX))
     {
+        if(WITH_HARDCODE == TRUE)
+        {
+            sector_hardcode(sectors, SECTOR_MAX, SECTOR_MAX);
+            employee_hardocde(employees, EMPLOYEE_MAX, 8);
+        }
+
         do
         {
             lifeCycle = menu_main(&optionMainMenu);
