@@ -1,14 +1,5 @@
 #include "arrayEmployees.h"
 
-/** \brief Funcion para generar un nuevo ID de Empleados.
- *
- * \param void No requiere parametros.
- * \return int
- *      Nuevo ID incremental para cada Empleado.
- *
- */
-static int getNewEmployeeId(void);
-
 /** \brief Funcion para generar un nuevo ID de Sectores.
  *
  * \param void No requiere parametros.
@@ -24,10 +15,12 @@ static int getNewSectorId(void);
  * \param employee sEmployee Tipo de Dato de Empleado.
  * \param list[] sSector Direccion de memoria del inicio del array de Sectores.
  * \param length int Longitud del array.
- * \return void No retorna valores.
+ * \return int
+ *      [-1] Si no se pudo imprimir el Empleado.
+ *      [0] Si el Empleado fue impreso con exito.
  *
  */
-static void printEmployeeWithoutHeader(sEmployee employee, sSector list[], int length);
+static int printEmployeeWithoutHeader(sEmployee employee, sSector list[], int length);
 
 /** \brief Funcion que imprime un Sector formateado para impresion
  *      sin encabezado de tabla.
@@ -57,6 +50,20 @@ int initEmployees(sEmployee list[], int length)
     }
 
     return returnValue;
+}
+
+int getNewEmployeeId(void)
+{
+    static int idEmployee = ID_INIT_EMPLOYEE;
+    idEmployee++;
+    return idEmployee;
+}
+
+static int getNewSectorId(void)
+{
+    static int idSector = ID_INIT_SECTOR;
+    idSector++;
+    return idSector;
 }
 
 int getEmptyIndexOfEmployees(sEmployee list[], int length)
@@ -198,8 +205,16 @@ int printEmployees(sEmployee listEmployees[], int lengthEmployees, sSector listS
                     printf("+======+===============+===============+=============+============================+\n");
                 }
 
-                printEmployeeWithoutHeader(listEmployees[i], listSectors, lengthSectors);
-                flagEmployees = 1;
+                if(!printEmployeeWithoutHeader(listEmployees[i], listSectors, lengthSectors))
+                {
+                    flagEmployees = 1;
+                }
+                else
+                {
+                    flagEmployees = 0;
+                    break;
+                }
+                
             }
         }
 
@@ -297,29 +312,24 @@ void employee_hardocde(sEmployee list[], int length, int quantity)
     }
 }
 
-static int getNewEmployeeId(void)
+static int printEmployeeWithoutHeader(sEmployee employee, sSector list[], int length)
 {
-    static int idEmployee = ID_INIT_EMPLOYEE;
-    idEmployee++;
-    return idEmployee;
-}
-
-static int getNewSectorId(void)
-{
-    static int idSector = ID_INIT_SECTOR;
-    idSector++;
-    return idSector;
-}
-
-static void printEmployeeWithoutHeader(sEmployee employee, sSector list[], int length)
-{
+    int returnValue = -1;
     char sectorName[SECTOR_NAME_MAX];
 
-    printf("| %4d | %13s | %13s | %11.2f | %26s |\n",
-            employee.id, employee.name, employee.lastName, employee.salary, sectorName);
+    if(list != NULL && length > 0 && length <= SECTOR_MAX
+        && !findSectorNameById(sectorName, list, length, employee.idSector))
+    {
+        printf("| %4d | %13s | %13s | %11.2f | %26s |\n",
+            employee.id, arrays_stringToCamelCase(employee.name, EMPLOYEE_NAME_MAX),
+            arrays_stringToCamelCase(employee.lastName, EMPLOYEE_LASTNAME_MAX), employee.salary, sectorName);
+        returnValue = 0;
+    }
+
+    return returnValue;
 }
 
 static void printSectorWithoutHeader(sSector sector)
 {
-    printf("| %4d | %26s |\n", sector.idSector, sector.name);
+    printf("| %4d | %26s |\n", sector.idSector, arrays_stringToCamelCase(sector.name, SECTOR_NAME_MAX));
 }

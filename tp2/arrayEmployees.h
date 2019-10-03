@@ -44,6 +44,15 @@ typedef struct
  */
 int initEmployees(sEmployee list[], int length);
 
+/** \brief Funcion para generar un nuevo ID de Empleados.
+ *
+ * \param void No requiere parametros.
+ * \return int
+ *      Nuevo ID incremental para cada Empleado.
+ *
+ */
+int getNewEmployeeId(void);
+
 /** \brief Funcion que obtiene el primer indice vacio de un arreglo de Empleados.
  * 
  * \param list[] sEmployee Direccion de memoria del inicio del array de Empleados.

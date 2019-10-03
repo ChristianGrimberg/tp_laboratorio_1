@@ -6,7 +6,7 @@
  *
  * Versiones:
  *      v1.3 - Funciones ABM de Empleados
- *              [Fecha: 2 de octubre de 2019]
+ *              [Fecha: 3 de octubre de 2019]
  *      v1.2 - Esqueleto de estructuras de Empleados
  *              [Fecha: 29 de septiembre de 2019]
  *      v1.1 - Ciclo de vida de menus en pantalla
@@ -25,6 +25,7 @@ int main()
     int optionReportMenu; /**< Opcion elegida por el usuario para el menu de reportes >*/
 
     sEmployee employees[EMPLOYEE_MAX];
+    sEmployee employeeAux;
     sSector sectors[SECTOR_MAX];
 
     if(!initEmployees(employees, EMPLOYEE_MAX))
@@ -48,6 +49,20 @@ int main()
             switch (optionMainMenu)
             {
                 case 1: // Opcion elegida: Alta de Empleado.
+                    if(!inputs_getString(employeeAux.name, "Ingrese el nombre: ",
+                            "Error, intente nuevamente: ", 1, EMPLOYEE_NAME_MAX)
+                        && !inputs_getString(employeeAux.lastName, "Ingrese el apellido: ",
+                            "Error, intente nuevamente: ", 1, EMPLOYEE_LASTNAME_MAX)
+                        && !inputs_getFloat(&employeeAux.salary, "Ingrese el salario [hasta $10.000.000]: ",
+                                "Error, intente nuevamente: ", 1, 10000000)
+                        && printSectors(sectors, SECTOR_MAX) > 0
+                        && !inputs_getInt(&employeeAux.idSector, "Elija el ID del Sector: ",
+                            "Error, intente nuevamente: ", (ID_INIT_SECTOR + 1), (ID_INIT_SECTOR + SECTOR_MAX))
+                        && !addEmployee(employees, EMPLOYEE_MAX, getNewEmployeeId(),
+                            employeeAux.name, employeeAux.lastName, employeeAux.salary, employeeAux.idSector))
+                    {
+                        printf("Empleado cargado con exito.\n");
+                    }
                     break;
                 case 2: // Opcion elegida: Modificar un Empleado.
                     do
