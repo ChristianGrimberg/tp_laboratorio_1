@@ -23,8 +23,9 @@ int main()
     int optionMainMenu; /**< Opcion elegida por el usuario del menu principal. >*/
     int optionUpdateMenu; /**< Opcion elegida por el usuario para el menu de modificacion. >*/
     int optionReportMenu; /**< Opcion elegida por el usuario para el menu de reportes. >*/
-    int index; /**< Indice del Empleado buscado. >*/
-    int id; /**< ID del Empleado elegido por el usuario. >*/
+    int index; /**< Indice buscado. >*/
+    int indexAux; /**< Indice auxiliar buscado. >*/
+    int id; /**< ID elegido por el usuario. >*/
 
     sEmployee employees[EMPLOYEE_MAX]; /**< Arreglo de Empleados que se utiliza durante todo el ciclo de vida del programa. >*/
     sEmployee employeeAux; /**< Empleado auxiliar para uso de validacion. >*/
@@ -112,7 +113,17 @@ int main()
                                 }
                                 break;
                             case 4: // Opcion elegida: Cambio del Sector.
-                                /* code */
+                                inputs_clearScreen();
+                                id = selectSector("Ingrese el ID del Sector a cambiar: ",
+                                    ERROR_MESSAGE, sectors, SECTOR_MAX);
+
+                                if(id != -1 && index != -1)
+                                {
+                                    inputs_clearScreen();
+                                    employees[index].idSector = id;
+                                    printf("Sector cambiado con exito:\n");
+                                    printEmployee(employees[index], sectors, SECTOR_MAX);
+                                }
                                 break;
                         }
 

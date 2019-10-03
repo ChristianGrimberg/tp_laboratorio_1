@@ -79,6 +79,19 @@ int getEmptyIndexOfEmployees(sEmployee list[], int length);
  */
 int findEmployeeById(sEmployee list[], int length, int id);
 
+/** \brief Funcion que obtiene el indice del array de Sectores
+ *          del ID ingresado como parametro.
+ * 
+ * \param list[] sSector Direccion de memoria del inicio del array de Sectores.
+ * \param length int Longitud del array.
+ * \param id int Campo ID del Empleado a buscar.
+ * \return int
+ *      [-1] Si no encuentra el ID ingresado.
+ *      Encuentra el indice del Empleado buscado.
+ * 
+ */
+int findSectorById(sSector list[], int length, int id);
+
 /** \brief Busca el nombre del Sector por el ID.
  *
  * \param sectorName char* Nombre encontrado del Sector.
@@ -92,7 +105,7 @@ int findEmployeeById(sEmployee list[], int length, int id);
  */
 int findSectorNameById(char* sectorName, sSector list[], int length, int idSector);
 
-/** \brief Funcion para obtener un empleado consultando
+/** \brief Funcion para obtener un Empleado consultando
  *      al usuario por pantalla.
  * 
  * \param message[] char Es el mensaje a ser mostrado.
@@ -107,6 +120,20 @@ int findSectorNameById(char* sectorName, sSector list[], int length, int idSecto
  * 
  */
 int selectEmployee(char message[], char eMessage[], sEmployee listEmployees[], int lengthEmployees, sSector listSectors[], int lengthSectors);
+
+/** \brief Funcion para obtener un Sector consultando
+ *      al usuario por pantalla.
+ * 
+ * \param message[] char Es el mensaje a ser mostrado.
+ * \param eMessage[] char Es el mensaje a ser mostrado en caso de error.
+ * \param listSectors[] sSector Direccion de memoria del inicio del array de Sectores.
+ * \param lengthSectors int Longitud del array de Sectores.
+ * \return int
+ *      [-1] Si no encuentra el ID ingresado.
+ *      Devuelve el ID del Sector seleccionado.
+ * 
+ */
+int selectSector(char message[], char eMessage[], sSector listSectors[], int lengthSectors);
 
 /** \brief Funcion que agrega un Empleado
  *      con los valores cargados como parametros

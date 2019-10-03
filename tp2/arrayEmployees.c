@@ -104,6 +104,25 @@ int findEmployeeById(sEmployee list[], int length, int id)
     return returnValue;
 }
 
+int findSectorById(sSector list[], int length, int id)
+{
+    int returnValue = -1;
+
+    if(list != NULL && length > 0 && length <= SECTOR_MAX)
+    {
+        for (int i = 0; i < length; i++)
+        {
+            if(list[i].idSector == id)
+            {
+                returnValue = i;
+                break;
+            }
+        }
+    }
+
+    return returnValue;
+}
+
 int findSectorNameById(char* sectorName, sSector list[], int length, int idSector)
 {
     int returnValue = -1;
@@ -131,7 +150,7 @@ int selectEmployee(char message[], char eMessage[], sEmployee listEmployees[], i
     int auxIndex = 0;
 
     if(message != NULL && eMessage != NULL && listEmployees != NULL && listSectors != NULL
-        && lengthEmployees > 0 && lengthEmployees <= EMPLOYEE_MAX && lengthEmployees > 0 && lengthSectors <= SECTOR_MAX
+        && lengthEmployees > 0 && lengthEmployees <= EMPLOYEE_MAX && lengthSectors > 0 && lengthSectors <= SECTOR_MAX
         && printEmployees(listEmployees, lengthEmployees, listSectors, lengthSectors) > 0
         && !inputs_getInt(&auxId, message, eMessage, ID_INIT_EMPLOYEE + 1, ID_INIT_EMPLOYEE + lengthEmployees))
     {
@@ -144,6 +163,32 @@ int selectEmployee(char message[], char eMessage[], sEmployee listEmployees[], i
         else
         {
             printf("No se encuentra el ID del Empleado en el sistema.\n");
+        }
+    }
+
+    return returnValue;
+}
+
+int selectSector(char message[], char eMessage[], sSector listSectors[], int lengthSectors)
+{
+    int returnValue = -1;
+    int auxId = 0;
+    int auxIndex = 0;
+
+    if(message != NULL && eMessage != NULL && listSectors != NULL
+        && lengthSectors > 0 && lengthSectors <= SECTOR_MAX
+        && printSectors(listSectors, lengthSectors) > 0
+        && !inputs_getInt(&auxId, message, eMessage, ID_INIT_SECTOR + 1, ID_INIT_SECTOR + lengthSectors))
+    {
+        auxIndex = findSectorById(listSectors, lengthSectors, auxId);
+
+        if(auxIndex != -1)
+        {
+            returnValue = auxId;
+        }
+        else
+        {
+            printf("No se encuentra el ID del Sector en el sistema.\n");
         }
     }
 
