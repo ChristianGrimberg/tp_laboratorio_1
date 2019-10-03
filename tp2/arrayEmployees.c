@@ -1,18 +1,5 @@
 #include "arrayEmployees.h"
 
-/** \brief Funcion similar a tipo constructor de un objeto
- *      que carga los parametros a un Empleado y lo devuelve.
- *
- * \param name[] char Nombre para un Empleado.
- * \param lastName[] char Apellido para un Empleado.
- * \param salary float Valor del salario para un Empleado.
- * \param idSector int ID externo de un Sector.
- * \return sEmployee
- *      Nuevo Empleado con los parametros agregados en sus campos.
- *
- */
-static sEmployee newEmployee(char name[], char lastName[], float salary, int idSector);
-
 /** \brief Funcion para generar un nuevo ID de Empleados.
  *
  * \param void No requiere parametros.
@@ -41,6 +28,15 @@ static int getNewSectorId(void);
  *
  */
 static void printEmployeeWithoutHeader(sEmployee employee, sSector list[], int length);
+
+/** \brief Funcion que imprime un Sector formateado para impresion
+ *      sin encabezado de tabla.
+ *
+ * \param sector sSector Tipo de Dato de Sector.
+ * \return void No retorna valores.
+ *
+ */
+static void printSectorWithoutHeader(sSector sector);
 
 int initEmployees(sEmployee list[], int length)
 {
@@ -101,6 +97,26 @@ int findEmployeeById(sEmployee list[], int length, int id)
     return returnValue;
 }
 
+int findSectorNameById(char* sectorName, sSector list[], int length, int idSector)
+{
+    int returnValue = -1;
+
+    if(list != NULL && length > 0 && length <= SECTOR_MAX)
+    {
+        for(int i = 0; i < length; i++)
+        {
+            if(list[i].idSector == idSector)
+            {
+                strcpy(sectorName, list[i].name);
+                returnValue = 0;
+                break;
+            }
+        }
+    }
+
+    return returnValue;
+}
+
 int addEmployee(sEmployee list[], int length, int id, char name[], char lastName[], float salary, int sector)
 {
     int returnValue = -1;
@@ -138,7 +154,8 @@ int printEmployee(sEmployee employee, sSector list[], int length)
 {
     int returnValue = -1;
 
-    if(employee.isEmpty == FALSE)
+    if(list != NULL && length > 0 && length <= SECTOR_MAX 
+        && employee.isEmpty == FALSE)
     {
         printf("+======+===============+===============+=============+============================+\n");
         printf("|  ID  |    Nombre     |   Apellido    |   Salario   |           Sector           |\n");
@@ -150,6 +167,15 @@ int printEmployee(sEmployee employee, sSector list[], int length)
     }
 
     return returnValue;
+}
+
+void printSector(sSector sector)
+{
+    printf("+======+============================+\n");
+    printf("|  ID  |           Sector           |\n");
+    printf("+======+============================+\n");
+    printSectorWithoutHeader(sector);
+    printf("+------+----------------------------+\n");
 }
 
 int printEmployees(sEmployee listEmployees[], int lengthEmployees, sSector listSectors[], int lengthSectors)
@@ -191,71 +217,40 @@ int printEmployees(sEmployee listEmployees[], int lengthEmployees, sSector listS
     return itemsCounter;
 }
 
-int findSectorNameById(char* sectorName, sSector list[], int length, int idSector)
+int printSectors(sSector sectors[], int length)
 {
-    int returnValue = -1;
+    int itemsCounter = 0;
+    int flagSectors = 0;
 
-    if(list != NULL && length > 0 && length <= SECTOR_MAX)
+    if(sectors != NULL && length > 0 && length <= SECTOR_MAX)
     {
-        for(int i = 0; i < length; i++)
+        for (int i = 0; i < length; i++)
         {
-            if(list[i].idSector == idSector)
+            itemsCounter++;
+
+            if(itemsCounter == 1)
             {
-                strcpy(sectorName, list[i].name);
-                returnValue = 0;
-                break;
+                printf("+======+============================+\n");
+                printf("|  ID  |           Sector           |\n");
+                printf("+======+============================+\n");
             }
+
+            printSectorWithoutHeader(sectors[i]);
+            flagSectors = 1;
+        }
+
+        if(flagSectors == 1)
+        {
+            printf("+------+----------------------------+\n");
         }
     }
 
-    return returnValue;
-}
-
-static sEmployee newEmployee(char name[], char lastName[], float salary, int idSector)
-{
-    sEmployee auxEmployee;
-
-    if(name != NULL && lastName != NULL)
+    if(flagSectors == 0)
     {
-        auxEmployee.id = getNewEmployeeId();
-        strcpy(auxEmployee.name, name);
-        strcpy(auxEmployee.lastName, lastName);
-        auxEmployee.salary = salary;
-        auxEmployee.idSector = idSector;
-        auxEmployee.isEmpty = FALSE;
-    }
-    else
-    {
-        auxEmployee.isEmpty = TRUE;
+        printf("No existen Sectores cargados en el listado.\n");
     }
 
-    return auxEmployee;
-}
-
-static int getNewEmployeeId(void)
-{
-    static int idEmployee = ID_INIT_EMPLOYEE;
-    idEmployee++;
-    return idEmployee;
-}
-
-static int getNewSectorId(void)
-{
-    static int idSector = ID_INIT_SECTOR;
-    idSector++;
-    return idSector;
-}
-
-static void printEmployeeWithoutHeader(sEmployee employee, sSector list[], int length)
-{
-    char sectorName[SECTOR_NAME_MAX];
-
-    if(list != NULL && length > 0 && length <= SECTOR_MAX
-        && !findSectorNameById(sectorName, list, length, employee.idSector))
-    {
-        printf("| %4d | %13s | %13s | %11.2f | %26s |\n",
-            employee.id, employee.name, employee.lastName, employee.salary, sectorName);
-    }
+    return itemsCounter;
 }
 
 void sector_hardcode(sSector list[], int length, int quantity)
@@ -300,4 +295,31 @@ void employee_hardocde(sEmployee list[], int length, int quantity)
             list[i] = auxEmployess[i];
         }
     }
+}
+
+static int getNewEmployeeId(void)
+{
+    static int idEmployee = ID_INIT_EMPLOYEE;
+    idEmployee++;
+    return idEmployee;
+}
+
+static int getNewSectorId(void)
+{
+    static int idSector = ID_INIT_SECTOR;
+    idSector++;
+    return idSector;
+}
+
+static void printEmployeeWithoutHeader(sEmployee employee, sSector list[], int length)
+{
+    char sectorName[SECTOR_NAME_MAX];
+
+    printf("| %4d | %13s | %13s | %11.2f | %26s |\n",
+            employee.id, employee.name, employee.lastName, employee.salary, sectorName);
+}
+
+static void printSectorWithoutHeader(sSector sector)
+{
+    printf("| %4d | %26s |\n", sector.idSector, sector.name);
 }

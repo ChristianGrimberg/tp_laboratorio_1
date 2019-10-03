@@ -68,6 +68,19 @@ int getEmptyIndexOfEmployees(sEmployee list[], int length);
  */
 int findEmployeeById(sEmployee list[], int length, int id);
 
+/** \brief Busca el nombre del Sector por el ID.
+ *
+ * \param sectorName char* Nombre encontrado del Sector.
+ * \param list[] sSector Direccion de memoria del inicio del array de Sectores.
+ * \param length int Longitud del array.
+ * \param idSector int ID del Sector a buscar.
+ * \return char*
+ *      [-1] Si no existe el ID.
+ *      [0] Si el Sector fue encontrado con exito.
+ *
+ */
+int findSectorNameById(char* sectorName, sSector list[], int length, int idSector);
+
 /** \brief Funcion que agrega un Empleado
  *      con los valores cargados como parametros
  *      en el primer lugar vacio de la lista ingresada.
@@ -125,29 +138,34 @@ int sortEmployees(sEmployee list[], int length, int order);
  */
 int printEmployee(sEmployee employee, sSector list[], int length);
 
+/** \brief Funcion que imprime un Sector formateado para impresion
+ *      con encabezado de tabla.
+ *
+ * \param sector sSector Tipo de Dato de Sector.
+ * \return void No retorna valores.
+ *
+ */
+void printSector(sSector sector);
+
 /** \brief Imprime en pantalla el contenido de la lista de Empleados.
  *
  * \param listEmployees[] sEmployee Direccion de memoria del inicio del array de Empleados.
  * \param length int Longitud del array de Empleados.
  * \param listSectors[] sSector Direccion de memoria del inicio del array de Sectores.
  * \param lengthSectors int Longitud del array de Sectores.
- * \return int La cantidad de elementos del array.
+ * \return int La cantidad de elementos impresos del array.
  *
  */
 int printEmployees(sEmployee listEmployees[], int lengthEmployees, sSector listSectors[], int lengthSectors);
 
-/** \brief Busca el nombre del Sector por el ID.
+/** \brief Imprime en pantalla el contenido de un arreglo de Sectores.
  *
- * \param sectorName char* Nombre encontrado del Sector.
- * \param list[] sSector Direccion de memoria del inicio del array de Sectores.
- * \param length int Longitud del array.
- * \param idSector int ID del Sector a buscar.
- * \return char*
- *      [-1] Si no existe el ID.
- *      [0] Si el Sector fue encontrado con exito.
+ * \param sectors[] sSector Direccion de memoria del inicio del array de Sectores.
+ * \param length int Longitud del array de Sectores.
+ * \return int La cantidad de elementos impresos del array.
  *
  */
-int findSectorNameById(char* sectorName, sSector list[], int length, int idSector);
+int printSectors(sSector sectors[], int length);
 
 /** \brief Funcion que carga valores de muestra a un vector de Sectores
  *      dependiendo de la cantidad definida como parametro.
