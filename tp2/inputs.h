@@ -107,7 +107,7 @@ int inputs_getChar(char* input, char message[], char eMessage[], char lowLimit, 
 
 /** \brief Solicita una cadena de caracteres al usuario y la valida.
  *
- * \param input char* Se carga el string ingresado.
+ * \param input char* Cadena de Caracteres a modificar.
  * \param message[] char Es el mensaje a ser mostrado.
  * \param eMessage[] char Es el mensaje a ser mostrado en caso de error.
  * \param lowLimit int Longitud mínima de la cadena.

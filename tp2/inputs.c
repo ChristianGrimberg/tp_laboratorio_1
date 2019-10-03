@@ -184,7 +184,7 @@ int inputs_getFloat(float* input, char message[], char eMessage[], float lowLimi
 
     char stringNumber[STRING_AS_NUMBER_MAX]; /**< Variable para almacenar la cadena ingresada por teclado. >*/
 
-    if(hiLimit >= lowLimit && lowLimit >= FLT_MIN && hiLimit <= FLT_MAX
+    if(hiLimit >= lowLimit && lowLimit >= -FLT_MAX && hiLimit <= FLT_MAX
         && input != NULL && message != NULL && eMessage != NULL)
     {
         do

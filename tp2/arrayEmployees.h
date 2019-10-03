@@ -3,11 +3,16 @@
 
 #include "menu.h"
 
-#define ID_INIT_EMPLOYEE 0 /**< Valor inicial de un ID de Empleado. >*/
+#define ID_INIT_EMPLOYEE 1000 /**< Valor inicial de un ID de Empleado. >*/
 #define EMPLOYEE_MAX 1000 /**< Cantidad maxima de la nomina de Empleados para la Empresa. >*/
 #define EMPLOYEE_NAME_MAX 51 /**< Cantidad de caracteres para el nombre de un Empleado. >*/
 #define EMPLOYEE_LASTNAME_MAX 51 /**< Cantidad de caracteres para el apellido de un Empleado. >*/
+#define ID_INIT_SECTOR 10 /**< Valor inicial de un ID de Sectores. >*/
+#define SECTOR_MAX 8 /**< Cantidad maxima de Sectores que gestiona la aplicacion. >*/
 #define SECTOR_NAME_MAX 51 /**< Cantidad de caracteres para el nombre del sector. >*/
+#define SALARY_MAX 10000000 /**< Salario maximo definido para el programa. >*/
+#define ERROR_MESSAGE "Error, intente nuevamente: " /**< Mensaje de error por defecto. >*/
+#define WITH_HARDCODE TRUE /**< Opcion para precargar las estructuras con datos de ejemplo. >*/
 
 /*! \struct sEmployee
     \brief Tipo de Dato de Empleado definido por el usuario.
@@ -41,6 +46,95 @@ typedef struct
  */
 int initEmployees(sEmployee list[], int length);
 
+/** \brief Funcion para generar un nuevo ID de Empleados.
+ *
+ * \param void No requiere parametros.
+ * \return int
+ *      Nuevo ID incremental para cada Empleado.
+ *
+ */
+int getNewEmployeeId(void);
+
+/** \brief Funcion que obtiene el primer indice vacio de un arreglo de Empleados.
+ * 
+ * \param list[] sEmployee Direccion de memoria del inicio del array de Empleados.
+ * \param length int Longitud del array.
+ * \return int
+ *      [-1] Si no hay ninguna posicion libre del arreglo.
+ *      Indice del arreglo donde se encuentra un lugar vacio.
+ * 
+ */
+int getEmptyIndexOfEmployees(sEmployee list[], int length);
+
+/** \brief Funcion que obtiene el indice del array de Empleados
+ *          del ID ingresado como parametro.
+ * 
+ * \param list[] sEmployee Direccion de memoria del inicio del array de Empleados.
+ * \param length int Longitud del array.
+ * \param id int Campo ID del Empleado a buscar.
+ * \return int
+ *      [-1] Si no encuentra el ID ingresado.
+ *      Encuentra el indice del Empleado buscado.
+ * 
+ */
+int findEmployeeById(sEmployee list[], int length, int id);
+
+/** \brief Funcion que obtiene el indice del array de Sectores
+ *          del ID ingresado como parametro.
+ * 
+ * \param list[] sSector Direccion de memoria del inicio del array de Sectores.
+ * \param length int Longitud del array.
+ * \param id int Campo ID del Empleado a buscar.
+ * \return int
+ *      [-1] Si no encuentra el ID ingresado.
+ *      Encuentra el indice del Empleado buscado.
+ * 
+ */
+int findSectorById(sSector list[], int length, int id);
+
+/** \brief Busca el nombre del Sector por el ID.
+ *
+ * \param sectorName char* Nombre encontrado del Sector.
+ * \param list[] sSector Direccion de memoria del inicio del array de Sectores.
+ * \param length int Longitud del array.
+ * \param idSector int ID del Sector a buscar.
+ * \return int
+ *      [-1] Si no existe el ID.
+ *      [0] Si el Sector fue encontrado con exito.
+ *
+ */
+int findSectorNameById(char* sectorName, sSector list[], int length, int idSector);
+
+/** \brief Funcion para obtener un Empleado consultando
+ *      al usuario por pantalla.
+ * 
+ * \param message[] char Es el mensaje a ser mostrado.
+ * \param eMessage[] char Es el mensaje a ser mostrado en caso de error.
+ * \param listEmployees[] sEmployee Direccion de memoria del inicio del array de Empleados.
+ * \param length int Longitud del array de Empleados.
+ * \param listSectors[] sSector Direccion de memoria del inicio del array de Sectores.
+ * \param lengthSectors int Longitud del array de Sectores.
+ * \return int
+ *      [-1] Si no encuentra el ID ingresado.
+ *      Devuelve el ID del Empleado seleccionado.
+ * 
+ */
+int selectEmployee(char message[], char eMessage[], sEmployee listEmployees[], int lengthEmployees, sSector listSectors[], int lengthSectors);
+
+/** \brief Funcion para obtener un Sector consultando
+ *      al usuario por pantalla.
+ * 
+ * \param message[] char Es el mensaje a ser mostrado.
+ * \param eMessage[] char Es el mensaje a ser mostrado en caso de error.
+ * \param listSectors[] sSector Direccion de memoria del inicio del array de Sectores.
+ * \param lengthSectors int Longitud del array de Sectores.
+ * \return int
+ *      [-1] Si no encuentra el ID ingresado.
+ *      Devuelve el ID del Sector seleccionado.
+ * 
+ */
+int selectSector(char message[], char eMessage[], sSector listSectors[], int lengthSectors);
+
 /** \brief Funcion que agrega un Empleado
  *      con los valores cargados como parametros
  *      en el primer lugar vacio de la lista ingresada.
@@ -59,31 +153,20 @@ int initEmployees(sEmployee list[], int length);
  */
 int addEmployee(sEmployee list[], int length, int id, char name[], char lastName[], float salary, int sector);
 
-/** \brief Funcion que obtiene el indice del array de Empleados
- *          del ID ingresado como parametro.
- * 
- * \param list[] sEmployee Direccion de memoria del inicio del array de Empleados.
- * \param length int Longitud del array.
- * \param id int Campo ID del Empleado a buscar.
- * \return int
- *      [-1] Si no encuentra el ID ingresado.
- *      Encuentra el valor entero del ID del Empleado buscado.
- * 
- */
-int findEmployeeById(sEmployee list[], int length, int id);
-
 /** \brief Borra un Empleado de una lista mediante su ID
- *      e informando el campo isEmpty como vacio.
+ *      informando el campo isEmpty como vacio.
  *
- * \param list[] sEmployee Direccion de memoria del inicio del array de Empleados.
- * \param length int Longitud del array.
+ * \param listEmployees[] sEmployee Direccion de memoria del inicio del array de Empleados.
+ * \param length int Longitud del array de Empleados.
+ * \param listSectors[] sSector Direccion de memoria del inicio del array de Sectores.
+ * \param lengthSectors int Longitud del array de Sectores.
  * \param id int Campo ID del Empleado a borrar.
  * \return int
  *      [-1] Si hubo un error para borrar el Empleado de la lista.
  *      [0] Si el borrado del Empleado de la lista fue exitosa.
  *
  */
-int removeEmployee(sEmployee list[], int length, int id);
+int removeEmployee(sEmployee listEmployees[], int lengthEmployees, sSector listSectors[], int lengthSectors, int id);
 
 /** \brief Funcion que ordena a los Empleados de la lista
  *      de forma Ascendente o Descendente.
@@ -98,13 +181,68 @@ int removeEmployee(sEmployee list[], int length, int id);
  */
 int sortEmployees(sEmployee list[], int length, int order);
 
+/** \brief Funcion que imprime un Empleado formateado para impresion
+ *      con encabezado de tabla.
+ *
+ * \param employee sEmployee Tipo de Dato de Empleado.
+ * \param list[] sSector Direccion de memoria del inicio del array de Sectores.
+ * \param length int Longitud del array.
+ * \return int
+ *      [-1] Si hubo un error para imprimir al Empleado.
+ *      [0] Si el Empleado fue impreso con exito.
+ *
+ */
+int printEmployee(sEmployee employee, sSector list[], int length);
+
+/** \brief Funcion que imprime un Sector formateado para impresion
+ *      con encabezado de tabla.
+ *
+ * \param sector sSector Tipo de Dato de Sector.
+ * \return void No retorna valores.
+ *
+ */
+void printSector(sSector sector);
+
 /** \brief Imprime en pantalla el contenido de la lista de Empleados.
+ *
+ * \param listEmployees[] sEmployee Direccion de memoria del inicio del array de Empleados.
+ * \param length int Longitud del array de Empleados.
+ * \param listSectors[] sSector Direccion de memoria del inicio del array de Sectores.
+ * \param lengthSectors int Longitud del array de Sectores.
+ * \return int La cantidad de elementos impresos del array.
+ *
+ */
+int printEmployees(sEmployee listEmployees[], int lengthEmployees, sSector listSectors[], int lengthSectors);
+
+/** \brief Imprime en pantalla el contenido de un arreglo de Sectores.
+ *
+ * \param sectors[] sSector Direccion de memoria del inicio del array de Sectores.
+ * \param length int Longitud del array de Sectores.
+ * \return int La cantidad de elementos impresos del array.
+ *
+ */
+int printSectors(sSector sectors[], int length);
+
+/** \brief Funcion que carga valores de muestra a un vector de Sectores
+ *      dependiendo de la cantidad definida como parametro.
+ *
+ * \param list[] sSector Direccion de memoria del inicio del array de Sectores.
+ * \param length int Longitud del array.
+ * \param quantity unt Cantidad de valores a cargar en el arreglo.
+ * \return void No retorna valores.
+ *
+ */
+void sector_hardcode(sSector list[], int length, int quantity);
+
+/** \brief Funcion que carga valores de muestra a un vector de Empleados
+ *      dependiendo de la cantidad definida como parametro.
  *
  * \param list[] sEmployee Direccion de memoria del inicio del array de Empleados.
  * \param length int Longitud del array.
- * \return int La cantidad de elementos del array.
+ * \param quantity unt Cantidad de valores a cargar en el arreglo.
+ * \return void No retorna valores.
  *
  */
-int printEmployees(sEmployee list[], int length);
+void employee_hardocde(sEmployee list[], int length, int quantity);
 
 #endif // ARRAYEMPLOYEES_H_INCLUDED
