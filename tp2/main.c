@@ -23,9 +23,8 @@ int main()
     int optionMainMenu; /**< Opcion elegida por el usuario del menu principal. >*/
     int optionUpdateMenu; /**< Opcion elegida por el usuario para el menu de modificacion. >*/
     int optionReportMenu; /**< Opcion elegida por el usuario para el menu de reportes. >*/
-    int updateId; /**< Opcion elegida por el usuario para el menu de modificar. >*/
-    int updateIndex; /**< Indice del Empleado buscado para actualizar. >*/
-    int deleteId; /**< ID del Empleado a dar de baja elegido por el usuario. >*/
+    int index; /**< Indice del Empleado buscado. >*/
+    int id; /**< ID del Empleado elegido por el usuario. >*/
 
     sEmployee employees[EMPLOYEE_MAX]; /**< Arreglo de Empleados que se utiliza durante todo el ciclo de vida del programa. >*/
     sEmployee employeeAux; /**< Empleado auxiliar para uso de validacion. >*/
@@ -69,9 +68,9 @@ int main()
                     break;
                 case 2: // Opcion elegida: Modificar un Empleado.
                     inputs_clearScreen();
-                    updateId = selectEmployee("Ingrese el ID del Empleado a modificar: ", "Error, intente nuevamente: ",
+                    id = selectEmployee("Ingrese el ID del Empleado a modificar: ", "Error, intente nuevamente: ",
                         employees, EMPLOYEE_MAX, sectors, SECTOR_MAX);
-                    updateIndex = findEmployeeById(employees, EMPLOYEE_MAX, updateId);
+                    index = findEmployeeById(employees, EMPLOYEE_MAX, id);
 
                     do
                     {
@@ -85,16 +84,22 @@ int main()
                         switch (optionUpdateMenu)
                         {
                             case 1: // Opcion elegida: Cambio del Nombre.
-                                if(!inputs_getString(employees[updateIndex].name, "Ingrese el nuevo nombre: ",
+                                if(!inputs_getString(employees[index].name, "Ingrese el nuevo nombre: ",
                                     "Error, intente nuevamente: ", 1, SECTOR_NAME_MAX))
                                 {
                                     inputs_clearScreen();
-                                    printf("Empleado modificado con exito:\n");
-                                    printEmployee(employees[updateIndex], sectors, SECTOR_MAX);
+                                    printf("Nombre modificado con exito:\n");
+                                    printEmployee(employees[index], sectors, SECTOR_MAX);
                                 }
                                 break;
                             case 2: // Opcion elegida: Cambio del Apellido.
-                                /* code */
+                                if(!inputs_getString(employees[index].lastName, "Ingrese el nuevo apellido: ",
+                                    "Error, intente nuevamente: ", 1, SECTOR_NAME_MAX))
+                                {
+                                    inputs_clearScreen();
+                                    printf("Apellido modificado con exito:\n");
+                                    printEmployee(employees[index], sectors, SECTOR_MAX);
+                                }
                                 break;
                             case 3: // Opcion elegida: Cambio del salario.
                                 /* code */
@@ -109,10 +114,10 @@ int main()
                     break;
                 case 3: // Opcion elegida: Baja de un Empleado.
                     inputs_clearScreen();
-                    deleteId = selectEmployee("Ingrese el ID del Empleado a dar de baja: ", "Error, intente nuevamente: ",
+                    id = selectEmployee("Ingrese el ID del Empleado a dar de baja: ", "Error, intente nuevamente: ",
                         employees, EMPLOYEE_MAX, sectors, SECTOR_MAX);
 
-                    if(deleteId != -1 && !removeEmployee(employees, EMPLOYEE_MAX, sectors, SECTOR_MAX, deleteId))
+                    if(id != -1 && !removeEmployee(employees, EMPLOYEE_MAX, sectors, SECTOR_MAX, id))
                     {
                         printf("Empleado dado de baja con exito.\n");
                     }
