@@ -41,10 +41,11 @@ int main()
 
     if(!initEmployees(employees, EMPLOYEE_MAX))
     {
+        sector_hardcode(sectors, SECTOR_MAX, SECTOR_MAX);
+
         /**< Opcion definida desde el pre-procesador para hacer uso del hardcoding y pausa para ver errores de compilacion. >*/
         if(WITH_HARDCODE == TRUE)
         {
-            sector_hardcode(sectors, SECTOR_MAX, SECTOR_MAX);
             employee_hardocde(employees, EMPLOYEE_MAX, 8);
             inputs_pauseScreen("\n--->[DEBUG & HARDCODING MODE]<----\n");
         }
