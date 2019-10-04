@@ -13,6 +13,8 @@
 #define SALARY_MAX 10000000 /**< Salario maximo definido para el programa. >*/
 #define ERROR_MESSAGE "Error, intente nuevamente: " /**< Mensaje de error por defecto. >*/
 #define WITH_HARDCODE TRUE /**< Opcion para precargar las estructuras con datos de ejemplo. >*/
+#define ASC 1 /**< Metodo para ordenar de forma Ascendente. >*/
+#define DESC 0 /**< Metodo para ordenar de forma Descendente. >*/
 
 /*! \struct sEmployee
     \brief Tipo de Dato de Empleado definido por el usuario.
@@ -54,6 +56,10 @@ int initEmployees(sEmployee list[], int length);
  *
  */
 int getNewEmployeeId(void);
+
+int compareEmployees(sEmployee employee1, sEmployee employee2);
+
+int swapEmployees(sEmployee* employee1, sEmployee* employee2);
 
 /** \brief Funcion que obtiene el primer indice vacio de un arreglo de Empleados.
  * 
@@ -169,17 +175,19 @@ int addEmployee(sEmployee list[], int length, int id, char name[], char lastName
 int removeEmployee(sEmployee listEmployees[], int lengthEmployees, sSector listSectors[], int lengthSectors, int id);
 
 /** \brief Funcion que ordena a los Empleados de la lista
- *      de forma Ascendente o Descendente.
+ *      por apellido y sector de forma Ascendente o Descendente.
  *
- * \param list[] sEmployee Direccion de memoria del inicio del array de Empleados.
- * \param length int Longitud del array.
+ * \param listEmployees[] sEmployee Direccion de memoria del inicio del array de Empleados.
+ * \param length int Longitud del array de Empleados.
+ * \param listSectors[] sSector Direccion de memoria del inicio del array de Sectores.
+ * \param lengthSectors int Longitud del array de Sectores.
  * \param order int [ASC] Orden Ascendente - [DESC] orden Descendente.
  * \return int
  *      [-1] Si hubo un error para ordenar los Empleados de la lista.
  *      [0] Si el ordenado de los Empleados de la lista fue exitosa.
  *
  */
-int sortEmployees(sEmployee list[], int length, int order);
+int sortEmployees(sEmployee listEmployees[], int lengthEmployees, sSector listSectors[], int lengthSectors, int order);
 
 /** \brief Funcion que imprime un Empleado formateado para impresion
  *      con encabezado de tabla.

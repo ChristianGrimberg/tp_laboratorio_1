@@ -66,6 +66,32 @@ static int getNewSectorId(void)
     return idSector;
 }
 
+int compareEmployees(sEmployee employee1, sEmployee employee2)
+{
+    int compare;
+
+    return compare;
+}
+
+int swapEmployees(sEmployee* employee1, sEmployee* employee2)
+{
+    int returnValue = -1;
+    sEmployee aux1;
+    sEmployee aux2;
+
+    aux1 = *employee1;
+    aux2 = *employee2;
+    *employee1 = *employee2;
+    *employee2 = aux1;
+
+    if(!compareEmployees(*employee1, aux2) && !compareEmployees(*employee2, aux1))
+    {
+        returnValue = 0;
+    }
+
+    return returnValue;
+}
+
 int getEmptyIndexOfEmployees(sEmployee list[], int length)
 {
     int returnValue = -1;
@@ -253,6 +279,56 @@ int removeEmployee(sEmployee listEmployees[], int lengthEmployees, sSector listS
             }
         }
 
+    }
+
+    return returnValue;
+}
+
+int sortEmployees(sEmployee listEmployees[], int lengthEmployees, sSector listSectors[], int lengthSectors, int order)
+{
+    int returnValue = -1;
+    int indexSector1;
+    int indexSector2;
+    sEmployee aux;
+
+    if(listEmployees != NULL && lengthEmployees > 0 && lengthEmployees <= EMPLOYEE_MAX
+        && listSectors != NULL && listSectors > 0 && lengthSectors <= SECTOR_MAX
+        && (order == ASC || order == DESC))
+    {
+        for(int i= 0; i < lengthEmployees-1 ; i++)
+        {
+            for(int j = i+1; j < lengthEmployees; j++)
+            {
+                if((strcmp(listEmployees[i].lastName, listEmployees[j].lastName) > 0 && order == ASC)
+                    || (strcmp(listEmployees[i].lastName, listEmployees[j].lastName) < 0 && order == DESC))
+                {
+                    if(!swapEmployees(&listEmployees[i], &listEmployees[j]))
+                    {
+                        returnValue = 0;
+                    }
+                }
+                else
+                {
+                    if(strcmp(listEmployees[i].lastName, listEmployees[j].lastName) == 0)
+                    {
+                        indexSector1 = findSectorById(listSectors, lengthSectors, listEmployees[i].idSector);
+                        indexSector2 = findSectorById(listSectors, lengthSectors, listEmployees[j].idSector);
+
+                        if(indexSector1 != -1 && indexSector2 != -1)
+                        {
+                            if((strcmp(listSectors[indexSector1].name, listSectors[indexSector2].name) > 0 && order == ASC)
+                                || (strcmp(listSectors[indexSector1].name, listSectors[indexSector2].name) < 0 && order == DESC))
+                            {
+                                if(!swapEmployees(&listEmployees[i], &listEmployees[j]))
+                                {
+                                    returnValue = 0;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 
     return returnValue;

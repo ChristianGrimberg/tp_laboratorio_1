@@ -5,6 +5,8 @@
  *      Se requiere administrar el ABM de una nomina de 1000 empleados.
  *
  * Versiones:
+ *      v1.4 - Informes de Empleados
+ *              [Fecha: ]
  *      v1.3 - Funciones ABM de Empleados
  *              [Fecha: 3 de octubre de 2019]
  *      v1.2 - Esqueleto de estructuras de Empleados
@@ -24,7 +26,6 @@ int main()
     int optionUpdateMenu; /**< Opcion elegida por el usuario para el menu de modificacion. >*/
     int optionReportMenu; /**< Opcion elegida por el usuario para el menu de reportes. >*/
     int index; /**< Indice buscado. >*/
-    int indexAux; /**< Indice auxiliar buscado. >*/
     int id; /**< ID elegido por el usuario. >*/
 
     sEmployee employees[EMPLOYEE_MAX]; /**< Arreglo de Empleados que se utiliza durante todo el ciclo de vida del programa. >*/
