@@ -70,31 +70,24 @@ int compareEmployees(sEmployee employee1, sEmployee employee2)
 {
     int compare = -2;
 
-    if(employee1.id == employee2.id
-        && !strcmp(arrays_stringToCamelCase(employee1.name, EMPLOYEE_NAME_MAX),
-            arrays_stringToCamelCase(employee2.name, EMPLOYEE_NAME_MAX))
-        && !strcmp(arrays_stringToCamelCase(employee1.lastName, EMPLOYEE_LASTNAME_MAX),
-            arrays_stringToCamelCase(employee2.lastName, EMPLOYEE_LASTNAME_MAX))
-        && employee1.salary == employee2.salary
-        && employee1.idSector == employee2.idSector)  /**< Si todos sus campos son iguales, son datos identicos. >*/
+    /**< Si sus ID son iguales, como no pueden repetirse se toman como Empleados iguales. >*/
+    if(employee1.id == employee2.id)
     {
         compare = 0;
     }
     else
     {
-        if(employee1.id > employee2.id) /**< Si el ID del primero es mayor al ID del segundo, son diferentes y el ID 1 es mayor. >*/
+        /**< Si el ID del primero es menor al ID del segundo, son diferentes y el ID 1 es menor. >*/
+        if(employee1.id < employee2.id)
         {
             compare = 1;
         }
         else
         {
-            if(employee1.id < employee2.id) /**< Si el ID del primero es menor al ID del segundo, son diferentes y el ID 2 es mayor. >*/
+            /**< Si el ID del primero es mayor al ID del segundo, son diferentes y el ID 2 es menor. >*/
+            if(employee1.id > employee2.id)
             {
                 compare = -1;
-            }
-            else /**< Si coincide el ID de ambos pero cambian los demas campos, se toman como identicos para asegurar ID unico. >*/
-            {
-                compare = 0;
             }
         }
     }
