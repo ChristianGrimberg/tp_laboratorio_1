@@ -66,6 +66,54 @@ static int getNewSectorId(void)
     return idSector;
 }
 
+int compareEmployees(sEmployee employee1, sEmployee employee2)
+{
+    int compare = -2;
+
+    /**< Si sus ID son iguales, como no pueden repetirse se toman como Empleados iguales. >*/
+    if(employee1.id == employee2.id)
+    {
+        compare = 0;
+    }
+    else
+    {
+        /**< Si el ID del primero es menor al ID del segundo, son diferentes y el ID 1 es menor. >*/
+        if(employee1.id < employee2.id)
+        {
+            compare = 1;
+        }
+        else
+        {
+            /**< Si el ID del primero es mayor al ID del segundo, son diferentes y el ID 2 es menor. >*/
+            if(employee1.id > employee2.id)
+            {
+                compare = -1;
+            }
+        }
+    }
+
+    return compare;
+}
+
+int swapEmployees(sEmployee* employee1, sEmployee* employee2)
+{
+    int returnValue = -1;
+    sEmployee aux1;
+    sEmployee aux2;
+
+    aux1 = *employee1;
+    aux2 = *employee2;
+    *employee1 = *employee2;
+    *employee2 = aux1;
+
+    if(!compareEmployees(*employee1, aux2) && !compareEmployees(*employee2, aux1))
+    {
+        returnValue = 0;
+    }
+
+    return returnValue;
+}
+
 int getEmptyIndexOfEmployees(sEmployee list[], int length)
 {
     int returnValue = -1;
@@ -258,6 +306,118 @@ int removeEmployee(sEmployee listEmployees[], int lengthEmployees, sSector listS
     return returnValue;
 }
 
+int sortEmployees(sEmployee listEmployees[], int lengthEmployees, sSector listSectors[], int lengthSectors, int order)
+{
+    int returnValue = -1;
+    int indexSector1;
+    int indexSector2;
+
+    if(listEmployees != NULL && lengthEmployees > 0 && lengthEmployees <= EMPLOYEE_MAX
+        && listSectors != NULL && listSectors > 0 && lengthSectors <= SECTOR_MAX
+        && (order == ASC || order == DESC))
+    {
+        for(int i= 0; i < lengthEmployees-1 ; i++)
+        {
+            for(int j = i+1; j < lengthEmployees; j++)
+            {
+                if((strcmp(arrays_stringToCamelCase(listEmployees[i].lastName, EMPLOYEE_LASTNAME_MAX),
+                        arrays_stringToCamelCase(listEmployees[j].lastName, EMPLOYEE_LASTNAME_MAX)) > 0 && order == ASC)
+                    || ((strcmp(arrays_stringToCamelCase(listEmployees[i].lastName, EMPLOYEE_LASTNAME_MAX),
+                        arrays_stringToCamelCase(listEmployees[j].lastName, EMPLOYEE_LASTNAME_MAX)) < 0 && order == DESC)))
+                {
+                    if(!swapEmployees(&listEmployees[i], &listEmployees[j]))
+                    {
+                        returnValue = 0;
+                    }
+                }
+                else
+                {
+                    if(strcmp(listEmployees[i].lastName, listEmployees[j].lastName) == 0)
+                    {
+                        indexSector1 = findSectorById(listSectors, lengthSectors, listEmployees[i].idSector);
+                        indexSector2 = findSectorById(listSectors, lengthSectors, listEmployees[j].idSector);
+
+                        if(indexSector1 != -1 && indexSector2 != -1)
+                        {
+                            if((strcmp(arrays_stringToCamelCase(listSectors[indexSector1].name, SECTOR_NAME_MAX),
+                                    arrays_stringToCamelCase(listSectors[indexSector2].name, SECTOR_NAME_MAX)) > 0 && order == ASC)
+                                || (strcmp(arrays_stringToCamelCase(listSectors[indexSector1].name, SECTOR_NAME_MAX),
+                                    arrays_stringToCamelCase(listSectors[indexSector2].name, SECTOR_NAME_MAX)) < 0 && order == DESC))
+                            {
+                                if(!swapEmployees(&listEmployees[i], &listEmployees[j]))
+                                {
+                                    returnValue = 0;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    return returnValue;
+}
+
+int currentEmployeeCounter(sEmployee listEmployees[], int lengthEmployees)
+{
+    int counter = 0;
+
+    if(listEmployees != NULL && lengthEmployees > 0 && lengthEmployees <= EMPLOYEE_MAX)
+    {
+        for (int i = 0; i < lengthEmployees; i++)
+        {
+            if(listEmployees[i].isEmpty == FALSE)
+            {
+                counter++;
+            }
+        }
+    }
+
+    return counter;
+}
+
+float sumEmployeeSalaries(sEmployee listEmployees[], int lengthEmployees)
+{
+    float total = 0.0;
+
+    if(listEmployees != NULL && lengthEmployees > 0 && lengthEmployees <= EMPLOYEE_MAX)
+    {
+        for (int i = 0; i < lengthEmployees; i++)
+        {
+            if(listEmployees[i].isEmpty == FALSE
+                && listEmployees[i].salary > 0)
+            {
+                total += listEmployees[i].salary;
+            }
+        }
+    }
+
+    return total;
+}
+
+int employeesFilterAboveValue(sEmployee listEmployees[], sEmployee filteredEmployeeList[], int lengthEmployees, float value)
+{
+    int counter = 0;
+    int filteredIndex = 0;
+
+    if(listEmployees != NULL && lengthEmployees > 0 && lengthEmployees <= EMPLOYEE_MAX && value > 0)
+    {
+        for (int i = 0; i < lengthEmployees; i++)
+        {
+            if(listEmployees[i].isEmpty == FALSE
+                && listEmployees[i].salary > value)
+            {
+                filteredEmployeeList[filteredIndex] = listEmployees[i];
+                filteredIndex++;
+                counter++;
+            }
+        }
+    }
+
+    return counter;
+}
+
 int printEmployee(sEmployee employee, sSector list[], int length)
 {
     int returnValue = -1;
@@ -367,6 +527,26 @@ int printSectors(sSector sectors[], int length)
     }
 
     return itemsCounter;
+}
+
+void printTotalsAndAverageSalaries(sEmployee listEmployees[], int lengthEmployees)
+{
+    int employeeQuantity;
+    float totalSalaries;
+
+    employeeQuantity = currentEmployeeCounter(listEmployees, lengthEmployees);
+    totalSalaries = sumEmployeeSalaries(listEmployees, lengthEmployees);
+
+    if(listEmployees != NULL && lengthEmployees > 0 && lengthEmployees <= EMPLOYEE_MAX
+        && employeeQuantity > 0)
+    {
+        printf("+===========+================+===================+\n");
+        printf("| Empleados | Total salarial | Promedio salarial |\n");
+        printf("+===========+================+===================+\n");
+        printf("| %9d |    $ %9.2f |       $ %9.2f |\n",
+            employeeQuantity, totalSalaries, (totalSalaries / employeeQuantity));
+        printf("+-----------+----------------+-------------------+\n");
+    }
 }
 
 void sector_hardcode(sSector list[], int length, int quantity)

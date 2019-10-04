@@ -5,6 +5,8 @@
  *      Se requiere administrar el ABM de una nomina de 1000 empleados.
  *
  * Versiones:
+ *      v1.4 - Informes de Empleados
+ *              [Fecha: 4 de octubre de 2019]
  *      v1.3 - Funciones ABM de Empleados
  *              [Fecha: 3 de octubre de 2019]
  *      v1.2 - Esqueleto de estructuras de Empleados
@@ -24,19 +26,25 @@ int main()
     int optionUpdateMenu; /**< Opcion elegida por el usuario para el menu de modificacion. >*/
     int optionReportMenu; /**< Opcion elegida por el usuario para el menu de reportes. >*/
     int index; /**< Indice buscado. >*/
-    int indexAux; /**< Indice auxiliar buscado. >*/
     int id; /**< ID elegido por el usuario. >*/
+    int employeeCounter; /**< Valor para contador de Empleados. >*/
+
+    float averageSalary; /**< Valor para el promedio salarial de Empleados. >*/
 
     sEmployee employees[EMPLOYEE_MAX]; /**< Arreglo de Empleados que se utiliza durante todo el ciclo de vida del programa. >*/
+    sEmployee employeesExceedAverageSalary[EMPLOYEE_MAX]; /**< Arreglo de Empleados que superan el sueldo promedio. >*/
     sEmployee employeeAux; /**< Empleado auxiliar para uso de validacion. >*/
+
     sSector sectors[SECTOR_MAX]; /**< Arreglo de Sectores que se utiliza durante todo el ciclo de vida del programa. >*/
 
     if(!initEmployees(employees, EMPLOYEE_MAX))
     {
-        if(WITH_HARDCODE == TRUE) // Opcion definida desde el pre-procesador para hacer uso del hardcodeo de Empleados y Sectores.
+        /**< Opcion definida desde el pre-procesador para hacer uso del hardcoding y pausa para ver errores de compilacion. >*/
+        if(WITH_HARDCODE == TRUE)
         {
             sector_hardcode(sectors, SECTOR_MAX, SECTOR_MAX);
             employee_hardocde(employees, EMPLOYEE_MAX, 8);
+            inputs_pauseScreen("\n--->[DEBUG & HARDCODING MODE]<----\n");
         }
 
         do
@@ -153,13 +161,47 @@ int main()
                         {
                             break;
                         }
-
-                        switch (optionReportMenu)
+                        if(currentEmployeeCounter(employees, EMPLOYEE_MAX) <= 0)
                         {
-                            case 1: // Opcion elegida: Listado ordenado de Empleados
-                                inputs_clearScreen();
-                                printEmployees(employees, EMPLOYEE_MAX, sectors, SECTOR_MAX);
-                                break;
+                            printf("No hay Empleados dados de alta en el sistema.\n");
+                        }
+                        else
+                        {
+                            switch (optionReportMenu)
+                            {
+                                case 1: // Opcion elegida: Listado ordenado de Empleados ascendente.
+                                    inputs_clearScreen();
+                                    sortEmployees(employees, EMPLOYEE_MAX, sectors, SECTOR_MAX, ASC);
+                                    printEmployees(employees, EMPLOYEE_MAX, sectors, SECTOR_MAX);
+                                    break;
+                                case 2: // Opcion elegida: Listado ordenado de Empleados descendente.
+                                    inputs_clearScreen();
+                                    sortEmployees(employees, EMPLOYEE_MAX, sectors, SECTOR_MAX, DESC);
+                                    printEmployees(employees, EMPLOYEE_MAX, sectors, SECTOR_MAX);
+                                    break;
+                                case 3: // Opcion elegida: Total y Promedio de Salarios.
+                                    inputs_clearScreen();
+                                    printTotalsAndAverageSalaries(employees, EMPLOYEE_MAX);
+                                    break;
+                                case 4: // Opcion elegida: Empleados que superan el sueldo promedio.
+                                    inputs_clearScreen();
+                                    averageSalary = sumEmployeeSalaries(employees, EMPLOYEE_MAX) / currentEmployeeCounter(employees, EMPLOYEE_MAX);
+                                    if(!initEmployees(employeesExceedAverageSalary, EMPLOYEE_MAX))
+                                    {
+                                        employeeCounter = employeesFilterAboveValue(employees, employeesExceedAverageSalary, EMPLOYEE_MAX, averageSalary);
+                                        
+                                        if(employeeCounter > 0)
+                                        {
+                                            printf("Existen %d Empleados por encima del salario de $ %.2f.\n", employeeCounter, averageSalary);
+                                            printEmployees(employeesExceedAverageSalary, EMPLOYEE_MAX, sectors, SECTOR_MAX);
+                                        }
+                                        else
+                                        {
+                                            printf("No hay Empleados con el sueldo por encima del promedio de $ %.2f.\n", averageSalary);
+                                        }
+                                    }
+                                    break;
+                            }
                         }
 
                         inputs_pauseScreen(CONTINUE_MESSAGE);
