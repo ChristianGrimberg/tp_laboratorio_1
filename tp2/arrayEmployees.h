@@ -209,6 +209,34 @@ int removeEmployee(sEmployee listEmployees[], int lengthEmployees, sSector listS
  */
 int sortEmployees(sEmployee listEmployees[], int lengthEmployees, sSector listSectors[], int lengthSectors, int order);
 
+/** \brief Funcion que calcula la cantidad de Empleados dados de alta.
+ * 
+ * \param listEmployees[] sEmployee Direccion de memoria del inicio del array de Empleados.
+ * \param lengthEmployees int Longitud del array de Empleados.
+ * \return int Cantidad de Empleados dados de alta.
+ * 
+ */
+int currentEmployeeCounter(sEmployee listEmployees[], int lengthEmployees);
+
+/** \brief Funcion que calcula el total de los salarios de los Empleados.
+ * 
+ * \param listEmployees[] sEmployee Direccion de memoria del inicio del array de Empleados.
+ * \param lengthEmployees int Longitud del array de Empleados.
+ * \return float Total de los salarios de los Empleados.
+ * 
+ */
+float sumEmployeeSalaries(sEmployee listEmployees[], int lengthEmployees);
+
+/** \brief Funcion que obtiene una lista filtrada de Empleados con sueldos que superen el promedio.
+ * 
+ * \param listEmployees[] sEmployee Direccion de memoria del inicio del array de Empleados.
+ * \param filteredEmployeeList[] sEmployee Direccion de memoria del inicio del array de Empleados a filtrar.
+ * \param lengthEmployees int Longitud del array de Empleados.
+ * \return int Cantidad de Empleados que superan el promedio.
+ * 
+ */
+int employeesFilterAboveValue(sEmployee listEmployees[], sEmployee filteredEmployeeList[], int lengthEmployees, float value);
+
 /** \brief Funcion que imprime un Empleado formateado para impresion
  *      con encabezado de tabla.
  *
