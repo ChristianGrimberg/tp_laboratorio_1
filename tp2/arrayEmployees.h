@@ -12,7 +12,7 @@
 #define SECTOR_NAME_MAX 51 /**< Cantidad de caracteres para el nombre del sector. >*/
 #define SALARY_MAX 10000000 /**< Salario maximo definido para el programa. >*/
 #define ERROR_MESSAGE "Error, intente nuevamente: " /**< Mensaje de error por defecto. >*/
-#define WITH_HARDCODE TRUE /**< Opcion para precargar las estructuras con datos de ejemplo. >*/
+#define WITH_HARDCODE FALSE /**< Opcion para precargar las estructuras con datos de ejemplo. >*/
 #define ASC 1 /**< Metodo para ordenar de forma Ascendente. >*/
 #define DESC 0 /**< Metodo para ordenar de forma Descendente. >*/
 

@@ -5,6 +5,8 @@
  *      Se requiere administrar el ABM de una nomina de 1000 empleados.
  *
  * Versiones:
+ *      v2.0 - Trabajo Practico 2 Final
+ *              [Fecha: 4 de octubre de 2019]
  *      v1.4 - Informes de Empleados
  *              [Fecha: 4 de octubre de 2019]
  *      v1.3 - Funciones ABM de Empleados
@@ -77,66 +79,74 @@ int main()
                     break;
                 case 2: // Opcion elegida: Modificar un Empleado.
                     inputs_clearScreen();
-                    id = selectEmployee("Ingrese el ID del Empleado a modificar: ", ERROR_MESSAGE,
-                        employees, EMPLOYEE_MAX, sectors, SECTOR_MAX);
-                    index = findEmployeeById(employees, EMPLOYEE_MAX, id);
-
-                    do
+                    if(currentEmployeeCounter(employees, EMPLOYEE_MAX) <= 0)
                     {
-                        lifeCycle = menu_update(&optionUpdateMenu);
+                        printf("No hay Empleados dados de alta en el sistema.\n");
+                        break;
+                    }
+                    else
+                    {
+                        id = selectEmployee("Ingrese el ID del Empleado a modificar: ", ERROR_MESSAGE,
+                        employees, EMPLOYEE_MAX, sectors, SECTOR_MAX);
+                        index = findEmployeeById(employees, EMPLOYEE_MAX, id);
 
-                        if(optionUpdateMenu == UPDATE_MAX || optionUpdateMenu == OPTION_ERROR)
+                        do
                         {
-                            break;
-                        }
+                            lifeCycle = menu_update(&optionUpdateMenu);
 
-                        switch (optionUpdateMenu)
-                        {
-                            case 1: // Opcion elegida: Cambio del Nombre.
-                                if(!inputs_getString(employees[index].name, "Ingrese el nuevo nombre: ",
-                                    ERROR_MESSAGE, 1, SECTOR_NAME_MAX))
-                                {
-                                    inputs_clearScreen();
-                                    printf("Nombre modificado con exito:\n");
-                                    printEmployee(employees[index], sectors, SECTOR_MAX);
-                                }
+                            if(optionUpdateMenu == UPDATE_MAX || optionUpdateMenu == OPTION_ERROR)
+                            {
                                 break;
-                            case 2: // Opcion elegida: Cambio del Apellido.
-                                if(!inputs_getString(employees[index].lastName, "Ingrese el nuevo apellido: ",
-                                    ERROR_MESSAGE, 1, SECTOR_NAME_MAX))
-                                {
-                                    inputs_clearScreen();
-                                    printf("Apellido modificado con exito:\n");
-                                    printEmployee(employees[index], sectors, SECTOR_MAX);
-                                }
-                                break;
-                            case 3: // Opcion elegida: Cambio del salario.
-                                if(!inputs_getFloat(&employees[index].salary,
-                                    "Ingrese el nuevo salario [hasta $10.000.000]: ",
-                                    ERROR_MESSAGE, 0, SALARY_MAX))
-                                {
-                                    inputs_clearScreen();
-                                    printf("Salario modificado con exito:\n");
-                                    printEmployee(employees[index], sectors, SECTOR_MAX);
-                                }
-                                break;
-                            case 4: // Opcion elegida: Cambio del Sector.
-                                inputs_clearScreen();
-                                id = selectSector("Ingrese el ID del Sector a cambiar: ",
-                                    ERROR_MESSAGE, sectors, SECTOR_MAX);
+                            }
 
-                                if(id != -1 && index != -1)
-                                {
+                            switch (optionUpdateMenu)
+                            {
+                                case 1: // Opcion elegida: Cambio del Nombre.
+                                    if(!inputs_getString(employees[index].name, "Ingrese el nuevo nombre: ",
+                                        ERROR_MESSAGE, 1, SECTOR_NAME_MAX))
+                                    {
+                                        inputs_clearScreen();
+                                        printf("Nombre modificado con exito:\n");
+                                        printEmployee(employees[index], sectors, SECTOR_MAX);
+                                    }
+                                    break;
+                                case 2: // Opcion elegida: Cambio del Apellido.
+                                    if(!inputs_getString(employees[index].lastName, "Ingrese el nuevo apellido: ",
+                                        ERROR_MESSAGE, 1, SECTOR_NAME_MAX))
+                                    {
+                                        inputs_clearScreen();
+                                        printf("Apellido modificado con exito:\n");
+                                        printEmployee(employees[index], sectors, SECTOR_MAX);
+                                    }
+                                    break;
+                                case 3: // Opcion elegida: Cambio del salario.
+                                    if(!inputs_getFloat(&employees[index].salary,
+                                        "Ingrese el nuevo salario [hasta $10.000.000]: ",
+                                        ERROR_MESSAGE, 0, SALARY_MAX))
+                                    {
+                                        inputs_clearScreen();
+                                        printf("Salario modificado con exito:\n");
+                                        printEmployee(employees[index], sectors, SECTOR_MAX);
+                                    }
+                                    break;
+                                case 4: // Opcion elegida: Cambio del Sector.
                                     inputs_clearScreen();
-                                    employees[index].idSector = id;
-                                    printf("Sector cambiado con exito:\n");
-                                    printEmployee(employees[index], sectors, SECTOR_MAX);
-                                }
-                                break;
-                        }
+                                    id = selectSector("Ingrese el ID del Sector a cambiar: ",
+                                        ERROR_MESSAGE, sectors, SECTOR_MAX);
 
-                        inputs_pauseScreen(CONTINUE_MESSAGE);
-                    } while (!lifeCycle);
+                                    if(id != -1 && index != -1)
+                                    {
+                                        inputs_clearScreen();
+                                        employees[index].idSector = id;
+                                        printf("Sector cambiado con exito:\n");
+                                        printEmployee(employees[index], sectors, SECTOR_MAX);
+                                    }
+                                    break;
+                            }
+
+                            inputs_pauseScreen(CONTINUE_MESSAGE);
+                        } while (!lifeCycle);
+                    }
                     break;
                 case 3: // Opcion elegida: Baja de un Empleado.
                     inputs_clearScreen();
@@ -161,6 +171,7 @@ int main()
                         {
                             break;
                         }
+                        
                         if(currentEmployeeCounter(employees, EMPLOYEE_MAX) <= 0)
                         {
                             printf("No hay Empleados dados de alta en el sistema.\n");

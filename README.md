@@ -10,4 +10,4 @@
 Numero | Enunciado                                      | Versión de descarga                                                                     | Fecha de entrega
 :----: | :--------------------------------------------- | :-------------------------------------------------------------------------------------: | :--------------:
 1      | [Proyecto: Calculadora](tp1/README.md)         | [Release v1.0](https://github.com/ChristianGrimberg/tp_laboratorio_1/releases/tag/v1.0) | 06/09/2019
-2      | [Proyecto: Nomina de Empleados](tp2/README.md) |                                                                                         | 04/10/2019
+2      | [Proyecto: Nomina de Empleados](tp2/README.md) | [Release v2.0](https://github.com/ChristianGrimberg/tp_laboratorio_1/releases/tag/v2.0) | 04/10/2019
