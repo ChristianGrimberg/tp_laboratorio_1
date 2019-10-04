@@ -34,10 +34,12 @@ int main()
 
     if(!initEmployees(employees, EMPLOYEE_MAX))
     {
-        if(WITH_HARDCODE == TRUE) // Opcion definida desde el pre-procesador para hacer uso del hardcodeo de Empleados y Sectores.
+        /**< Opcion definida desde el pre-procesador para hacer uso del hardcoding y pausa para ver errores de compilacion. >*/
+        if(WITH_HARDCODE == TRUE)
         {
             sector_hardcode(sectors, SECTOR_MAX, SECTOR_MAX);
             employee_hardocde(employees, EMPLOYEE_MAX, 8);
+            inputs_pauseScreen("\n--->[DEBUG & HARDCODING MODE]<----\n");
         }
 
         do
@@ -157,10 +159,19 @@ int main()
 
                         switch (optionReportMenu)
                         {
-                            case 1: // Opcion elegida: Listado ordenado de Empleados
+                            case 1: // Opcion elegida: Listado ordenado de Empleados ascendente.
                                 inputs_clearScreen();
                                 sortEmployees(employees, EMPLOYEE_MAX, sectors, SECTOR_MAX, ASC);
                                 printEmployees(employees, EMPLOYEE_MAX, sectors, SECTOR_MAX);
+                                break;
+                            case 2: // Opcion elegida: Listado ordenado de Empleados descendente.
+                                inputs_clearScreen();
+                                sortEmployees(employees, EMPLOYEE_MAX, sectors, SECTOR_MAX, DESC);
+                                printEmployees(employees, EMPLOYEE_MAX, sectors, SECTOR_MAX);
+                                break;
+                            case 3: // Opcion elegida: Total y Promedio de Salarios.
+                                inputs_clearScreen();
+                                printTotalsAndAverageSalaries(employees, EMPLOYEE_MAX);
                                 break;
                         }
 

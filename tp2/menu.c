@@ -59,10 +59,11 @@ int menu_printReports(int* option)
     printf("=======================================================\n");
     printf("                INFORMES DE EMPLEADO\n");
     printf("=======================================================\n");
-    printf("    1 - Listado ordenado de Empleados\n");
-    printf("    2 - Total y promedio de salarios de Empleados\n");
-    printf("    3 - Empleados que superan el salario promedio\n");
-    printf("    4 - Volver al menu principal\n");
+    printf("    1 - Listado ordenado de Empleados ascendente\n");
+    printf("    2 - Listado ordenado de Empleados descendente\n");
+    printf("    3 - Total y promedio de salarios de Empleados\n");
+    printf("    4 - Empleados que superan el salario promedio\n");
+    printf("    5 - Volver al menu principal\n");
     printf("=======================================================\n");
 
     if(!inputs_getInt(option, "Elija una opcion del menu: ",

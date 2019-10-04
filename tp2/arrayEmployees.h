@@ -234,7 +234,7 @@ void printSector(sSector sector);
 /** \brief Imprime en pantalla el contenido de la lista de Empleados.
  *
  * \param listEmployees[] sEmployee Direccion de memoria del inicio del array de Empleados.
- * \param length int Longitud del array de Empleados.
+ * \param lengthEmployees int Longitud del array de Empleados.
  * \param listSectors[] sSector Direccion de memoria del inicio del array de Sectores.
  * \param lengthSectors int Longitud del array de Sectores.
  * \return int La cantidad de elementos impresos del array.
@@ -250,6 +250,15 @@ int printEmployees(sEmployee listEmployees[], int lengthEmployees, sSector listS
  *
  */
 int printSectors(sSector sectors[], int length);
+
+/** \brief Funcion que imprime el total y el promedio de salarios de los Empleados.
+ * 
+ * \param listEmployees[] sEmployee Direccion de memoria del inicio del array de Empleados.
+ * \param lengthEmployees int Longitud del array de Empleados.
+ * \return void No retorna valores.
+ * 
+ */
+void printTotalsAndAverageSalaries(sEmployee listEmployees[], int lengthEmployees);
 
 /** \brief Funcion que carga valores de muestra a un vector de Sectores
  *      dependiendo de la cantidad definida como parametro.

@@ -31,6 +31,24 @@ static int printEmployeeWithoutHeader(sEmployee employee, sSector list[], int le
  */
 static void printSectorWithoutHeader(sSector sector);
 
+/** \brief Funcion que calcula la cantidad de Empleados dados de alta.
+ * 
+ * \param listEmployees[] sEmployee Direccion de memoria del inicio del array de Empleados.
+ * \param lengthEmployees int Longitud del array de Empleados.
+ * \return int Cantidad de Empleados dados de alta.
+ * 
+ */
+static int currentEmployeeCounter(sEmployee listEmployees[], int lengthEmployees);
+
+/** \brief Funcion que calcula el total de los salarios de los Empleados.
+ * 
+ * \param listEmployees[] sEmployee Direccion de memoria del inicio del array de Empleados.
+ * \param lengthEmployees int Longitud del array de Empleados.
+ * \return float Total de los salarios de los Empleados.
+ * 
+ */
+static float sumEmployeeSalaries(sEmployee listEmployees[], int lengthEmployees);
+
 int initEmployees(sEmployee list[], int length)
 {
     int returnValue = -1;
@@ -470,6 +488,26 @@ int printSectors(sSector sectors[], int length)
     return itemsCounter;
 }
 
+void printTotalsAndAverageSalaries(sEmployee listEmployees[], int lengthEmployees)
+{
+    int employeeQuantity;
+    float totalSalaries;
+
+    employeeQuantity = currentEmployeeCounter(listEmployees, lengthEmployees);
+    totalSalaries = sumEmployeeSalaries(listEmployees, lengthEmployees);
+
+    if(listEmployees != NULL && lengthEmployees > 0 && lengthEmployees <= EMPLOYEE_MAX
+        && employeeQuantity > 0)
+    {
+        printf("+===========+================+===================+\n");
+        printf("| Empleados | Total salarial | Promedio salarial |\n");
+        printf("+===========+================+===================+\n");
+        printf("| %9d |    $ %9.2f |       $ %9.2f |\n",
+            employeeQuantity, totalSalaries, (totalSalaries / employeeQuantity));
+        printf("+-----------+----------------+-------------------+\n");
+    }
+}
+
 void sector_hardcode(sSector list[], int length, int quantity)
 {
     sSector auxSector[] = {
@@ -534,4 +572,41 @@ static int printEmployeeWithoutHeader(sEmployee employee, sSector list[], int le
 static void printSectorWithoutHeader(sSector sector)
 {
     printf("| %4d | %26s |\n", sector.idSector, arrays_stringToCamelCase(sector.name, SECTOR_NAME_MAX));
+}
+
+static int currentEmployeeCounter(sEmployee listEmployees[], int lengthEmployees)
+{
+    int counter = 0;
+
+    if(listEmployees != NULL && lengthEmployees > 0 && lengthEmployees <= EMPLOYEE_MAX)
+    {
+        for (int i = 0; i < lengthEmployees; i++)
+        {
+            if(listEmployees[i].isEmpty == FALSE)
+            {
+                counter++;
+            }
+        }
+    }
+
+    return counter;
+}
+
+static float sumEmployeeSalaries(sEmployee listEmployees[], int lengthEmployees)
+{
+    float total = 0.0;
+
+    if(listEmployees != NULL && lengthEmployees > 0 && lengthEmployees <= EMPLOYEE_MAX)
+    {
+        for (int i = 0; i < lengthEmployees; i++)
+        {
+            if(listEmployees[i].isEmpty == FALSE
+                && listEmployees[i].salary > 0)
+            {
+                total += listEmployees[i].salary;
+            }
+        }
+    }
+
+    return total;
 }
