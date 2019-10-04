@@ -57,8 +57,28 @@ int initEmployees(sEmployee list[], int length);
  */
 int getNewEmployeeId(void);
 
+/** \brief Funcion que compara dos Empleados por ID unicos.
+ * 
+ * \param employee1 sEmployee Tipo de Dato de Empleado.
+ * \param employee2 sEmployee Tipo de Dato de Empleado.
+ * \return int
+ *      [0] Se retorna cuando al menos sus ID son iguales.
+ *      [1] Se retorna cuando el Empleado 1 tiene ID mayor.
+ *      [-1] Se retorna cuando el Empleado 2 tiene ID mayor.
+ *      [-2] Se retorna cuando hubo un error.
+ * 
+ */
 int compareEmployees(sEmployee employee1, sEmployee employee2);
 
+/** \brief Funcion que intercambia dos Empleados por ID unicos.
+ * 
+ * \param employee1 sEmployee Tipo de Dato de Empleado.
+ * \param employee2 sEmployee Tipo de Dato de Empleado.
+ * \return int
+ *      [0] Si el intercambio fue realizado y verificado con exito.
+ *      [-1] Si hubo un error al hacer el intercambio.
+ * 
+ */
 int swapEmployees(sEmployee* employee1, sEmployee* employee2);
 
 /** \brief Funcion que obtiene el primer indice vacio de un arreglo de Empleados.

@@ -68,7 +68,36 @@ static int getNewSectorId(void)
 
 int compareEmployees(sEmployee employee1, sEmployee employee2)
 {
-    int compare;
+    int compare = -2;
+
+    if(employee1.id == employee2.id
+        && !strcmp(arrays_stringToCamelCase(employee1.name, EMPLOYEE_NAME_MAX),
+            arrays_stringToCamelCase(employee2.name, EMPLOYEE_NAME_MAX))
+        && !strcmp(arrays_stringToCamelCase(employee1.lastName, EMPLOYEE_LASTNAME_MAX),
+            arrays_stringToCamelCase(employee2.lastName, EMPLOYEE_LASTNAME_MAX))
+        && employee1.salary == employee2.salary
+        && employee1.idSector == employee2.idSector)  /**< Si todos sus campos son iguales, son datos identicos. >*/
+    {
+        compare = 0;
+    }
+    else
+    {
+        if(employee1.id > employee2.id) /**< Si el ID del primero es mayor al ID del segundo, son diferentes y el ID 1 es mayor. >*/
+        {
+            compare = 1;
+        }
+        else
+        {
+            if(employee1.id < employee2.id) /**< Si el ID del primero es menor al ID del segundo, son diferentes y el ID 2 es mayor. >*/
+            {
+                compare = -1;
+            }
+            else /**< Si coincide el ID de ambos pero cambian los demas campos, se toman como identicos para asegurar ID unico. >*/
+            {
+                compare = 0;
+            }
+        }
+    }
 
     return compare;
 }
@@ -289,7 +318,6 @@ int sortEmployees(sEmployee listEmployees[], int lengthEmployees, sSector listSe
     int returnValue = -1;
     int indexSector1;
     int indexSector2;
-    sEmployee aux;
 
     if(listEmployees != NULL && lengthEmployees > 0 && lengthEmployees <= EMPLOYEE_MAX
         && listSectors != NULL && listSectors > 0 && lengthSectors <= SECTOR_MAX
@@ -299,8 +327,10 @@ int sortEmployees(sEmployee listEmployees[], int lengthEmployees, sSector listSe
         {
             for(int j = i+1; j < lengthEmployees; j++)
             {
-                if((strcmp(listEmployees[i].lastName, listEmployees[j].lastName) > 0 && order == ASC)
-                    || (strcmp(listEmployees[i].lastName, listEmployees[j].lastName) < 0 && order == DESC))
+                if((strcmp(arrays_stringToCamelCase(listEmployees[i].lastName, EMPLOYEE_LASTNAME_MAX),
+                        arrays_stringToCamelCase(listEmployees[j].lastName, EMPLOYEE_LASTNAME_MAX)) > 0 && order == ASC)
+                    || ((strcmp(arrays_stringToCamelCase(listEmployees[i].lastName, EMPLOYEE_LASTNAME_MAX),
+                        arrays_stringToCamelCase(listEmployees[j].lastName, EMPLOYEE_LASTNAME_MAX)) < 0 && order == DESC)))
                 {
                     if(!swapEmployees(&listEmployees[i], &listEmployees[j]))
                     {
@@ -316,8 +346,10 @@ int sortEmployees(sEmployee listEmployees[], int lengthEmployees, sSector listSe
 
                         if(indexSector1 != -1 && indexSector2 != -1)
                         {
-                            if((strcmp(listSectors[indexSector1].name, listSectors[indexSector2].name) > 0 && order == ASC)
-                                || (strcmp(listSectors[indexSector1].name, listSectors[indexSector2].name) < 0 && order == DESC))
+                            if((strcmp(arrays_stringToCamelCase(listSectors[indexSector1].name, SECTOR_NAME_MAX),
+                                    arrays_stringToCamelCase(listSectors[indexSector2].name, SECTOR_NAME_MAX)) > 0 && order == ASC)
+                                || (strcmp(arrays_stringToCamelCase(listSectors[indexSector1].name, SECTOR_NAME_MAX),
+                                    arrays_stringToCamelCase(listSectors[indexSector2].name, SECTOR_NAME_MAX)) < 0 && order == DESC))
                             {
                                 if(!swapEmployees(&listEmployees[i], &listEmployees[j]))
                                 {

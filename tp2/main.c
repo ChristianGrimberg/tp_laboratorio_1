@@ -6,7 +6,7 @@
  *
  * Versiones:
  *      v1.4 - Informes de Empleados
- *              [Fecha: ]
+ *              [Fecha: 4 de octubre de 2019]
  *      v1.3 - Funciones ABM de Empleados
  *              [Fecha: 3 de octubre de 2019]
  *      v1.2 - Esqueleto de estructuras de Empleados
@@ -159,6 +159,7 @@ int main()
                         {
                             case 1: // Opcion elegida: Listado ordenado de Empleados
                                 inputs_clearScreen();
+                                sortEmployees(employees, EMPLOYEE_MAX, sectors, SECTOR_MAX, ASC);
                                 printEmployees(employees, EMPLOYEE_MAX, sectors, SECTOR_MAX);
                                 break;
                         }
