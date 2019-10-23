@@ -27,9 +27,9 @@ $RECYCLE.BIN/
 
 # Extensions
 *.o
-*.a
-*.layout
+*.depend
 
 # TP´s
 tp1/bin/*
 tp2/bin/*
+tp3/bin/*
