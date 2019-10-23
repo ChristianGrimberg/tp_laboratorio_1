@@ -1,7 +1,7 @@
 #ifndef MENU_H_INCLUDED
 #define MENU_H_INCLUDED
 
-#include "parser.h"
+#include "Controller.h"
 
 #define MENU_MAIN_MAX 10 /**< Opcion maxima del menu principal. >*/
 

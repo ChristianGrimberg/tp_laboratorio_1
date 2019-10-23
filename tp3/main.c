@@ -17,8 +17,8 @@
 
 int main()
 {
-    int lifeCycle; /**< Indicador del ciclo de vida de cada menu. >*/
-    int optionMenu; /**< Opcion elegida por el usuario del menu principal. >*/
+    int lifeCycle; /**< Indicador del ciclo de vida de ejecucion de cada menu. >*/
+    int optionMenu; /**< Opcion elegida por el usuario de cada menu. >*/
     LinkedList* listaEmpleados = ll_newLinkedList();
 
     do

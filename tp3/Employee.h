@@ -1,7 +1,7 @@
 #ifndef EMPLOYEE_H_INCLUDED
 #define EMPLOYEE_H_INCLUDED
 
-#include "LinkedList.h"
+#include "inputs.h"
 
 typedef struct
 {
@@ -13,6 +13,7 @@ typedef struct
 
 Employee* employee_new();
 Employee* employee_newParametros(char* idStr,char* nombreStr,char* horasTrabajadasStr);
+
 void employee_delete();
 
 int employee_setId(Employee* this,int id);
