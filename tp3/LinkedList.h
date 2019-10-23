@@ -19,8 +19,7 @@
 #ifndef LINKEDLIST_H_INCLUDED
 #define LINKEDLIST_H_INCLUDED
 
-#include <stdio.h>
-#include <stdlib.h>
+#include "inputs.h"
 
 struct Node
 {

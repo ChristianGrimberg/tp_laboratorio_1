@@ -1,4 +1,4 @@
-#include "parser.h"
+#include "menu.h"
 
 /****************************************************
     Menu:
@@ -17,17 +17,29 @@
 
 int main()
 {
-    int option = 0;
+    int lifeCycle; /**< Indicador del ciclo de vida de cada menu. >*/
+    int optionMenu; /**< Opcion elegida por el usuario del menu principal. >*/
     LinkedList* listaEmpleados = ll_newLinkedList();
+
     do
     {
-        switch(option)
+        lifeCycle = menu_main(&optionMenu);
+
+        if(optionMenu == MENU_MAIN_MAX || optionMenu == -1)
+        {
+            inputs_pauseScreen(QUIT_MESSAGE);
+            break;
+        }
+
+        switch(optionMenu)
         {
         case 1:
             controller_loadFromText("data.csv",listaEmpleados);
             break;
         }
-    }
-    while(option != 10);
+
+        inputs_pauseScreen(CONTINUE_MESSAGE);
+    }while(lifeCycle == 0);
+
     return 0;
 }
