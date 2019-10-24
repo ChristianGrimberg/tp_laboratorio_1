@@ -28,7 +28,7 @@ int main()
         if(optionMenu == MENU_MAIN_MAX || optionMenu == -1)
         {
             inputs_pauseScreen(QUIT_MESSAGE);
-            break;
+            exit(EXIT_SUCCESS);
         }
 
         switch(optionMenu)
