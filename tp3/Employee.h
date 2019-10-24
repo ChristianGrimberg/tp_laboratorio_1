@@ -3,6 +3,8 @@
 
 #include "inputs.h"
 
+#define EMPLOYEE_NAME_MAX 128 /**< Longitud maxima del Nombre de un Empleado. >*/
+
 typedef struct
 {
     int id;
@@ -11,13 +13,13 @@ typedef struct
     int sueldo;
 } Employee;
 
-Employee* employee_new();
-Employee* employee_newParametros(char* idStr,char* nombreStr,char* horasTrabajadasStr);
+Employee* employee_new(void);
+Employee* employee_newParametros(char* idStr, char* nombreStr, char* horasTrabajadasStr);
 
 void employee_delete();
 
-int employee_setId(Employee* this,int id);
-int employee_getId(Employee* this,int* id);
+int employee_setId(Employee* this, int id);
+int employee_getId(Employee* this, int* id);
 
 int employee_setNombre(Employee* this,char* nombre);
 int employee_getNombre(Employee* this,char* nombre);

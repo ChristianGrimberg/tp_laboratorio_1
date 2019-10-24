@@ -34,7 +34,7 @@ int main()
         switch(optionMenu)
         {
         case 1:
-            controller_loadFromText("data.csv",listaEmpleados);
+            controller_loadFromText("data.csv", listaEmpleados);
             break;
         }
 

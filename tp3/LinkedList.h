@@ -16,8 +16,8 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef LINKEDLIST_H_INCLUDED
-#define LINKEDLIST_H_INCLUDED
+#ifndef __LINKEDLIST
+#define __LINKEDLIST
 
 #include "Employee.h"
 
@@ -54,4 +54,4 @@ LinkedList* ll_subList(LinkedList* this,int from,int to);
 LinkedList* ll_clone(LinkedList* this);
 int ll_sort(LinkedList* this, int (*pFunc)(void*,void*), int order);
 
-#endif // LINKEDLIST_H_INCLUDED
+#endif // __LINKEDLIST
