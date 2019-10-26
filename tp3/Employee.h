@@ -130,6 +130,12 @@ int employee_setSalary(sEmployee* this, float salary);
  */
 sEmployee* employee_newWithParameters(char* id, char name[], int* workHours, float* salary);
 
+/** \brief Liberacion de memoria asignada a un Empleado.
+ *
+ * \param this sEmployee* Direccion de memoria de un Empleado.
+ * \return void No retorna valores.
+ *
+ */
 void employee_delete(sEmployee* this);
 
 #endif // EMPLOYEE_H_INCLUDED

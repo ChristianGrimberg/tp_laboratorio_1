@@ -57,6 +57,6 @@ El proyecto deberá contar con la biblioteca `LinkedList` la cual se proveerá c
 ### 3.1. Objetivo
 El objetivo del siguiente trabajo es que el alumno sea capaz de demostrar que puede integrar los conocimientos aprendidos durante la cursada en un caso real. Los conocimientos necesarios para la realización del TP son los siguientes:
 * Manejo de punteros.
-* Manejo de linkedList.
+* Manejo de LinkedList.
 * Manejo de estructuras.
 * Manejo de memoria dinámica.
