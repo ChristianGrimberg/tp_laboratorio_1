@@ -38,7 +38,7 @@ int main()
         case 1: /**< Cargar los datos de los empleados desde el archivo data.csv (modo texto). >*/
             if(!controller_loadFromText("data.csv", listaEmpleados))
             {
-                inputs_pauseScreen("No se pudo leer el archivo.");
+                printf("No se pudo leer el archivo.\n");
             }
             break;
         case 3: /**< Alta de empleado. >*/

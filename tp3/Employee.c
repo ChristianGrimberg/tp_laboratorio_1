@@ -139,7 +139,7 @@ sEmployee* employee_newWithParameters(char* id, char* name, int* workHours, floa
        && employee_setWorkHours(aux, *workHours)
        && employee_setSalary(aux, *salary))
     {
-        printf("Empleado cargado con exito.\n");
+        printf("Empleado creado con exito.\n");
     }
 
     return aux;
