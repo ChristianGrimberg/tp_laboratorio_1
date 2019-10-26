@@ -20,6 +20,8 @@ int main()
     int lifeCycle; /**< Indicador del ciclo de vida de ejecucion de cada menu. >*/
     int optionMenu; /**< Opcion elegida por el usuario de cada menu. >*/
     LinkedList* listaEmpleados = ll_newLinkedList();
+    sEmployee* employee;
+    char name[EMPLOYEE_NAME_MAX];
 
     do
     {
@@ -37,6 +39,13 @@ int main()
             if(!controller_loadFromText("data.csv", listaEmpleados))
             {
                 inputs_pauseScreen("No se pudo leer el archivo.");
+            }
+            break;
+        case 3: /**< Alta de empleado. >*/
+            employee = employee_new();
+            if(employee_getName(employee, name))
+            {
+                printf("Nombre del Empleado: %s.\n", name);
             }
             break;
         }

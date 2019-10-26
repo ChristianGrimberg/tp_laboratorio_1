@@ -34,7 +34,8 @@ int employee_setId(sEmployee* this, int id)
     int returnValue;
 
     if(this != NULL
-       && id > ID_INIT_EMPLOYEE)
+       && id > ID_INIT_EMPLOYEE
+       && id <= EMPLOYEE_MAX)
     {
         this->id = id;
         returnValue = 1;
@@ -43,7 +44,7 @@ int employee_setId(sEmployee* this, int id)
     return returnValue;
 }
 
-int employee_getName(sEmployee* this, char* name)
+int employee_getName(sEmployee* this, char name[])
 {
     int returnValue = 0;
 
@@ -57,7 +58,7 @@ int employee_getName(sEmployee* this, char* name)
     return returnValue;
 }
 
-int employee_setName(sEmployee* this, char* name)
+int employee_setName(sEmployee* this, char name[])
 {
     int returnValue;
 
