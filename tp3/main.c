@@ -19,8 +19,7 @@ int main()
     int lifeCycle; /**< Indicador del ciclo de vida de ejecucion de cada menu. >*/
     int optionMenu; /**< Opcion elegida por el usuario de cada menu. >*/
     LinkedList* listaEmpleados = ll_newLinkedList(); /**< Invocacion de arreglo generico. >*/
-    sEmployee* employee;
-    char name[EMPLOYEE_NAME_MAX];
+    char path[PATH_MAX] = "data.csv"; /**< Path del archivo a trabajar. >*/
 
     do
     {
@@ -35,16 +34,27 @@ int main()
         switch(optionMenu)
         {
         case 1: /**< Cargar los datos de los empleados desde el archivo data.csv (modo texto). >*/
-            if(!controller_loadFromText("data.csv", listaEmpleados))
+            if(!controller_loadFromText(path, listaEmpleados))
             {
-                printf("No se pudo leer el archivo.\n");
+                printf("No se pudo leer el archivo de texto.\n");
             }
             break;
-        case 3: /**< Alta de empleado. >*/
-            employee = employee_new();
-            if(employee_getName(employee, name))
+        case 2: /**< Cargar los datos de los empleados desde el archivo data.csv (modo binario). >*/
+            if(!controller_loadFromBinary(path, listaEmpleados))
             {
-                printf("Nombre del Empleado: %s.\n", name);
+                printf("No se pudo leer el archivo binario.\n");
+            }
+            break;
+        case 8: /**< Guardar los datos de los empleados en el archivo data.csv (modo texto). >*/
+            if(!controller_saveAsText("data.csv", listaEmpleados))
+            {
+                printf("No se pudo guardar el archivo de texto.\n");
+            }
+            break;
+        case 9: /**< Guardar los datos de los empleados en el archivo data.csv (modo binario). >*/
+            if(!controller_saveAsBinary("data.csv", listaEmpleados))
+            {
+                printf("No se pudo guardar el archivo binario.\n");
             }
             break;
         }
