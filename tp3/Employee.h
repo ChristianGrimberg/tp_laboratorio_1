@@ -4,30 +4,42 @@
 #include "inputs.h"
 
 #define EMPLOYEE_NAME_MAX 128 /**< Longitud maxima del Nombre de un Empleado. >*/
+#define ID_INIT_EMPLOYEE 1000 /**< Valor inicial del ID de un Empleado. >*/
 
 typedef struct
 {
     int id;
-    char nombre[128];
-    int horasTrabajadas;
-    int sueldo;
-} Employee;
+    char name[EMPLOYEE_NAME_MAX];
+    int workHours;
+    float salary;
+} sEmployee;
 
-Employee* employee_new(void);
-Employee* employee_newParametros(char* idStr, char* nombreStr, char* horasTrabajadasStr);
+/** \brief Obtencion de espacio en memoria
+ *          para una nueva estructura vacia.
+ *
+ * \param void No requiere parametros
+ * \return sEmployee*
+ *          Direccion de memoria dinamica obtenida
+ *      de una estructura sin valores.
+ *          [NULL] Si no se pudo reservar el espacio en memoria.
+ *
+ */
+sEmployee* employee_new(void);
+
+int employee_getId(sEmployee* this, int* id);
+int employee_setId(sEmployee* this, int id);
+
+int employee_getName(sEmployee* this, char* name);
+int employee_setName(sEmployee* this, char* name);
+
+int employee_getWorkHours(sEmployee* this, int* workHours);
+int employee_setWorkHours(sEmployee* this, int workHours);
+
+int employee_getSalary(sEmployee* this, float* salary);
+int employee_setSalary(sEmployee* this, float salary);
+
+sEmployee* employee_newWithParameters(char* id, char* name, int* workHours, float* salary);
 
 void employee_delete();
-
-int employee_setId(Employee* this, int id);
-int employee_getId(Employee* this, int* id);
-
-int employee_setNombre(Employee* this,char* nombre);
-int employee_getNombre(Employee* this,char* nombre);
-
-int employee_setHorasTrabajadas(Employee* this,int horasTrabajadas);
-int employee_getHorasTrabajadas(Employee* this,int* horasTrabajadas);
-
-int employee_setSueldo(Employee* this,int sueldo);
-int employee_getSueldo(Employee* this,int* sueldo);
 
 #endif // EMPLOYEE_H_INCLUDED
