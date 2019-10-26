@@ -145,3 +145,11 @@ sEmployee* employee_newWithParameters(char* id, char* name, int* workHours, floa
 
     return employee;
 }
+
+void employee_delete(sEmployee* this)
+{
+    if(this != NULL)
+    {
+        free(this);
+    }
+}
