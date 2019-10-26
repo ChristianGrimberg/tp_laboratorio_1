@@ -20,9 +20,9 @@ typedef struct
  *
  * \param void No requiere parametros
  * \return sEmployee*
- *          Direccion de memoria dinamica obtenida
- *      con un Empleado con valores por defecto.
  *          [NULL] Si no se pudo reservar el espacio en memoria.
+ *          Direccion de memoria dinamica obtenida
+ *              con un Empleado con valores por defecto.
  *
  */
 sEmployee* employee_new(void);
@@ -115,8 +115,21 @@ int employee_getSalary(sEmployee* this, float* salary);
  */
 int employee_setSalary(sEmployee* this, float salary);
 
-sEmployee* employee_newWithParameters(char* id, char* name, int* workHours, float* salary);
+/** \brief Nueva estructura de Empleado ingresando los valores
+ *          de sus campos por parametros.
+ *
+ * \param id int* Direccion de memoria del ID a cargar.
+ * \param name[] char Direccion de memoria del Nombre a cargar.
+ * \param workHours int* Direccion de memoria de las Horas Trabajadas a cargar.
+ * \param salary float* Direccion de memoria del Salario a cargar.
+ * \return sEmployee*
+ *          [NULL] Si no se pudo reservar el espacio en memoria.
+ *          Direccion de memoria dinamica obtenida
+ *              con un Empleado con valores por parametro.
+ *
+ */
+sEmployee* employee_newWithParameters(char* id, char name[], int* workHours, float* salary);
 
-void employee_delete();
+void employee_delete(sEmployee* this);
 
 #endif // EMPLOYEE_H_INCLUDED

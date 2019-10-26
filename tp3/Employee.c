@@ -129,6 +129,7 @@ int employee_setSalary(sEmployee* this, float salary)
 
 sEmployee* employee_newWithParameters(char* id, char* name, int* workHours, float* salary)
 {
+    sEmployee* employee;
     sEmployee* aux;
 
     aux = employee_new();
@@ -139,8 +140,8 @@ sEmployee* employee_newWithParameters(char* id, char* name, int* workHours, floa
        && employee_setWorkHours(aux, *workHours)
        && employee_setSalary(aux, *salary))
     {
-        printf("Empleado creado con exito.\n");
+        employee = aux;
     }
 
-    return aux;
+    return employee;
 }
