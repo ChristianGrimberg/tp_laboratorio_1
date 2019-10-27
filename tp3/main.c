@@ -34,8 +34,18 @@ int main()
 
         if(optionMenu == MENU_MAIN_MAX || optionMenu == -1)
         {
-            inputs_pauseScreen(QUIT_MESSAGE);
-            exit(EXIT_SUCCESS);
+            if(ll_clear(listaEmpleados) == 0
+               && ll_len(listaEmpleados) == 0
+               && ll_deleteLinkedList(listaEmpleados) == 0)
+            {
+                inputs_pauseScreen(QUIT_MESSAGE);
+                exit(EXIT_SUCCESS);
+            }
+            else
+            {
+                inputs_pauseScreen("Error al limpiar la memoria del sistema.");
+                exit(EXIT_FAILURE);
+            }
         }
 
         switch(optionMenu)
@@ -73,7 +83,6 @@ int main()
             }
             break;
         }
-
         inputs_pauseScreen(CONTINUE_MESSAGE);
     }while(lifeCycle == 0);
 
