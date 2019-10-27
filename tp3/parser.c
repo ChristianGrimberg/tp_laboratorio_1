@@ -1,5 +1,17 @@
 #include "parser.h"
 
+/** \brief Convierte una cadena a entero validando
+ *      incluso el cero.
+ *
+ * \param string[] char Cadena de caracteres a convertir.
+ * \param integerValue int* Entero a escribir el valor convertido.
+ * \return int
+ *          [0] Si hubo un error en la conversion.
+ *          [1] Si la conversion fue exitosa.
+ *
+ */
+static int stringToInteger(char string[], int* integerValue);
+
 int parser_EmployeeFromText(FILE* pFile, LinkedList* pArrayListEmployee)
 {
     int returnValue = 0;
@@ -19,12 +31,9 @@ int parser_EmployeeFromText(FILE* pFile, LinkedList* pArrayListEmployee)
         while(!feof(pFile))
         {
             if(fscanf(pFile,"%[^,],%[^,],%[^,],%[^\n]\n", stringId, name, stringWorkHours, stringSalary) == 4
-               && i > 0)
+               && stringToInteger(stringId, &id) && name != NULL
+               && stringToInteger(stringWorkHours, &workHours) && stringToInteger(stringSalary, &salary))
             {
-                id = atoi(stringId);
-                workHours = atoi(stringWorkHours);
-                salary = atoi(stringSalary);
-
                 aux = employee_newWithParameters(&id, name, &workHours, &salary);
 
                 if(aux != NULL
@@ -44,6 +53,26 @@ int parser_EmployeeFromText(FILE* pFile, LinkedList* pArrayListEmployee)
 
 int parser_EmployeeFromBinary(FILE* pFile, LinkedList* pArrayListEmployee)
 {
-
     return 0;
+}
+
+static int stringToInteger(char string[], int* integerValue)
+{
+    int returnValue = 0;
+
+    if(string != NULL)
+    {
+        if(strcmp(string, "0") == 0)
+        {
+            *integerValue = 0;
+            returnValue = 1;
+        }
+        else
+        {
+            *integerValue = atoi(string);
+            returnValue = 1;
+        }
+    }
+
+    return returnValue;
 }
