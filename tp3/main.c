@@ -21,6 +21,12 @@ int main()
     LinkedList* listaEmpleados = ll_newLinkedList(); /**< Invocacion de arreglo generico. >*/
     char path[PATH_MAX] = "data.csv"; /**< Path del archivo a trabajar. >*/
 
+    if(listaEmpleados == NULL)
+    {
+        inputs_pauseScreen("No hay espacio en la memoria del sistema.");
+        exit(EXIT_FAILURE);
+    }
+
     do
     {
         lifeCycle = menu_main(&optionMenu);

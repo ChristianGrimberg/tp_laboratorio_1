@@ -1,7 +1,7 @@
 #ifndef CONTROLLER_H_INCLUDED
 #define CONTROLLER_H_INCLUDED
 
-#include "parser.h"
+#include "LinkedList.h"
 
 /** \brief Carga los datos de los empleados desde el archivo data.csv (modo texto).
  *
