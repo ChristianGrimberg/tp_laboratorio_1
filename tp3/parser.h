@@ -1,7 +1,7 @@
 #ifndef PARSER_H_INCLUDED
 #define PARSER_H_INCLUDED
 
-#include "Controller.h"
+#include "LinkedList.h"
 
 /** \brief Parsea los datos los datos de los empleados desde el archivo data.csv (modo texto).
  *

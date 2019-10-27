@@ -18,6 +18,7 @@ int main()
 {
     int lifeCycle; /**< Indicador del ciclo de vida de ejecucion de cada menu. >*/
     int optionMenu; /**< Opcion elegida por el usuario de cada menu. >*/
+    int employeeQty = 0; /**< Cantidad de Empleados cargados en el arreglo. >*/
     LinkedList* listaEmpleados = ll_newLinkedList(); /**< Invocacion de arreglo generico. >*/
     char path[PATH_MAX] = "data.csv"; /**< Path del archivo a trabajar. >*/
 
@@ -40,9 +41,17 @@ int main()
         switch(optionMenu)
         {
         case 1: /**< Cargar los datos de los empleados desde el archivo data.csv (modo texto). >*/
-            if(!controller_loadFromText(path, listaEmpleados))
+            employeeQty = ll_len(listaEmpleados);
+
+            if(employeeQty < EMPLOYEE_MAX
+               && controller_loadFromText(path, listaEmpleados))
             {
-                printf("No se pudo leer el archivo de texto.\n");
+                employeeQty = ll_len(listaEmpleados) - employeeQty;
+                printf("Se cargaron %d Empleados desde el archivo de texto.\n", employeeQty);
+            }
+            else
+            {
+                printf("No se puede obtener Empleados desde el archivo de texto.\n");
             }
             break;
         case 2: /**< Cargar los datos de los empleados desde el archivo data.csv (modo binario). >*/

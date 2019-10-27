@@ -12,7 +12,7 @@ typedef struct
     int id;
     char name[EMPLOYEE_NAME_MAX];
     int workHours;
-    float salary;
+    int salary;
 } sEmployee;
 
 /** \brief Obtencion de espacio en memoria
@@ -96,24 +96,24 @@ int employee_setWorkHours(sEmployee* this, int workHours);
 /** \brief Obtiene el Salario de una estructura Empleado.
  *
  * \param this sEmployee* Direccion de memoria de un Empleado.
- * \param salary float* Direccion de memoria del Salario a cargar.
+ * \param salary int* Direccion de memoria del Salario a cargar.
  * \return int
  *          [0] Si no pudo obtener el Salario.
  *          [1] Si pudo cargar el Salario.
  *
  */
-int employee_getSalary(sEmployee* this, float* salary);
+int employee_getSalary(sEmployee* this, int* salary);
 
 /** \brief Establece el salario a una estructura Empleado.
  *
  * \param this sEmployee* Direccion de memoria de un Empleado.
- * \param salary float Direccion de memoria del Salario a establecer.
+ * \param salary int Direccion de memoria del Salario a establecer.
  * \return int
  *          [0] Si no pudo establecer el Salario.
  *          [1] Si pudo establecer el Salario.
  *
  */
-int employee_setSalary(sEmployee* this, float salary);
+int employee_setSalary(sEmployee* this, int salary);
 
 /** \brief Nueva estructura de Empleado ingresando los valores
  *          de sus campos por parametros.
@@ -121,14 +121,14 @@ int employee_setSalary(sEmployee* this, float salary);
  * \param id int* Direccion de memoria del ID a cargar.
  * \param name[] char Direccion de memoria del Nombre a cargar.
  * \param workHours int* Direccion de memoria de las Horas Trabajadas a cargar.
- * \param salary float* Direccion de memoria del Salario a cargar.
+ * \param salary int* Direccion de memoria del Salario a cargar.
  * \return sEmployee*
  *          [NULL] Si no se pudo reservar el espacio en memoria.
  *          Direccion de memoria dinamica obtenida
  *              con un Empleado con valores por parametro.
  *
  */
-sEmployee* employee_newWithParameters(char* id, char name[], int* workHours, float* salary);
+sEmployee* employee_newWithParameters(int* id, char name[], int* workHours, int* salary);
 
 /** \brief Liberacion de memoria asignada a un Empleado.
  *

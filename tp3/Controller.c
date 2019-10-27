@@ -2,7 +2,16 @@
 
 int controller_loadFromText(char* path, LinkedList* pArrayListEmployee)
 {
-    return 0;
+    int returnValue = 0;
+    FILE* file = fopen(path, "r");
+
+    if(file != NULL
+       && parser_EmployeeFromText(file, pArrayListEmployee))
+    {
+        returnValue = 1;
+    }
+
+    return returnValue;
 }
 
 int controller_loadFromBinary(char* path, LinkedList* pArrayListEmployee)

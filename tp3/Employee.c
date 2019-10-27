@@ -100,7 +100,7 @@ int employee_setWorkHours(sEmployee* this, int workHours)
     return returnValue;
 }
 
-int employee_getSalary(sEmployee* this, float* salary)
+int employee_getSalary(sEmployee* this, int* salary)
 {
     int returnValue = 0;
 
@@ -113,7 +113,7 @@ int employee_getSalary(sEmployee* this, float* salary)
     return returnValue;
 }
 
-int employee_setSalary(sEmployee* this, float salary)
+int employee_setSalary(sEmployee* this, int salary)
 {
     int returnValue;
 
@@ -127,7 +127,7 @@ int employee_setSalary(sEmployee* this, float salary)
     return returnValue;
 }
 
-sEmployee* employee_newWithParameters(char* id, char* name, int* workHours, float* salary)
+sEmployee* employee_newWithParameters(int* id, char name[], int* workHours, int* salary)
 {
     sEmployee* employee;
     sEmployee* aux;
