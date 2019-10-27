@@ -61,7 +61,10 @@ int main()
             }
             else
             {
-                printf("No se puede obtener Empleados desde el archivo de texto.\n");
+                if(employeeQty >= EMPLOYEE_MAX)
+                    printf("La nomina de Empleados a llegado a su limite de %d Empleados.\n", employeeQty);
+                else
+                    printf("No se puede obtener Empleados desde el archivo de texto.\n");
             }
             break;
         case 2: /**< Cargar los datos de los empleados desde el archivo data.csv (modo binario). >*/

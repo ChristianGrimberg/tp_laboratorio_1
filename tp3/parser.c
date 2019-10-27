@@ -38,7 +38,7 @@ int parser_EmployeeFromText(FILE* pFile, LinkedList* pArrayListEmployee)
 
                 if(aux != NULL
                    && ll_len(pArrayListEmployee) < EMPLOYEE_MAX
-                   && !ll_add(pArrayListEmployee, (sEmployee*)aux))
+                   && ll_add(pArrayListEmployee, (sEmployee*)aux) == 0)
                 {
                     returnValue = 1;
                 }

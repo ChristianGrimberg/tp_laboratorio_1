@@ -8,7 +8,12 @@ int controller_loadFromText(char* path, LinkedList* pArrayListEmployee)
     if(file != NULL
        && parser_EmployeeFromText(file, pArrayListEmployee))
     {
+        fclose(file);
         returnValue = 1;
+    }
+    else
+    {
+        printf("No se pudo leer el archivo.\n");
     }
 
     return returnValue;
