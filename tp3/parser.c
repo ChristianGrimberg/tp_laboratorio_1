@@ -15,7 +15,6 @@ static int stringToInteger(char string[], int* integerValue);
 int parser_EmployeeFromText(FILE* pFile, LinkedList* pArrayListEmployee)
 {
     int returnValue = 0;
-    int i = 0;
     int id;
     int workHours;
     int salary;
@@ -43,8 +42,6 @@ int parser_EmployeeFromText(FILE* pFile, LinkedList* pArrayListEmployee)
                     returnValue = 1;
                 }
             }
-
-            i++;
         }
     }
 
@@ -53,7 +50,30 @@ int parser_EmployeeFromText(FILE* pFile, LinkedList* pArrayListEmployee)
 
 int parser_EmployeeFromBinary(FILE* pFile, LinkedList* pArrayListEmployee)
 {
-    return 0;
+    int returnValue = 0;
+    sEmployee employeeStatic;
+    sEmployee* aux;
+
+    if(pFile != NULL
+       && pArrayListEmployee != NULL)
+    {
+        while(!feof(pFile))
+        {
+            if(fread((sEmployee*)(&employeeStatic), sizeof(sEmployee), 1, pFile) == 1)
+            {
+                aux = employee_newWithParameters(&(employeeStatic.id), employeeStatic.name, &(employeeStatic.workHours), &(employeeStatic.salary));
+
+                if(aux != NULL
+                   && ll_len(pArrayListEmployee) < EMPLOYEE_MAX
+                   && ll_add(pArrayListEmployee, (sEmployee*)aux) == 0)
+                {
+                    returnValue = 1;
+                }
+            }
+        }
+    }
+
+    return returnValue;
 }
 
 static int stringToInteger(char string[], int* integerValue)
