@@ -6,13 +6,6 @@ sEmployee* employee_new()
 
     aux = (sEmployee*)malloc(sizeof(sEmployee));
 
-    if(aux != NULL)
-    {
-        aux->id = -1;
-        strcpy(aux->name, "NULL");
-        aux->salary = 0.0f;
-    }
-
     return aux;
 }
 

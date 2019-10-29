@@ -15,8 +15,8 @@ typedef struct
     int salary;
 } sEmployee;
 
-/** \brief Obtencion de espacio en memoria
- *          para una nueva estructura de Empleado.
+/** \brief Constructor que obtiene espacio en memoria
+ *          requerido para una nueva estructura de Empleado.
  *
  * \param void No requiere parametros
  * \return sEmployee*
