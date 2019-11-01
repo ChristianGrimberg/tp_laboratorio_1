@@ -34,6 +34,16 @@ struct LinkedList
 } typedef LinkedList;
 
 /**< Public functions. >*/
+
+/** \brief Obtiene un segmento de memoria
+ *      para alocar un arreglo de tipo de datos genericos.
+ *
+ * \param void No requiere parametros.
+ * \return LinkedList*
+ *          Direccion de memoria inicial del arreglo obtenido.
+ *          [NULL] Si no tiene espacio en memoria a alocar.
+ *
+ */
 LinkedList* ll_newLinkedList(void);
 int ll_len(LinkedList* this);
 Node* test_getNode(LinkedList* this, int nodeIndex);

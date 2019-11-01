@@ -79,6 +79,7 @@ int parser_EmployeeFromBinary(FILE* pFile, LinkedList* pArrayListEmployee)
 static int stringToInteger(char string[], int* integerValue)
 {
     int returnValue = 0;
+    int value;
 
     if(string != NULL)
     {
@@ -89,8 +90,13 @@ static int stringToInteger(char string[], int* integerValue)
         }
         else
         {
-            *integerValue = atoi(string);
-            returnValue = 1;
+            value = atoi(string);
+
+            if(value != 0)
+            {
+                *integerValue = value;
+                returnValue = 1;
+            }
         }
     }
 

@@ -73,14 +73,17 @@ int main()
                 printf("No se pudo leer el archivo binario.\n");
             }
             break;
+        case 6:
+            controller_ListEmployee(listaEmpleados);
+            break;
         case 8: /**< Guardar los datos de los empleados en el archivo data.csv (modo texto). >*/
-            if(!controller_saveAsText("data.csv", listaEmpleados))
+            if(!controller_saveAsText(path, listaEmpleados))
             {
                 printf("No se pudo guardar el archivo de texto.\n");
             }
             break;
         case 9: /**< Guardar los datos de los empleados en el archivo data.csv (modo binario). >*/
-            if(!controller_saveAsBinary("data.csv", listaEmpleados))
+            if(!controller_saveAsBinary("data.dat", listaEmpleados))
             {
                 printf("No se pudo guardar el archivo binario.\n");
             }
