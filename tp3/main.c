@@ -6,6 +6,8 @@
  *      mediante la biblioteca de LinkedList.
  *
  * Versiones:
+ *      v2.2 - Implementacion de funciones parser y controller
+ *              [Fecha: 2 de noviembre de 2019]
  *      v2.1 - Implementacion de funciones de Empleados
  *              [Fecha: 26 de octubre de 2019]
  *
@@ -52,41 +54,49 @@ int main()
         switch(optionMenu)
         {
         case 1: /**< Cargar los datos de los empleados desde el archivo data.csv (modo texto). >*/
-            employeeQty = ll_len(listaEmpleados);
+            employeeQty = controller_loadFromText(textPath, listaEmpleados);
 
-            if(employeeQty < EMPLOYEE_MAX
-               && controller_loadFromText(textPath, listaEmpleados))
+            if(employeeQty > 0)
             {
-                employeeQty = ll_len(listaEmpleados) - employeeQty;
                 printf("Se cargaron %d Empleados desde el archivo de texto.\n", employeeQty);
             }
             else
             {
-                if(employeeQty >= EMPLOYEE_MAX)
-                    printf("La nomina de Empleados a llegado a su limite de %d Empleados.\n", employeeQty);
-                else
-                    printf("No se puede obtener Empleados desde el archivo de texto.\n");
+                printf("No se puede cargar Empleados.\n");
             }
             break;
         case 2: /**< Cargar los datos de los empleados desde el archivo data.csv (modo binario). >*/
-            employeeQty = ll_len(listaEmpleados);
+            employeeQty = controller_loadFromBinary(binaryPath, listaEmpleados);
 
-            if(employeeQty < EMPLOYEE_MAX
-               && controller_loadFromBinary(binaryPath, listaEmpleados))
+            if(employeeQty > 0)
             {
-                employeeQty = ll_len(listaEmpleados) - employeeQty;
                 printf("Se cargaron %d Empleados desde el archivo binario.\n", employeeQty);
             }
             else
             {
-                if(employeeQty >= EMPLOYEE_MAX)
-                    printf("La nomina de Empleados a llegado a su limite de %d Empleados.\n", employeeQty);
-                else
-                    printf("No se puede obtener Empleados desde el archivo binario.\n");
+                printf("No se puede cargar Empleados.\n");
             }
             break;
         case 6:
-            controller_ListEmployee(listaEmpleados);
+            employeeQty = 0;
+
+            while(employeeQty < ll_len(listaEmpleados))
+            {
+                inputs_clearScreen();
+
+                employeeQty += controller_ListEmployee(ll_subList(listaEmpleados, employeeQty, employeeQty + CONTROLLER_LIST_MAX));
+
+                if(employeeQty == 0)
+                {
+                    printf("No hay Empleados cargados en el sistema.\n");
+                    break;
+                }
+
+                if(employeeQty < ll_len(listaEmpleados))
+                {
+                    inputs_pauseScreen("Presione Enter para ver la siguiente pagina.");
+                }
+            }
             break;
         case 8: /**< Guardar los datos de los empleados en el archivo data.csv (modo texto). >*/
             if(!controller_saveAsText(textPath, listaEmpleados))

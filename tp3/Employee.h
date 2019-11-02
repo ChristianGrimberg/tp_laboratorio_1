@@ -5,7 +5,7 @@
 
 #define EMPLOYEE_NAME_MAX 128 /**< Longitud maxima del Nombre de un Empleado. >*/
 #define ID_INIT_EMPLOYEE 0 /**< Valor inicial del ID de un Empleado. >*/
-#define EMPLOYEE_MAX 1000 /**< Cantidad maxima de Empleados en un arreglo. >*/
+#define EMPLOYEE_MAX 1500 /**< Cantidad maxima de Empleados en un arreglo. >*/
 
 typedef struct
 {

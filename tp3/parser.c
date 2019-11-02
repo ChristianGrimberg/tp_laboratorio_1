@@ -14,10 +14,10 @@ static int stringToInteger(char string[], int* integerValue);
 
 int parser_EmployeeFromText(FILE* pFile, LinkedList* pArrayListEmployee)
 {
-    int returnValue = 0;
     int id;
     int workHours;
     int salary;
+    int counter = 0;
     char stringId[25];
     char name[EMPLOYEE_NAME_MAX];
     char stringWorkHours[25];
@@ -36,21 +36,21 @@ int parser_EmployeeFromText(FILE* pFile, LinkedList* pArrayListEmployee)
                 aux = employee_newWithParameters(&id, name, &workHours, &salary);
 
                 if(aux != NULL
-                   && ll_len(pArrayListEmployee) <= EMPLOYEE_MAX
+                   && ll_len(pArrayListEmployee) < EMPLOYEE_MAX
                    && ll_add(pArrayListEmployee, (sEmployee*)aux) == 0)
                 {
-                    returnValue = 1;
+                    counter++;
                 }
             }
         }
     }
 
-    return returnValue;
+    return counter;
 }
 
 int parser_EmployeeFromBinary(FILE* pFile, LinkedList* pArrayListEmployee)
 {
-    int returnValue = 0;
+    int counter = 0;
     sEmployee employeeStatic;
     sEmployee* aux;
 
@@ -64,16 +64,16 @@ int parser_EmployeeFromBinary(FILE* pFile, LinkedList* pArrayListEmployee)
                 aux = employee_newWithParameters(&(employeeStatic.id), employeeStatic.name, &(employeeStatic.workHours), &(employeeStatic.salary));
 
                 if(aux != NULL
-                   && ll_len(pArrayListEmployee) <= EMPLOYEE_MAX
+                   && ll_len(pArrayListEmployee) < EMPLOYEE_MAX
                    && ll_add(pArrayListEmployee, (sEmployee*)aux) == 0)
                 {
-                    returnValue = 1;
+                    counter++;
                 }
             }
         }
     }
 
-    return returnValue;
+    return counter;
 }
 
 static int stringToInteger(char string[], int* integerValue)

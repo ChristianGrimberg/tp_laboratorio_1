@@ -3,6 +3,8 @@
 
 #include "parser.h"
 
+#define CONTROLLER_LIST_MAX 20 /**< Maxima cantidad de estructuras a mostrar en el listado. >*/
+
 /** \brief Carga los datos de los empleados desde el archivo data.csv (modo texto).
  *
  * \param path char*
