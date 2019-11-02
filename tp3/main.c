@@ -20,7 +20,8 @@ int main()
     int optionMenu; /**< Opcion elegida por el usuario de cada menu. >*/
     int employeeQty = 0; /**< Cantidad de Empleados cargados en el arreglo. >*/
     LinkedList* listaEmpleados = ll_newLinkedList(); /**< Invocacion de arreglo generico. >*/
-    char path[PATH_MAX] = "data.csv"; /**< Path del archivo a trabajar. >*/
+    char textPath[PATH_MAX] = "data.csv"; /**< Path del archivo de texto a trabajar. >*/
+    char binaryPath[PATH_MAX] = "data.bin"; /**< Path del archivo binario a trabajar. >*/
 
     if(listaEmpleados == NULL)
     {
@@ -54,7 +55,7 @@ int main()
             employeeQty = ll_len(listaEmpleados);
 
             if(employeeQty < EMPLOYEE_MAX
-               && controller_loadFromText(path, listaEmpleados))
+               && controller_loadFromText(textPath, listaEmpleados))
             {
                 employeeQty = ll_len(listaEmpleados) - employeeQty;
                 printf("Se cargaron %d Empleados desde el archivo de texto.\n", employeeQty);
@@ -68,22 +69,33 @@ int main()
             }
             break;
         case 2: /**< Cargar los datos de los empleados desde el archivo data.csv (modo binario). >*/
-            if(!controller_loadFromBinary(path, listaEmpleados))
+            employeeQty = ll_len(listaEmpleados);
+
+            if(employeeQty < EMPLOYEE_MAX
+               && controller_loadFromBinary(binaryPath, listaEmpleados))
             {
-                printf("No se pudo leer el archivo binario.\n");
+                employeeQty = ll_len(listaEmpleados) - employeeQty;
+                printf("Se cargaron %d Empleados desde el archivo binario.\n", employeeQty);
+            }
+            else
+            {
+                if(employeeQty >= EMPLOYEE_MAX)
+                    printf("La nomina de Empleados a llegado a su limite de %d Empleados.\n", employeeQty);
+                else
+                    printf("No se puede obtener Empleados desde el archivo binario.\n");
             }
             break;
         case 6:
             controller_ListEmployee(listaEmpleados);
             break;
         case 8: /**< Guardar los datos de los empleados en el archivo data.csv (modo texto). >*/
-            if(!controller_saveAsText(path, listaEmpleados))
+            if(!controller_saveAsText(textPath, listaEmpleados))
             {
                 printf("No se pudo guardar el archivo de texto.\n");
             }
             break;
         case 9: /**< Guardar los datos de los empleados en el archivo data.csv (modo binario). >*/
-            if(!controller_saveAsBinary("data.dat", listaEmpleados))
+            if(!controller_saveAsBinary(binaryPath, listaEmpleados))
             {
                 printf("No se pudo guardar el archivo binario.\n");
             }

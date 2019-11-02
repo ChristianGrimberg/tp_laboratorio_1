@@ -23,7 +23,22 @@ int controller_loadFromText(char* path, LinkedList* pArrayListEmployee)
 
 int controller_loadFromBinary(char* path, LinkedList* pArrayListEmployee)
 {
-    return 0;
+    int returnValue = 0;
+
+    FILE* file = NULL;
+
+    if(pArrayListEmployee != NULL)
+    {
+        file = fopen(path, "rb");
+
+        if(file != NULL
+           && parser_EmployeeFromBinary(file, pArrayListEmployee))
+        {
+            returnValue = 1;
+        }
+    }
+
+    return returnValue;
 }
 
 int controller_addEmployee(LinkedList* pArrayListEmployee)
@@ -45,23 +60,33 @@ int controller_ListEmployee(LinkedList* pArrayListEmployee)
 {
     int counter = 0;
     int arrayLength;
-    int i;
     sEmployee* aux;
 
     if(pArrayListEmployee != NULL)
     {
         arrayLength = ll_len(pArrayListEmployee);
 
-        for(i = 0; i < arrayLength; i++)
+        for(counter = 0; counter < arrayLength; counter++)
         {
-            if((pArrayListEmployee + i) != NULL)
+            if(counter == 0)
             {
-                aux = (sEmployee*)ll_get(pArrayListEmployee, i);
+                printf("+=======+======================+=======+============+\n");
+                printf("|   ID  |        NOMBRE        | HORAS |   SALARIO  |\n");
+                printf("+=======+======================+=======+============+\n");
+            }
+
+            aux = (sEmployee*)ll_get(pArrayListEmployee, counter);
+
+            if(aux != NULL)
+            {
                 printf("| %5d | %20s | %5d | %10d |\n", aux->id, aux->name, aux->workHours, aux->salary);
             }
         }
 
-        counter = i;
+        if(counter > 0 && counter == arrayLength)
+        {
+            printf("+-------+----------------------+-------+------------+\n");
+        }
     }
     return counter;
 }
