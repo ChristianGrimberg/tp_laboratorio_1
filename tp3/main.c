@@ -16,6 +16,8 @@
  ************************************************************************/
 #include "menu.h"
 
+// TODO (Christian Grimberg#1#): DOCUMENTAR PROTOTIPOS DE MODULOS PARSER Y CONTROLLER
+
 int main()
 {
     int lifeCycle; /**< Indicador del ciclo de vida de ejecucion de cada menu. >*/
