@@ -3,13 +3,17 @@
 int controller_loadFromText(char* path, LinkedList* pArrayListEmployee)
 {
     int returnValue = 0;
-    FILE* file = fopen(path, "r");
+    FILE* file = NULL;
 
-    if(file != NULL
-       && pArrayListEmployee != NULL
-       && parser_EmployeeFromText(file, pArrayListEmployee))
+    if(pArrayListEmployee != NULL)
     {
-        returnValue = 1;
+        file = fopen(path, "r");
+
+        if(file != NULL
+           && parser_EmployeeFromText(file, pArrayListEmployee))
+        {
+            returnValue = 1;
+        }
     }
 
     fclose(file);
@@ -75,32 +79,28 @@ int controller_saveAsText(char* path, LinkedList* pArrayListEmployee)
 int controller_saveAsBinary(char* path, LinkedList* pArrayListEmployee)
 {
     int returnValue = 0;
-    FILE* file = fopen(path, "wb");
+    FILE* file = NULL;
     int arrayLength;
     int i;
 
-    if(file != NULL
-       && pArrayListEmployee != NULL)
+    if(pArrayListEmployee != NULL)
     {
         arrayLength = ll_len(pArrayListEmployee);
 
-        for(i = 0; i < arrayLength; i++)
+        file = fopen(path, "wb");
+
+        if(file != NULL && arrayLength > 0 && arrayLength <= EMPLOYEE_MAX)
         {
-            if((&pArrayListEmployee + i) == NULL)
+            for(i = 0; i < arrayLength; i++)
             {
-                continue;
-            }
-            else
-            {
-                if(fwrite((sEmployee*)(&pArrayListEmployee + i), sizeof(sEmployee), 1, file) != 1)
+                if(fwrite((sEmployee*)(pArrayListEmployee + i), sizeof(sEmployee), 1, file) != 1)
                 {
                     break;
                 }
             }
         }
 
-        if(i > 0
-           && i == arrayLength)
+        if(i == arrayLength)
         {
             returnValue = 1;
         }

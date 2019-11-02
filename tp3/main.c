@@ -87,6 +87,10 @@ int main()
             {
                 printf("No se pudo guardar el archivo binario.\n");
             }
+            else
+            {
+                printf("Archivo binario guardado correctamente.\n");
+            }
             break;
         }
         inputs_pauseScreen(CONTINUE_MESSAGE);

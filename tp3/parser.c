@@ -36,7 +36,7 @@ int parser_EmployeeFromText(FILE* pFile, LinkedList* pArrayListEmployee)
                 aux = employee_newWithParameters(&id, name, &workHours, &salary);
 
                 if(aux != NULL
-                   && ll_len(pArrayListEmployee) < EMPLOYEE_MAX
+                   && ll_len(pArrayListEmployee) <= EMPLOYEE_MAX
                    && ll_add(pArrayListEmployee, (sEmployee*)aux) == 0)
                 {
                     returnValue = 1;
@@ -64,7 +64,7 @@ int parser_EmployeeFromBinary(FILE* pFile, LinkedList* pArrayListEmployee)
                 aux = employee_newWithParameters(&(employeeStatic.id), employeeStatic.name, &(employeeStatic.workHours), &(employeeStatic.salary));
 
                 if(aux != NULL
-                   && ll_len(pArrayListEmployee) < EMPLOYEE_MAX
+                   && ll_len(pArrayListEmployee) <= EMPLOYEE_MAX
                    && ll_add(pArrayListEmployee, (sEmployee*)aux) == 0)
                 {
                     returnValue = 1;
