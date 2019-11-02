@@ -78,10 +78,11 @@ int controller_saveAsText(char* path, LinkedList* pArrayListEmployee)
 
 int controller_saveAsBinary(char* path, LinkedList* pArrayListEmployee)
 {
-    int returnValue = 0;
     FILE* file = NULL;
+    int returnValue = 0;
     int arrayLength;
     int i;
+    sEmployee* aux;
 
     if(pArrayListEmployee != NULL)
     {
@@ -93,7 +94,10 @@ int controller_saveAsBinary(char* path, LinkedList* pArrayListEmployee)
         {
             for(i = 0; i < arrayLength; i++)
             {
-                if(fwrite((sEmployee*)(pArrayListEmployee + i), sizeof(sEmployee), 1, file) != 1)
+                aux = (sEmployee*)ll_get(pArrayListEmployee, i);
+
+                if(aux == NULL
+                   || fwrite((sEmployee*)aux, sizeof(sEmployee), 1, file) != 1)
                 {
                     break;
                 }
@@ -110,4 +114,3 @@ int controller_saveAsBinary(char* path, LinkedList* pArrayListEmployee)
 
     return returnValue;
 }
-
