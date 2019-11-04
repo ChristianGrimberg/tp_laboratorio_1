@@ -10,7 +10,7 @@
 #define NO 'N' /**< Respuesta NO por teclado. >*/
 #define ERROR_MESSAGE "Intente nuevamente: " /**< Mensaje de solicitud de error al usuario. >*/
 /**< Mensaje en pantalla para presionar la tecla Enter y continuar. >*/
-#define CONTINUE_MESSAGE "Presione la tecla Enter para continuar..."
+#define CONTINUE_MESSAGE "Presione la tecla Enter volver al menu de opciones..."
 /**< Mensaje en pantalla para presionar la tecla Enter y salir del programa. >*/
 #define QUIT_MESSAGE "Presione la tecla Enter para salir del programa..."
 
@@ -172,6 +172,17 @@ int inputs_getPhone(char* input, char message[], char eMessage[], int lowLimit, 
  *
  */
 void inputs_printNumberByType(char message[], float number);
+
+/** \brief Convierte una cadena a entero validando incluso el cero.
+ *
+ * \param stringValue[] char Cadena de caracteres a convertir.
+ * \param integerValue int* Entero a escribir el valor convertido.
+ * \return int
+ *          [0] Si hubo un error en la conversion.
+ *          [1] Si la conversion fue exitosa.
+ *
+ */
+int inputs_stringToInteger(char stringValue[], int* integerValue);
 
 /** \brief Funcion que realiza una consulta booleana al usuario
  *      y devuelve la respuesta.

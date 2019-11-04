@@ -6,7 +6,7 @@
  *      mediante la biblioteca de LinkedList.
  *
  * Versiones:
- *      v2.2 - Implementacion de funciones parser y controller
+ *      v2.2 - Implementacion de funciones de gestion de archivos
  *              [Fecha: 2 de noviembre de 2019]
  *      v2.1 - Implementacion de funciones de Empleados
  *              [Fecha: 26 de octubre de 2019]

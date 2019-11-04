@@ -122,21 +122,19 @@ int employee_setSalary(sEmployee* this, int salary)
 
 sEmployee* employee_newWithParameters(int* id, char name[], int* workHours, int* salary)
 {
-    sEmployee* employee;
-    sEmployee* aux;
-
-    aux = employee_new();
+    sEmployee* aux = employee_new();
 
     if(aux != NULL
-       && employee_setId(aux, *id)
-       && employee_setName(aux, name)
-       && employee_setWorkHours(aux, *workHours)
-       && employee_setSalary(aux, *salary))
+       && (!employee_setId(aux, *id)
+       || !employee_setName(aux, name)
+       || !employee_setWorkHours(aux, *workHours)
+       || !employee_setSalary(aux, *salary)))
     {
-        employee = aux;
+        free(aux);
+        aux = NULL;
     }
 
-    return employee;
+    return aux;
 }
 
 void employee_delete(sEmployee* this)
@@ -144,5 +142,6 @@ void employee_delete(sEmployee* this)
     if(this != NULL)
     {
         free(this);
+        this = NULL;
     }
 }
