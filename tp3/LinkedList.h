@@ -34,6 +34,16 @@ struct LinkedList
 } typedef LinkedList;
 
 /**< Public functions. >*/
+
+/** \brief Obtiene un segmento de memoria
+ *      para alocar un arreglo de tipo de datos genericos.
+ *
+ * \param void No requiere parametros.
+ * \return LinkedList*
+ *          Direccion de memoria inicial del arreglo obtenido.
+ *          [NULL] Si no tiene espacio en memoria a alocar.
+ *
+ */
 LinkedList* ll_newLinkedList(void);
 int ll_len(LinkedList* this);
 Node* test_getNode(LinkedList* this, int nodeIndex);
@@ -50,7 +60,7 @@ int ll_push(LinkedList* this, int index, void* pElement);
 void* ll_pop(LinkedList* this,int index);
 int ll_contains(LinkedList* this, void* pElement);
 int ll_containsAll(LinkedList* this,LinkedList* this2);
-LinkedList* ll_subList(LinkedList* this,int from,int to);
+LinkedList* ll_subList(LinkedList* this, int from, int to);
 LinkedList* ll_clone(LinkedList* this);
 int ll_sort(LinkedList* this, int (*pFunc)(void*,void*), int order);
 

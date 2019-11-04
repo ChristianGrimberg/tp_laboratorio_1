@@ -6,13 +6,6 @@ sEmployee* employee_new()
 
     aux = (sEmployee*)malloc(sizeof(sEmployee));
 
-    if(aux != NULL)
-    {
-        aux->id = -1;
-        strcpy(aux->name, "NULL");
-        aux->salary = 0.0f;
-    }
-
     return aux;
 }
 
@@ -100,7 +93,7 @@ int employee_setWorkHours(sEmployee* this, int workHours)
     return returnValue;
 }
 
-int employee_getSalary(sEmployee* this, float* salary)
+int employee_getSalary(sEmployee* this, int* salary)
 {
     int returnValue = 0;
 
@@ -113,7 +106,7 @@ int employee_getSalary(sEmployee* this, float* salary)
     return returnValue;
 }
 
-int employee_setSalary(sEmployee* this, float salary)
+int employee_setSalary(sEmployee* this, int salary)
 {
     int returnValue;
 
@@ -127,23 +120,21 @@ int employee_setSalary(sEmployee* this, float salary)
     return returnValue;
 }
 
-sEmployee* employee_newWithParameters(char* id, char* name, int* workHours, float* salary)
+sEmployee* employee_newWithParameters(int* id, char name[], int* workHours, int* salary)
 {
-    sEmployee* employee;
-    sEmployee* aux;
-
-    aux = employee_new();
+    sEmployee* aux = employee_new();
 
     if(aux != NULL
-       && employee_setId(aux, *id)
-       && employee_setName(aux, name)
-       && employee_setWorkHours(aux, *workHours)
-       && employee_setSalary(aux, *salary))
+       && (!employee_setId(aux, *id)
+       || !employee_setName(aux, name)
+       || !employee_setWorkHours(aux, *workHours)
+       || !employee_setSalary(aux, *salary)))
     {
-        employee = aux;
+        free(aux);
+        aux = NULL;
     }
 
-    return employee;
+    return aux;
 }
 
 void employee_delete(sEmployee* this)
@@ -151,5 +142,6 @@ void employee_delete(sEmployee* this)
     if(this != NULL)
     {
         free(this);
+        this = NULL;
     }
 }

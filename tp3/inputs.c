@@ -476,6 +476,33 @@ void inputs_printNumberByType(char message[], float number)
     }
 }
 
+int inputs_stringToInteger(char stringValue[], int* integerValue)
+{
+    int returnValue = 0;
+    int value;
+
+    if(stringValue != NULL)
+    {
+        if(strcmp(stringValue, "0") == 0)
+        {
+            *integerValue = 0;
+            returnValue = 1;
+        }
+        else
+        {
+            value = atoi(stringValue);
+
+            if(value != 0)
+            {
+                *integerValue = value;
+                returnValue = 1;
+            }
+        }
+    }
+
+    return returnValue;
+}
+
 int inputs_userResponse(char message[])
 {
     int returnValue = 0;
