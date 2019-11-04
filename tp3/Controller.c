@@ -96,7 +96,43 @@ int controller_sortEmployee(LinkedList* pArrayListEmployee)
 
 int controller_saveAsText(char* path, LinkedList* pArrayListEmployee)
 {
-    return 0;
+    FILE* file = NULL;
+    int returnValue = 0;
+    int arrayLength;
+    int i;
+    sEmployee* aux;
+
+    if(pArrayListEmployee != NULL)
+    {
+        arrayLength = ll_len(pArrayListEmployee);
+
+        file = fopen(path, "w");
+
+        if(file != NULL
+           && arrayLength > 0 && arrayLength <= EMPLOYEE_MAX
+           && fprintf(file, "id,nombre,horasTrabajadas,sueldo\n") != -1)
+        {
+            for(i = 0; i < arrayLength; i++)
+            {
+                aux = (sEmployee*)ll_get(pArrayListEmployee, i);
+
+                if(aux == NULL
+                   || fprintf(file, "%d,%s,%d,%d\n", aux->id, aux->name, aux->workHours, aux->salary) == -1)
+                {
+                    break;
+                }
+            }
+        }
+
+        if(i > 0 && i == arrayLength)
+        {
+            returnValue = 1;
+        }
+    }
+
+    fclose(file);
+
+    return returnValue;
 }
 
 int controller_saveAsBinary(char* path, LinkedList* pArrayListEmployee)
@@ -127,7 +163,7 @@ int controller_saveAsBinary(char* path, LinkedList* pArrayListEmployee)
             }
         }
 
-        if(i == arrayLength)
+        if(i > 0 && i == arrayLength)
         {
             returnValue = 1;
         }

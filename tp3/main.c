@@ -7,7 +7,7 @@
  *
  * Versiones:
  *      v2.2 - Implementacion de funciones de gestion de archivos
- *              [Fecha: 2 de noviembre de 2019]
+ *              [Fecha: 3 de noviembre de 2019]
  *      v2.1 - Implementacion de funciones de Empleados
  *              [Fecha: 26 de octubre de 2019]
  *
@@ -104,6 +104,10 @@ int main()
             if(!controller_saveAsText(textPath, listaEmpleados))
             {
                 printf("No se pudo guardar el archivo de texto.\n");
+            }
+            else
+            {
+                printf("Archivo de texto guardado correctamente.\n");
             }
             break;
         case 9: /**< Guardar los datos de los empleados en el archivo data.csv (modo binario). >*/
