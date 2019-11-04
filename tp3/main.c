@@ -7,7 +7,7 @@
  *
  * Versiones:
  *      v2.2 - Implementacion de funciones de gestion de archivos
- *              [Fecha: 3 de noviembre de 2019]
+ *              [Fecha: 4 de noviembre de 2019]
  *      v2.1 - Implementacion de funciones de Empleados
  *              [Fecha: 26 de octubre de 2019]
  *
@@ -15,8 +15,6 @@
  *
  ************************************************************************/
 #include "menu.h"
-
-// TODO (Christian Grimberg#1#): DOCUMENTAR PROTOTIPOS DE MODULOS PARSER Y CONTROLLER
 
 int main()
 {
@@ -67,7 +65,7 @@ int main()
                 printf("No se puede cargar Empleados.\n");
             }
             break;
-        case 2: /**< Cargar los datos de los empleados desde el archivo data.csv (modo binario). >*/
+        case 2: /**< Cargar los datos de los empleados desde el archivo data.bin (modo binario). >*/
             employeeQty = controller_loadFromBinary(binaryPath, listaEmpleados);
 
             if(employeeQty > 0)
@@ -110,7 +108,7 @@ int main()
                 printf("Archivo de texto guardado correctamente.\n");
             }
             break;
-        case 9: /**< Guardar los datos de los empleados en el archivo data.csv (modo binario). >*/
+        case 9: /**< Guardar los datos de los empleados en el archivo data.bin (modo binario). >*/
             if(!controller_saveAsBinary(binaryPath, listaEmpleados))
             {
                 printf("No se pudo guardar el archivo binario.\n");
