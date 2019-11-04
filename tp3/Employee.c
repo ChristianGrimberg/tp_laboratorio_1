@@ -145,3 +145,44 @@ void employee_delete(sEmployee* this)
         this = NULL;
     }
 }
+
+int employee_getNextId(LinkedList* pArrayListEmployee)
+{
+    int maxValue = 0;
+    int arrayLength = 0;
+    int i;
+    int counter = 0;
+    sEmployee* aux;
+
+    if(pArrayListEmployee != NULL)
+    {
+        arrayLength = ll_len(pArrayListEmployee);
+
+        if(arrayLength > 0)
+        {
+            for(i = 0; i < arrayLength; i++)
+            {
+                aux = (sEmployee*)ll_get(pArrayListEmployee, i);
+
+                if(aux != NULL)
+                {
+                    if(counter == 0)
+                    {
+                        maxValue = aux->id;
+                    }
+                    else
+                    {
+                        if(aux->id > maxValue)
+                        {
+                            maxValue = aux->id;
+                        }
+                    }
+
+                    counter++;
+                }
+            }
+        }
+    }
+
+    return (maxValue + 1);
+}

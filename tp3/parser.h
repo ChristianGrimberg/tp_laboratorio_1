@@ -1,7 +1,7 @@
 #ifndef PARSER_H_INCLUDED
 #define PARSER_H_INCLUDED
 
-#include "LinkedList.h"
+#include "Employee.h"
 
 /** \brief Parsea los datos de estructuras de tipo Empleado desde el archivo (modo texto)
  *          y los agrega a un arreglo de tipo LinkedList.

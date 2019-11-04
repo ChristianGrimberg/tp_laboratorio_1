@@ -77,6 +77,9 @@ int main()
                 printf("No se puede cargar Empleados.\n");
             }
             break;
+        case 3: /**< Alta de Empleado. >*/
+            printf("Longitud: %d - Empleado ID: %d\n", ll_len(listaEmpleados), employee_getNextId(listaEmpleados));
+            break;
         case 6:
             employeeQty = 0;
 

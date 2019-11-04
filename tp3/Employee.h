@@ -1,7 +1,7 @@
 #ifndef EMPLOYEE_H_INCLUDED
 #define EMPLOYEE_H_INCLUDED
 
-#include "inputs.h"
+#include "LinkedList.h"
 
 #define EMPLOYEE_NAME_MAX 128 /**< Longitud maxima del Nombre de un Empleado. >*/
 #define ID_INIT_EMPLOYEE 0 /**< Valor inicial del ID de un Empleado. >*/
@@ -137,5 +137,13 @@ sEmployee* employee_newWithParameters(int* id, char name[], int* workHours, int*
  *
  */
 void employee_delete(sEmployee* this);
+
+/** \brief Obtiene el proximo ID de Empleado de un arreglo LinkedList.
+ *
+ * \param pArrayListEmployee LinkedList* Arreglo de tipo LinkedList.
+ * \return int Proximo ID de Empleado.
+ *
+ */
+int employee_getNextId(LinkedList* pArrayListEmployee);
 
 #endif // EMPLOYEE_H_INCLUDED
