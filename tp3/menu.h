@@ -1,7 +1,7 @@
 #ifndef MENU_H_INCLUDED
 #define MENU_H_INCLUDED
 
-#include "Controller.h"
+#include "inputs.h"
 
 #define MENU_MAIN_MAX 10 /**< Opcion maxima del menu principal. >*/
 #define MENU_SORT_MAX 5 /**< Opcion maxima del menu de ordenamiento. >*/

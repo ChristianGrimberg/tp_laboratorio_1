@@ -203,7 +203,72 @@ int controller_ListEmployee(LinkedList* pArrayListEmployee)
 
 int controller_sortEmployee(LinkedList* pArrayListEmployee)
 {
-    return 0;
+    int returnValue = 0;
+    int lifeCycle;
+    int sortMenu;
+    int sortOption;
+
+    if(pArrayListEmployee != NULL)
+    {
+        if(ll_len(pArrayListEmployee) > 0)
+        {
+            do
+            {
+                lifeCycle = menu_sort(&sortMenu);
+
+                if((sortMenu >= 1 && sortMenu < MENU_SORT_MAX)
+                   && !inputs_getInt(&sortOption, "Ingrese para ordenar: [1] Ascendente - [0] Descendente: ", ERROR_MESSAGE, 0, 1))
+                {
+                    printf("Aguarde unos instantes...\n");
+
+                    switch(sortMenu)
+                    {
+                    case 1: /**< Ordenar por ID. >*/
+                        if(ll_sort(pArrayListEmployee, employee_compareByID, sortOption) == 0)
+                        {
+                            printf("Ordenado por ID finalizado.\n");
+                        }
+                        break;
+                    case 2: /**< Ordenar por Nombre. >*/
+                        if(ll_sort(pArrayListEmployee, employee_compareByName, sortOption) == 0)
+                        {
+                            printf("Ordenado por Nombre finalizado.\n");
+                        }
+                        break;
+                    case 3: /**< Ordenar por Horas Trabajadas. >*/
+                        if(ll_sort(pArrayListEmployee, employee_compareByWorkHours, sortOption) == 0)
+                        {
+                            printf("Ordenado por Horas Trabajadas finalizado.\n");
+                        }
+                        break;
+                    case 4: /**< Ordenar por Salario de forma Ascendente. >*/
+                        if(ll_sort(pArrayListEmployee, employee_compareBySalary, sortOption) == 0)
+                        {
+                            printf("Ordenado por Salario finalizado.\n");
+                        }
+                        break;
+                    }
+                }
+                else
+                {
+                    if(sortMenu == MENU_SORT_MAX)
+                    {
+                        returnValue = 1;
+                        break;
+                    }
+                    else
+                    {
+                        if(sortMenu == -1)
+                        {
+                            break;
+                        }
+                    }
+                }
+            }while(lifeCycle != 0);
+        }
+    }
+
+    return returnValue;
 }
 
 int controller_saveAsText(char* path, LinkedList* pArrayListEmployee)

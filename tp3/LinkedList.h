@@ -19,7 +19,7 @@
 #ifndef __LINKEDLIST
 #define __LINKEDLIST
 
-#include "inputs.h"
+#include "menu.h"
 
 struct Node
 {

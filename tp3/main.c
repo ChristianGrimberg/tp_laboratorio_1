@@ -16,14 +16,12 @@
  * Autor: Christian Grimberg
  *
  ************************************************************************/
-#include "menu.h"
+#include "Controller.h"
 
 int main()
 {
     int lifeCycle; /**< Indicador del ciclo de vida de ejecucion de cada menu. >*/
     int optionMenu; /**< Opcion elegida por el usuario de cada menu. >*/
-    int sortMenu;
-    int sortOption;
     int employeeQty = 0; /**< Cantidad de Empleados cargados en el arreglo. >*/
     int listMin; /**< Indice minimo del arreglo. >*/
     int listMax; /**< Indice maximo del arreglo. >*/
@@ -162,48 +160,10 @@ int main()
             }
             else
             {
-                do
+                if(!controller_sortEmployee(listaEmpleados))
                 {
-                    lifeCycle = menu_sort(&sortMenu);
-
-                    if(sortMenu == MENU_SORT_MAX || sortMenu == -1)
-                    {
-                        break;
-                    }
-
-                    if(!inputs_getInt(&sortOption, "Ingrese para ordenar: [1] Ascendente - [0] Descendente: ", ERROR_MESSAGE, 0, 1))
-                    {
-                        printf("Aguarde unos instantes...\n");
-
-                        switch(sortMenu)
-                        {
-                        case 1: /**< Ordenar por ID. >*/
-                            if(ll_sort(listaEmpleados, employee_compareByID, sortOption) == 0)
-                            {
-                                printf("Ordenado por ID finalizado.\n");
-                            }
-                            break;
-                        case 2: /**< Ordenar por Nombre. >*/
-                            if(ll_sort(listaEmpleados, employee_compareByName, sortOption) == 0)
-                            {
-                                printf("Ordenado por Nombre finalizado.\n");
-                            }
-                            break;
-                        case 3: /**< Ordenar por Horas Trabajadas. >*/
-                            if(ll_sort(listaEmpleados, employee_compareByWorkHours, sortOption) == 0)
-                            {
-                                printf("Ordenado por Horas Trabajadas finalizado.\n");
-                            }
-                            break;
-                        case 4: /**< Ordenar por Salario de forma Ascendente. >*/
-                            if(ll_sort(listaEmpleados, employee_compareBySalary, sortOption) == 0)
-                            {
-                                printf("Ordenado por Salario finalizado.\n");
-                            }
-                            break;
-                        }
-                    }
-                }while(lifeCycle != 0);
+                    printf("Error al efectuar el ordenamiento.\n");
+                }
             }
             break;
         case 8: /**< Guardar los datos de los empleados en el archivo data.csv (modo texto). >*/
