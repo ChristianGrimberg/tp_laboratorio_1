@@ -23,10 +23,12 @@ int controller_loadFromText(char* path , LinkedList* pArrayListEmployee);
  */
 int controller_loadFromBinary(char* path , LinkedList* pArrayListEmployee);
 
-/** \brief Alta de empleados
+/** \brief Alta de Empleado en arreglo de LinkedList.
  *
- * \param pArrayListEmployee LinkedList*
+ * \param pArrayListEmployee LinkedList* Arreglo de tipo LinkedList.
  * \return int
+ *          [0] Si hubo un error al cargar el Empleado.
+ *          [1] Si se dio el alta correctamente.
  *
  */
 int controller_addEmployee(LinkedList* pArrayListEmployee);
@@ -39,10 +41,12 @@ int controller_addEmployee(LinkedList* pArrayListEmployee);
  */
 int controller_editEmployee(LinkedList* pArrayListEmployee);
 
-/** \brief Baja de empleado
+/** \brief Baja de Empleado en arreglo de LinkedList.
  *
- * \param pArrayListEmployee LinkedList*
+ * \param pArrayListEmployee LinkedList* Arreglo de tipo LinkedList.
  * \return int
+ *          [0] Si hubo un error al bajar el Empleado.
+ *          [1] Si se dio la baja correctamente.
  *
  */
 int controller_removeEmployee(LinkedList* pArrayListEmployee);
@@ -68,8 +72,8 @@ int controller_sortEmployee(LinkedList* pArrayListEmployee);
  * \param path char* Path de ubicacion del archivo de texto.
  * \param pArrayListEmployee LinkedList* Arreglo de tipo LinkedList.
  * \return int
- *          [0] si hubo un error al persistir a archivo de texto.
- *          [1] si se pudo guardar a archivo de texto correctamente.
+ *          [0] Si hubo un error al persistir a archivo de texto.
+ *          [1] Si se pudo guardar a archivo de texto correctamente.
  *
  */
 int controller_saveAsText(char* path , LinkedList* pArrayListEmployee);
@@ -79,8 +83,8 @@ int controller_saveAsText(char* path , LinkedList* pArrayListEmployee);
  * \param path char* Path de ubicacion del archivo binario.
  * \param pArrayListEmployee LinkedList* Arreglo de tipo LinkedList.
  * \return int
- *          [0] si hubo un error al persistir a archivo binario.
- *          [1] si se pudo guardar a archivo binario correctamente.
+ *          [0] Si hubo un error al persistir a archivo binario.
+ *          [1] Si se pudo guardar a archivo binario correctamente.
  *
  */
 int controller_saveAsBinary(char* path, LinkedList* pArrayListEmployee);

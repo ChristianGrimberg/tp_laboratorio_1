@@ -23,11 +23,11 @@ int main()
     int lifeCycle; /**< Indicador del ciclo de vida de ejecucion de cada menu. >*/
     int optionMenu; /**< Opcion elegida por el usuario de cada menu. >*/
     int employeeQty = 0; /**< Cantidad de Empleados cargados en el arreglo. >*/
-    int listMin;
-    int listMax;
-    int counter;
+    int listMin; /**< Indice minimo del arreglo. >*/
+    int listMax; /**< Indice maximo del arreglo. >*/
+    int counter; /**< Contador de iteraciones. >*/
     LinkedList* listaEmpleados = ll_newLinkedList(); /**< Invocacion de arreglo generico. >*/
-    LinkedList* subLista = ll_newLinkedList();
+    LinkedList* subLista = ll_newLinkedList(); /**< Sublista de arreglo generico. >*/
     char textPath[PATH_MAX] = "data.csv"; /**< Path del archivo de texto a trabajar. >*/
     char binaryPath[PATH_MAX] = "data.bin"; /**< Path del archivo binario a trabajar. >*/
 
@@ -93,6 +93,25 @@ int main()
             else
             {
                 printf("Error de carga del Empleado.\n");
+            }
+            break;
+        case 5: /**< Baja de Empleado. >*/
+            employeeQty = ll_len(listaEmpleados);
+
+            if(employeeQty == 0)
+            {
+                printf("No hay Empleados cargados en el sistema.\n");
+            }
+            else
+            {
+                if(controller_removeEmployee(listaEmpleados))
+                {
+                    printf("Empleado dado de baja con exito.\n");
+                }
+                else
+                {
+                    printf("Error al dar de baja al Empleado.\n");
+                }
             }
             break;
         case 6:

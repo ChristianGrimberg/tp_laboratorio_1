@@ -1,5 +1,16 @@
 #include "Controller.h"
 
+/** \brief Busqueda de indice de Empledo en arreglo generico por ID.
+ *
+ * \param pArrayListEmployee LinkedList* Arreglo de tipo LinkedList.
+ * \param id int ID del Empleado a buscar.
+ * \return int
+ *          [-1] Si no se pudo encontrar el ID.
+ *          Indice del ID del Empleado buscado.
+ *
+ */
+static int getIndexByEmployeeID(LinkedList* pArrayListEmployee, int id);
+
 int controller_loadFromText(char* path, LinkedList* pArrayListEmployee)
 {
     int counter = 0;
@@ -77,7 +88,45 @@ int controller_editEmployee(LinkedList* pArrayListEmployee)
 
 int controller_removeEmployee(LinkedList* pArrayListEmployee)
 {
-    return 0;
+    int returnValue = 0;
+    int id;
+    int index;
+    int max;
+    sEmployee* aux;
+    LinkedList* sublist;
+
+    if(pArrayListEmployee != NULL)
+    {
+        max = employee_getNextId(pArrayListEmployee) - 1;
+
+        if(max > 0 && !inputs_getInt(&id, "Ingrese el ID del Empleado que desea dar de baja: ", ERROR_MESSAGE, 1, max))
+        {
+            index = getIndexByEmployeeID(pArrayListEmployee, id);
+
+            if(index != -1)
+            {
+                sublist = ll_subList(pArrayListEmployee, index, index + 1);
+
+                if(sublist != NULL && controller_ListEmployee(sublist) == 1
+                   && inputs_userResponse("Desea dar de baja el Empleado? [S] o [N]: "))
+                {
+                    aux = (sEmployee*)ll_get(pArrayListEmployee, index);
+
+                    if(aux != NULL
+                       && ll_remove(pArrayListEmployee, index) == 0)
+                    {
+                        returnValue = 1;
+                    }
+                }
+            }
+            else
+            {
+                printf("No se encontro el Empleado ingresado.\n");
+            }
+        }
+    }
+
+    return returnValue;
 }
 
 int controller_ListEmployee(LinkedList* pArrayListEmployee)
@@ -196,6 +245,36 @@ int controller_saveAsBinary(char* path, LinkedList* pArrayListEmployee)
     }
 
     fclose(file);
+
+    return returnValue;
+}
+
+static int getIndexByEmployeeID(LinkedList* pArrayListEmployee, int id)
+{
+    int returnValue = -1;
+    int arrayLength;
+    int i;
+    sEmployee* aux;
+
+    if(pArrayListEmployee != NULL)
+    {
+        arrayLength = ll_len(pArrayListEmployee);
+
+        if(arrayLength > 0)
+        {
+            for(i = 0; i < arrayLength; i++)
+            {
+                aux = ll_get(pArrayListEmployee, i);
+
+                if(aux != NULL
+                   && aux->id == id)
+                {
+                    returnValue = i;
+                    break;
+                }
+            }
+        }
+    }
 
     return returnValue;
 }
