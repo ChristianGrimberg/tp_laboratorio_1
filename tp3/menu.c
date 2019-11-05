@@ -35,19 +35,15 @@ int menu_sort(int* option)
 
     inputs_clearScreen();
 
-    printf(" +=====================================================================+\n");
-    printf(" |                        ORDERNAR EMPLEADOS                           |\n");
-    printf(" +=====================================================================+\n");
-    printf(" |  [1] Ordenar por ID de forma Ascendente.                            |\n");
-    printf(" |  [2] Ordenar por ID de forma Descendente.                           |\n");
-    printf(" |  [3] Ordenar por Nombre de forma Ascendente.                        |\n");
-    printf(" |  [4] Ordenar por Nombre de forma Descendente.                       |\n");
-    printf(" |  [5] Ordenar por Horas Trabajadas de forma Ascendente.              |\n");
-    printf(" |  [6] Ordenar por Horas Trabajadas de forma Descendente.             |\n");
-    printf(" |  [7] Ordenar por Salario de forma Ascendente.                       |\n");
-    printf(" |  [8] Ordenar por Salario de forma Descendente.                      |\n");
-    printf(" |  [9] Volver al menu principal.                                      |\n");
-    printf(" +---------------------------------------------------------------------+\n\n");
+    printf(" +=================================================+\n");
+    printf(" |              ORDERNAR EMPLEADOS                 |\n");
+    printf(" +=================================================+\n");
+    printf(" |  [1] Ordenar por ID.                            |\n");
+    printf(" |  [2] Ordenar por Nombre.                        |\n");
+    printf(" |  [3] Ordenar por Horas Trabajadas.              |\n");
+    printf(" |  [4] Ordenar por Salario.                       |\n");
+    printf(" |  [5] Volver al menu principal.                  |\n");
+    printf(" +-------------------------------------------------+\n\n");
 
     if(!inputs_getInt(option, "Elija una opcion del menu: ", ERROR_MESSAGE, 1, MENU_SORT_MAX))
     {

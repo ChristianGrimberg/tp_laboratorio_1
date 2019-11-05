@@ -7,7 +7,7 @@
  *
  * Versiones:
  *      v2.3 - Implementacion de ABM con LinkedList
- *              [Fecha: 4 de noviembre de 2019]
+ *              [Fecha: 5 de noviembre de 2019]
  *      v2.2 - Implementacion de funciones de gestion de archivos
  *              [Fecha: 4 de noviembre de 2019]
  *      v2.1 - Implementacion de funciones de Empleados
@@ -23,6 +23,7 @@ int main()
     int lifeCycle; /**< Indicador del ciclo de vida de ejecucion de cada menu. >*/
     int optionMenu; /**< Opcion elegida por el usuario de cada menu. >*/
     int sortMenu;
+    int sortOption;
     int employeeQty = 0; /**< Cantidad de Empleados cargados en el arreglo. >*/
     int listMin; /**< Indice minimo del arreglo. >*/
     int listMax; /**< Indice maximo del arreglo. >*/
@@ -153,68 +154,57 @@ int main()
             }
             break;
         case 7: /**< Ordenar Empleados. >*/
-            do
+            employeeQty = ll_len(listaEmpleados);
+
+            if(employeeQty == 0)
             {
-                lifeCycle = menu_sort(&sortMenu);
-
-                if(sortMenu == MENU_SORT_MAX || sortMenu == -1)
+                printf("No hay Empleados cargados en el sistema.\n");
+            }
+            else
+            {
+                do
                 {
-                    break;
-                }
+                    lifeCycle = menu_sort(&sortMenu);
 
-                printf("Aguarde unos instantes...\n");
-                switch(sortMenu)
-                {
-                case 1:
-                    if(ll_sort(listaEmpleados, employee_compareByID, 1) == 0)
+                    if(sortMenu == MENU_SORT_MAX || sortMenu == -1)
                     {
-                        printf("Ordenado por ID de forma Ascendente finalizado.\n");
+                        break;
                     }
-                    break;
-                case 2:
-                    if(ll_sort(listaEmpleados, employee_compareByID, 0) == 0)
+
+                    if(!inputs_getInt(&sortOption, "Ingrese para ordenar: [1] Ascendente - [0] Descendente: ", ERROR_MESSAGE, 0, 1))
                     {
-                        printf("Ordenado por ID de forma Descendente finalizado.\n");
+                        printf("Aguarde unos instantes...\n");
+
+                        switch(sortMenu)
+                        {
+                        case 1: /**< Ordenar por ID. >*/
+                            if(ll_sort(listaEmpleados, employee_compareByID, sortOption) == 0)
+                            {
+                                printf("Ordenado por ID finalizado.\n");
+                            }
+                            break;
+                        case 2: /**< Ordenar por Nombre. >*/
+                            if(ll_sort(listaEmpleados, employee_compareByName, sortOption) == 0)
+                            {
+                                printf("Ordenado por Nombre finalizado.\n");
+                            }
+                            break;
+                        case 3: /**< Ordenar por Horas Trabajadas. >*/
+                            if(ll_sort(listaEmpleados, employee_compareByWorkHours, sortOption) == 0)
+                            {
+                                printf("Ordenado por Horas Trabajadas finalizado.\n");
+                            }
+                            break;
+                        case 4: /**< Ordenar por Salario de forma Ascendente. >*/
+                            if(ll_sort(listaEmpleados, employee_compareBySalary, sortOption) == 0)
+                            {
+                                printf("Ordenado por Salario finalizado.\n");
+                            }
+                            break;
+                        }
                     }
-                    break;
-                case 3: /**< Ordenar por Nombre de forma Ascendente. >*/
-                    if(ll_sort(listaEmpleados, employee_compareByName, 1) == 0)
-                    {
-                        printf("Ordenado por Nombre de forma Ascendente finalizado.\n");
-                    }
-                    break;
-                case 4: /**< Ordenar por Nombre de forma Descendente. >*/
-                    if(ll_sort(listaEmpleados, employee_compareByName, 0) == 0)
-                    {
-                        printf("Ordenado por Nombre de forma Descendente finalizado.\n");
-                    }
-                    break;
-                case 5: /**< Ordenar por Horas Trabajadas de forma Ascendente. >*/
-                    if(ll_sort(listaEmpleados, employee_compareByWorkHours, 1) == 0)
-                    {
-                        printf("Ordenado por Horas Trabajadas de forma Ascendente finalizado.\n");
-                    }
-                    break;
-                case 6: /**< Ordenar por Horas Trabajadas de forma Descendente. >*/
-                    if(ll_sort(listaEmpleados, employee_compareByWorkHours, 0) == 0)
-                    {
-                        printf("Ordenado por Horas Trabajadas de forma Descendente finalizado.\n");
-                    }
-                    break;
-                case 7: /**< Ordenar por Salario de forma Ascendente. >*/
-                    if(ll_sort(listaEmpleados, employee_compareBySalary, 1) == 0)
-                    {
-                        printf("Ordenado por Salario de forma Ascendente finalizado.\n");
-                    }
-                    break;
-                case 8: /**< Ordenar por Salario de forma Descendente. >*/
-                    if(ll_sort(listaEmpleados, employee_compareBySalary, 0) == 0)
-                    {
-                        printf("Ordenado por Salario de forma Descendente finalizado.\n");
-                    }
-                    break;
-                }
-            }while(lifeCycle != 0);
+                }while(lifeCycle != 0);
+            }
             break;
         case 8: /**< Guardar los datos de los empleados en el archivo data.csv (modo texto). >*/
             if(!controller_saveAsText(textPath, listaEmpleados))

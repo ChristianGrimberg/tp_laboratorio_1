@@ -83,7 +83,43 @@ int controller_addEmployee(LinkedList* pArrayListEmployee)
 
 int controller_editEmployee(LinkedList* pArrayListEmployee)
 {
-    return 0;
+    int returnValue = 0;
+    int id;
+    int max;
+    int index;
+    sEmployee* aux = employee_new();
+    LinkedList* sublist;
+
+    if(pArrayListEmployee != NULL && aux != NULL)
+    {
+        max = employee_getNextId(pArrayListEmployee) - 1;
+
+        if(max > 0 && !inputs_getInt(&id, "Ingrese el ID del Empleado que desea modificar: ", ERROR_MESSAGE, 1, max))
+        {
+            index = getIndexByEmployeeID(pArrayListEmployee, id);
+
+            if(index != -1)
+            {
+                sublist = ll_subList(pArrayListEmployee, index, index + 1);
+
+                if(sublist != NULL && controller_ListEmployee(sublist) == 1)
+                {
+                    aux = (sEmployee*)ll_get(pArrayListEmployee, index);
+
+                    if(aux != NULL)
+                    {
+                        returnValue = 1;
+                    }
+                }
+            }
+            else
+            {
+                printf("No se encontro el Empleado ingresado.\n");
+            }
+        }
+    }
+
+    return returnValue;
 }
 
 int controller_removeEmployee(LinkedList* pArrayListEmployee)
