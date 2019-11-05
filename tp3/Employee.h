@@ -148,4 +148,16 @@ void employee_delete(sEmployee* this);
  */
 int employee_getNextId(LinkedList* pArrayListEmployee);
 
+/** \brief Funcion que compara dos elementos casteados a Empleados por el nombre.
+ *
+ * \param pElement1 void* Puntero a elemento generico.
+ * \param pElement2 void* Puntero a elemento generico.
+ * \return int
+ *          [0] Si tienen el mismo nombre.
+ *          < 0 Si el primer nombre esta primero en el diccionario.
+ *          > 0 Si el segundo nombre esta primero en el diccionario.
+ *
+ */
+int employee_compareByName(void* pElement1, void* pElement2);
+
 #endif // EMPLOYEE_H_INCLUDED

@@ -92,10 +92,10 @@ int controller_removeEmployee(LinkedList* pArrayListEmployee)
     int id;
     int index;
     int max;
-    sEmployee* aux;
+    sEmployee* aux = employee_new();
     LinkedList* sublist;
 
-    if(pArrayListEmployee != NULL)
+    if(pArrayListEmployee != NULL && aux != NULL)
     {
         max = employee_getNextId(pArrayListEmployee) - 1;
 
@@ -116,6 +116,7 @@ int controller_removeEmployee(LinkedList* pArrayListEmployee)
                        && ll_remove(pArrayListEmployee, index) == 0)
                     {
                         returnValue = 1;
+                        employee_delete(aux);
                     }
                 }
             }

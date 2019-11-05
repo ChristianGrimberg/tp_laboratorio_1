@@ -198,3 +198,17 @@ int employee_getNextId(LinkedList* pArrayListEmployee)
 
     return maxValue;
 }
+
+int employee_compareByName(void* pElement1, void* pElement2)
+{
+    int compare;
+    sEmployee* aux1 = (sEmployee*)pElement1;
+    sEmployee* aux2 = (sEmployee*)pElement2;
+
+    if(aux1 != NULL && aux2 != NULL)
+    {
+        compare = strcmp(arrays_stringToCamelCase(aux1->name, EMPLOYEE_NAME_MAX), arrays_stringToCamelCase(aux2->name, EMPLOYEE_NAME_MAX));
+    }
+
+    return compare;
+}

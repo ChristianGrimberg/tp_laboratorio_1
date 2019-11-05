@@ -22,6 +22,7 @@ int main()
 {
     int lifeCycle; /**< Indicador del ciclo de vida de ejecucion de cada menu. >*/
     int optionMenu; /**< Opcion elegida por el usuario de cada menu. >*/
+    int sortMenu;
     int employeeQty = 0; /**< Cantidad de Empleados cargados en el arreglo. >*/
     int listMin; /**< Indice minimo del arreglo. >*/
     int listMax; /**< Indice maximo del arreglo. >*/
@@ -150,6 +151,34 @@ int main()
                     }
                 }
             }
+            break;
+        case 7: /**< Ordenar Empleados. >*/
+            do
+            {
+                lifeCycle = menu_sort(&sortMenu);
+
+                if(sortMenu == MENU_SORT_MAX || sortMenu == -1)
+                {
+                    break;
+                }
+
+                printf("Aguarde unos instantes...\n");
+                switch(sortMenu)
+                {
+                case 3: /**< Ordenar por Nombre de forma Ascendente. >*/
+                    if(ll_sort(listaEmpleados, employee_compareByName, 1) == 0)
+                    {
+                        printf("Ordenado por Nombre de forma Ascendente finalizado.\n");
+                    }
+                    break;
+                case 4: /**< Ordenar por Nombre de forma Descendente. >*/
+                    if(ll_sort(listaEmpleados, employee_compareByName, 0) == 0)
+                    {
+                        printf("Ordenado por Nombre de forma Descendente finalizado.\n");
+                    }
+                    break;
+                }
+            }while(lifeCycle != 0);
             break;
         case 8: /**< Guardar los datos de los empleados en el archivo data.csv (modo texto). >*/
             if(!controller_saveAsText(textPath, listaEmpleados))
