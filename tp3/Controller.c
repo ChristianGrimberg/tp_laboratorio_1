@@ -41,7 +41,33 @@ int controller_loadFromBinary(char* path, LinkedList* pArrayListEmployee)
 
 int controller_addEmployee(LinkedList* pArrayListEmployee)
 {
-    return 0;
+    int returnValue = 0;
+    int id;
+    int workHours;
+    int salary;
+    char name[EMPLOYEE_NAME_MAX];
+    sEmployee* aux = NULL;
+
+    if(pArrayListEmployee != NULL)
+    {
+        id = employee_getNextId(pArrayListEmployee);
+
+        if(id != -1
+           && !inputs_getString(name, "Ingrese el nombre del Empleado: ", ERROR_MESSAGE, 1, EMPLOYEE_NAME_MAX)
+           && !inputs_getInt(&workHours, "Ingrese las Horas Trabajadas: ", ERROR_MESSAGE, 0, EMPLOYEE_WORKHOURS_MAX)
+           && !inputs_getInt(&salary, "Ingrese el Salario: ", ERROR_MESSAGE, 0, EMPLOYEE_SALARY_MAX))
+        {
+            aux = employee_newWithParameters(&id, arrays_stringToCamelCase(name, EMPLOYEE_NAME_MAX), &workHours, &salary);
+
+            if(aux != NULL
+               && ll_add(pArrayListEmployee, (sEmployee*)aux) == 0)
+            {
+                returnValue = 1;
+            }
+        }
+    }
+
+    return returnValue;
 }
 
 int controller_editEmployee(LinkedList* pArrayListEmployee)

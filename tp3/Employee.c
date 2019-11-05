@@ -84,7 +84,8 @@ int employee_setWorkHours(sEmployee* this, int workHours)
     int returnValue;
 
     if(this != NULL
-       && workHours >= 0)
+       && workHours >= 0
+       && workHours <= EMPLOYEE_WORKHOURS_MAX)
     {
         this->workHours = workHours;
         returnValue = 1;
@@ -111,7 +112,8 @@ int employee_setSalary(sEmployee* this, int salary)
     int returnValue;
 
     if(this != NULL
-       && salary >= 0)
+       && salary >= 0
+       && salary <= EMPLOYEE_SALARY_MAX)
     {
         this->salary = salary;
         returnValue = 1;
@@ -148,7 +150,7 @@ void employee_delete(sEmployee* this)
 
 int employee_getNextId(LinkedList* pArrayListEmployee)
 {
-    int maxValue = 0;
+    int maxValue = -1;
     int arrayLength = 0;
     int i;
     int counter = 0;
@@ -172,7 +174,8 @@ int employee_getNextId(LinkedList* pArrayListEmployee)
                     }
                     else
                     {
-                        if(aux->id > maxValue)
+                        if(aux->id > maxValue
+                           && aux->id < EMPLOYEE_MAX)
                         {
                             maxValue = aux->id;
                         }
@@ -182,7 +185,16 @@ int employee_getNextId(LinkedList* pArrayListEmployee)
                 }
             }
         }
+
+        if(counter > 0)
+        {
+            maxValue++;
+        }
+        else
+        {
+            maxValue = 1;
+        }
     }
 
-    return (maxValue + 1);
+    return maxValue;
 }

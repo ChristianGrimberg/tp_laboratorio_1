@@ -3,9 +3,11 @@
 
 #include "LinkedList.h"
 
-#define EMPLOYEE_NAME_MAX 128 /**< Longitud maxima del Nombre de un Empleado. >*/
 #define ID_INIT_EMPLOYEE 0 /**< Valor inicial del ID de un Empleado. >*/
 #define EMPLOYEE_MAX 1500 /**< Cantidad maxima de Empleados en un arreglo. >*/
+#define EMPLOYEE_NAME_MAX 128 /**< Longitud maxima del Nombre de un Empleado. >*/
+#define EMPLOYEE_WORKHOURS_MAX 750 /**< Cantidad de horas maximas trabajadas. >*/
+#define EMPLOYEE_SALARY_MAX 500000 /**< Salario maximo de un Empleado. >*/
 
 typedef struct
 {

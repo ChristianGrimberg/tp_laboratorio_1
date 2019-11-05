@@ -6,6 +6,8 @@
  *      mediante la biblioteca de LinkedList.
  *
  * Versiones:
+ *      v2.3 - Implementacion de ABM con LinkedList
+ *              [Fecha: 4 de noviembre de 2019]
  *      v2.2 - Implementacion de funciones de gestion de archivos
  *              [Fecha: 4 de noviembre de 2019]
  *      v2.1 - Implementacion de funciones de Empleados
@@ -21,7 +23,11 @@ int main()
     int lifeCycle; /**< Indicador del ciclo de vida de ejecucion de cada menu. >*/
     int optionMenu; /**< Opcion elegida por el usuario de cada menu. >*/
     int employeeQty = 0; /**< Cantidad de Empleados cargados en el arreglo. >*/
+    int listMin;
+    int listMax;
+    int counter;
     LinkedList* listaEmpleados = ll_newLinkedList(); /**< Invocacion de arreglo generico. >*/
+    LinkedList* subLista = ll_newLinkedList();
     char textPath[PATH_MAX] = "data.csv"; /**< Path del archivo de texto a trabajar. >*/
     char binaryPath[PATH_MAX] = "data.bin"; /**< Path del archivo binario a trabajar. >*/
 
@@ -78,26 +84,51 @@ int main()
             }
             break;
         case 3: /**< Alta de Empleado. >*/
-            printf("Longitud: %d - Empleado ID: %d\n", ll_len(listaEmpleados), employee_getNextId(listaEmpleados));
+            inputs_clearScreen();
+
+            if(controller_addEmployee(listaEmpleados))
+            {
+                printf("Empleado agregado con exito.\n");
+            }
+            else
+            {
+                printf("Error de carga del Empleado.\n");
+            }
             break;
         case 6:
-            employeeQty = 0;
+            listMin = 0;
+            counter = 0;
+            employeeQty = ll_len(listaEmpleados);
 
-            while(employeeQty < ll_len(listaEmpleados))
+            if(employeeQty == 0)
             {
-                inputs_clearScreen();
-
-                employeeQty += controller_ListEmployee(ll_subList(listaEmpleados, employeeQty, employeeQty + CONTROLLER_LIST_MAX));
-
-                if(employeeQty == 0)
+                printf("No hay Empleados cargados en el sistema.\n");
+            }
+            else
+            {
+                while(listMin < employeeQty)
                 {
-                    printf("No hay Empleados cargados en el sistema.\n");
-                    break;
-                }
+                    inputs_clearScreen();
 
-                if(employeeQty < ll_len(listaEmpleados))
-                {
-                    inputs_pauseScreen("Presione Enter para ver la siguiente pagina.");
+                    counter++;
+
+                    if(employeeQty > (counter * CONTROLLER_LIST_MAX))
+                    {
+                        listMax = listMin + CONTROLLER_LIST_MAX;
+                    }
+                    else
+                    {
+                        listMax = employeeQty;
+                    }
+
+                    subLista = ll_subList(listaEmpleados, listMin, listMax);
+
+                    listMin += controller_ListEmployee(subLista);
+
+                    if(listMin < employeeQty)
+                    {
+                        inputs_pauseScreen("Presione Enter para ver la siguiente pagina.");
+                    }
                 }
             }
             break;
