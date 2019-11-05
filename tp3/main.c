@@ -165,6 +165,18 @@ int main()
                 printf("Aguarde unos instantes...\n");
                 switch(sortMenu)
                 {
+                case 1:
+                    if(ll_sort(listaEmpleados, employee_compareByID, 1) == 0)
+                    {
+                        printf("Ordenado por ID de forma Ascendente finalizado.\n");
+                    }
+                    break;
+                case 2:
+                    if(ll_sort(listaEmpleados, employee_compareByID, 0) == 0)
+                    {
+                        printf("Ordenado por ID de forma Descendente finalizado.\n");
+                    }
+                    break;
                 case 3: /**< Ordenar por Nombre de forma Ascendente. >*/
                     if(ll_sort(listaEmpleados, employee_compareByName, 1) == 0)
                     {
@@ -175,6 +187,30 @@ int main()
                     if(ll_sort(listaEmpleados, employee_compareByName, 0) == 0)
                     {
                         printf("Ordenado por Nombre de forma Descendente finalizado.\n");
+                    }
+                    break;
+                case 5: /**< Ordenar por Horas Trabajadas de forma Ascendente. >*/
+                    if(ll_sort(listaEmpleados, employee_compareByWorkHours, 1) == 0)
+                    {
+                        printf("Ordenado por Horas Trabajadas de forma Ascendente finalizado.\n");
+                    }
+                    break;
+                case 6: /**< Ordenar por Horas Trabajadas de forma Descendente. >*/
+                    if(ll_sort(listaEmpleados, employee_compareByWorkHours, 0) == 0)
+                    {
+                        printf("Ordenado por Horas Trabajadas de forma Descendente finalizado.\n");
+                    }
+                    break;
+                case 7: /**< Ordenar por Salario de forma Ascendente. >*/
+                    if(ll_sort(listaEmpleados, employee_compareBySalary, 1) == 0)
+                    {
+                        printf("Ordenado por Salario de forma Ascendente finalizado.\n");
+                    }
+                    break;
+                case 8: /**< Ordenar por Salario de forma Descendente. >*/
+                    if(ll_sort(listaEmpleados, employee_compareBySalary, 0) == 0)
+                    {
+                        printf("Ordenado por Salario de forma Descendente finalizado.\n");
                     }
                     break;
                 }

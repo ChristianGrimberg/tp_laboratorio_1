@@ -148,6 +148,18 @@ void employee_delete(sEmployee* this);
  */
 int employee_getNextId(LinkedList* pArrayListEmployee);
 
+/** \brief Funcion que compara dos elementos casteados a Empleados por el ID.
+ *
+ * \param pElement1 void* Puntero a elemento generico.
+ * \param pElement2 void* Puntero a elemento generico.
+ * \return int
+ *          [0] Si tienen el mismo ID.
+ *          < 0 Si el primer ID es mayor que el segundo.
+ *          > 0 Si el segundo ID es mayor que el primero.
+ *
+ */
+int employee_compareByID(void* pElement1, void* pElement2);
+
 /** \brief Funcion que compara dos elementos casteados a Empleados por el nombre.
  *
  * \param pElement1 void* Puntero a elemento generico.
@@ -159,5 +171,29 @@ int employee_getNextId(LinkedList* pArrayListEmployee);
  *
  */
 int employee_compareByName(void* pElement1, void* pElement2);
+
+/** \brief Funcion que compara dos elementos casteados a Empleados por el Horas Trabajadas.
+ *
+ * \param pElement1 void* Puntero a elemento generico.
+ * \param pElement2 void* Puntero a elemento generico.
+ * \return int
+ *          [0] Si tienen la mismas carga de Horas Trabajadas.
+ *          < 0 Si el primero tiene mas horas que el segundo.
+ *          > 0 Si el segundo tiene mas horas que el primero.
+ *
+ */
+int employee_compareByWorkHours(void* pElement1, void* pElement2);
+
+/** \brief Funcion que compara dos elementos casteados a Empleados por el Salario.
+ *
+ * \param pElement1 void* Puntero a elemento generico.
+ * \param pElement2 void* Puntero a elemento generico.
+ * \return int
+ *          [0] Si ambos tienen el mismo Salario.
+ *          < 0 Si el primero tiene mejor Salario que el segundo.
+ *          > 0 Si el segundo tiene mejor Salario que el primero.
+ *
+ */
+int employee_compareBySalary(void* pElement1, void* pElement2);
 
 #endif // EMPLOYEE_H_INCLUDED

@@ -199,6 +199,37 @@ int employee_getNextId(LinkedList* pArrayListEmployee)
     return maxValue;
 }
 
+int employee_compareByID(void* pElement1, void* pElement2)
+{
+    int compare;
+    int result;
+    sEmployee* aux1 = (sEmployee*)pElement1;
+    sEmployee* aux2 = (sEmployee*)pElement2;
+
+    if(aux1 != NULL && aux2 != NULL)
+    {
+        result = aux1->id - aux2->id;
+
+        if(result > 0)
+        {
+            compare = 1;
+        }
+        else
+        {
+            if(result < 0)
+            {
+                compare = -1;
+            }
+            else
+            {
+                compare = 0;
+            }
+        }
+    }
+
+    return compare;
+}
+
 int employee_compareByName(void* pElement1, void* pElement2)
 {
     int compare;
@@ -208,6 +239,68 @@ int employee_compareByName(void* pElement1, void* pElement2)
     if(aux1 != NULL && aux2 != NULL)
     {
         compare = strcmp(arrays_stringToCamelCase(aux1->name, EMPLOYEE_NAME_MAX), arrays_stringToCamelCase(aux2->name, EMPLOYEE_NAME_MAX));
+    }
+
+    return compare;
+}
+
+int employee_compareByWorkHours(void* pElement1, void* pElement2)
+{
+    int compare;
+    int result;
+    sEmployee* aux1 = (sEmployee*)pElement1;
+    sEmployee* aux2 = (sEmployee*)pElement2;
+
+    if(aux1 != NULL && aux2 != NULL)
+    {
+        result = aux1->workHours - aux2->workHours;
+
+        if(result > 0)
+        {
+            compare = 1;
+        }
+        else
+        {
+            if(result < 0)
+            {
+                compare = -1;
+            }
+            else
+            {
+                compare = 0;
+            }
+        }
+    }
+
+    return compare;
+}
+
+int employee_compareBySalary(void* pElement1, void* pElement2)
+{
+    int compare;
+    int result;
+    sEmployee* aux1 = (sEmployee*)pElement1;
+    sEmployee* aux2 = (sEmployee*)pElement2;
+
+    if(aux1 != NULL && aux2 != NULL)
+    {
+        result = aux1->salary- aux2->salary;
+
+        if(result > 0)
+        {
+            compare = 1;
+        }
+        else
+        {
+            if(result < 0)
+            {
+                compare = -1;
+            }
+            else
+            {
+                compare = 0;
+            }
+        }
     }
 
     return compare;
