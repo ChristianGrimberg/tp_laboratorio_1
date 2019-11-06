@@ -256,15 +256,9 @@ int controller_sortEmployee(LinkedList* pArrayListEmployee)
                         returnValue = 1;
                         break;
                     }
-                    else
-                    {
-                        if(sortMenu == -1)
-                        {
-                            break;
-                        }
-                    }
                 }
-            }while(lifeCycle != 0);
+                inputs_pauseScreen(ENTER_MESSAGE);
+            }while(lifeCycle == 0);
         }
     }
 

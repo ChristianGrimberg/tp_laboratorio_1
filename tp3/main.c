@@ -7,7 +7,7 @@
  *
  * Versiones:
  *      v2.3 - Implementacion de ABM con LinkedList
- *              [Fecha: 5 de noviembre de 2019]
+ *              [Fecha: 6 de noviembre de 2019]
  *      v2.2 - Implementacion de funciones de gestion de archivos
  *              [Fecha: 4 de noviembre de 2019]
  *      v2.1 - Implementacion de funciones de Empleados
@@ -146,7 +146,7 @@ int main()
 
                     if(listMin < employeeQty)
                     {
-                        inputs_pauseScreen("Presione Enter para ver la siguiente pagina.");
+                        inputs_pauseScreen(PAGE_MESSAGE);
                     }
                 }
             }
@@ -187,7 +187,7 @@ int main()
             }
             break;
         }
-        inputs_pauseScreen(CONTINUE_MESSAGE);
+        inputs_pauseScreen(MENU_MESSAGE);
     }while(lifeCycle == 0);
 
     return 0;

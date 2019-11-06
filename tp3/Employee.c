@@ -24,7 +24,7 @@ int employee_getId(sEmployee* this, int* id)
 
 int employee_setId(sEmployee* this, int id)
 {
-    int returnValue;
+    int returnValue = 0;
 
     if(this != NULL
        && id > ID_INIT_EMPLOYEE
@@ -53,7 +53,7 @@ int employee_getName(sEmployee* this, char name[])
 
 int employee_setName(sEmployee* this, char name[])
 {
-    int returnValue;
+    int returnValue = 0;
 
     if(this != NULL
        && this->name !=NULL
@@ -81,7 +81,7 @@ int employee_getWorkHours(sEmployee* this, int* workHours)
 
 int employee_setWorkHours(sEmployee* this, int workHours)
 {
-    int returnValue;
+    int returnValue = 0;
 
     if(this != NULL
        && workHours >= 0
@@ -109,7 +109,7 @@ int employee_getSalary(sEmployee* this, int* salary)
 
 int employee_setSalary(sEmployee* this, int salary)
 {
-    int returnValue;
+    int returnValue = 0;
 
     if(this != NULL
        && salary >= 0
@@ -132,7 +132,6 @@ sEmployee* employee_newWithParameters(int* id, char name[], int* workHours, int*
        || !employee_setWorkHours(aux, *workHours)
        || !employee_setSalary(aux, *salary)))
     {
-        free(aux);
         aux = NULL;
     }
 
@@ -141,11 +140,8 @@ sEmployee* employee_newWithParameters(int* id, char name[], int* workHours, int*
 
 void employee_delete(sEmployee* this)
 {
-    if(this != NULL)
-    {
-        free(this);
-        this = NULL;
-    }
+    free(this);
+    this = NULL;
 }
 
 int employee_getNextId(LinkedList* pArrayListEmployee)
