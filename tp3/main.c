@@ -53,6 +53,8 @@ int main()
             }
         }
 
+        employeeQty = ll_len(listaEmpleados);
+
         switch(optionMenu)
         {
         case 1: /**< Cargar los datos de los empleados desde el archivo data.csv (modo texto). >*/
@@ -92,8 +94,6 @@ int main()
             }
             break;
         case 4: /**< Modificar datos de Empleado. >*/
-            employeeQty = ll_len(listaEmpleados);
-
             if(employeeQty == 0)
             {
                 printf("No hay Empleados cargados en el sistema.\n");
@@ -111,8 +111,6 @@ int main()
             }
             break;
         case 5: /**< Baja de Empleado. >*/
-            employeeQty = ll_len(listaEmpleados);
-
             if(employeeQty == 0)
             {
                 printf("No hay Empleados cargados en el sistema.\n");
@@ -125,13 +123,11 @@ int main()
                 }
                 else
                 {
-                    printf("Error al dar de baja al Empleado.\n");
+                    printf("No se dio de baja ningun Empleado.\n");
                 }
             }
             break;
         case 6: /**< Listar Empleados. >*/
-            employeeQty = ll_len(listaEmpleados);
-
             if(employeeQty == 0)
             {
                 printf("No hay Empleados cargados en el sistema.\n");
@@ -146,8 +142,6 @@ int main()
             }
             break;
         case 7: /**< Ordenar Empleados. >*/
-            employeeQty = ll_len(listaEmpleados);
-
             if(employeeQty == 0)
             {
                 printf("No hay Empleados cargados en el sistema.\n");
