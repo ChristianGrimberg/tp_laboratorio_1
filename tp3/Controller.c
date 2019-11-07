@@ -269,7 +269,8 @@ int controller_ListEmployee(LinkedList* pArrayListEmployee)
                 }
             }
 
-            if(counter > 0 && counter == listMax)
+            if(counter > 0 && counter == listMax
+               && ll_clear(subList) == 0)
             {
                 printf("+-------+----------------------+-------+------------+\n");
             }
@@ -280,6 +281,12 @@ int controller_ListEmployee(LinkedList* pArrayListEmployee)
             {
                 inputs_pauseScreen(PAGE_MESSAGE);
             }
+        }
+
+        if(ll_len(subList) != 0
+           || ll_deleteLinkedList(subList) != 0)
+        {
+            listMax = 0;
         }
     }
     return listMax;
