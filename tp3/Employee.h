@@ -1,11 +1,13 @@
 #ifndef EMPLOYEE_H_INCLUDED
 #define EMPLOYEE_H_INCLUDED
 
-#include "inputs.h"
+#include "LinkedList.h"
 
-#define EMPLOYEE_NAME_MAX 128 /**< Longitud maxima del Nombre de un Empleado. >*/
 #define ID_INIT_EMPLOYEE 0 /**< Valor inicial del ID de un Empleado. >*/
 #define EMPLOYEE_MAX 1500 /**< Cantidad maxima de Empleados en un arreglo. >*/
+#define EMPLOYEE_NAME_MAX 128 /**< Longitud maxima del Nombre de un Empleado. >*/
+#define EMPLOYEE_WORKHOURS_MAX 750 /**< Cantidad de horas maximas trabajadas. >*/
+#define EMPLOYEE_SALARY_MAX 500000 /**< Salario maximo de un Empleado. >*/
 
 typedef struct
 {
@@ -137,5 +139,72 @@ sEmployee* employee_newWithParameters(int* id, char name[], int* workHours, int*
  *
  */
 void employee_delete(sEmployee* this);
+
+/** \brief Funcion que imprime un Empleado en pantalla
+ *          si sus valores estan dentro del rango permitido.
+ *
+ * \param this sEmployee* Direccion de memoria de un Empleado.
+ * \return int
+ *          [0] Si no pudo imprimir el Empleado fuera de rango de valores.
+ *          [1] Si pudo imprimir el Empleado y liberar la memoria.
+ *
+ */
+int employee_print(sEmployee* this);
+
+/** \brief Obtiene el proximo ID de Empleado de un arreglo LinkedList.
+ *
+ * \param pArrayListEmployee LinkedList* Arreglo de tipo LinkedList.
+ * \return int Proximo ID de Empleado.
+ *
+ */
+int employee_getNextId(LinkedList* pArrayListEmployee);
+
+/** \brief Funcion que compara dos elementos casteados a Empleados por el ID.
+ *
+ * \param pElement1 void* Puntero a elemento generico.
+ * \param pElement2 void* Puntero a elemento generico.
+ * \return int
+ *          [0] Si tienen el mismo ID.
+ *          < 0 Si el primer ID es mayor que el segundo.
+ *          > 0 Si el segundo ID es mayor que el primero.
+ *
+ */
+int employee_compareByID(void* pElement1, void* pElement2);
+
+/** \brief Funcion que compara dos elementos casteados a Empleados por el nombre.
+ *
+ * \param pElement1 void* Puntero a elemento generico.
+ * \param pElement2 void* Puntero a elemento generico.
+ * \return int
+ *          [0] Si tienen el mismo nombre.
+ *          < 0 Si el primer nombre esta primero en el diccionario.
+ *          > 0 Si el segundo nombre esta primero en el diccionario.
+ *
+ */
+int employee_compareByName(void* pElement1, void* pElement2);
+
+/** \brief Funcion que compara dos elementos casteados a Empleados por el Horas Trabajadas.
+ *
+ * \param pElement1 void* Puntero a elemento generico.
+ * \param pElement2 void* Puntero a elemento generico.
+ * \return int
+ *          [0] Si tienen la mismas carga de Horas Trabajadas.
+ *          < 0 Si el primero tiene mas horas que el segundo.
+ *          > 0 Si el segundo tiene mas horas que el primero.
+ *
+ */
+int employee_compareByWorkHours(void* pElement1, void* pElement2);
+
+/** \brief Funcion que compara dos elementos casteados a Empleados por el Salario.
+ *
+ * \param pElement1 void* Puntero a elemento generico.
+ * \param pElement2 void* Puntero a elemento generico.
+ * \return int
+ *          [0] Si ambos tienen el mismo Salario.
+ *          < 0 Si el primero tiene mejor Salario que el segundo.
+ *          > 0 Si el segundo tiene mejor Salario que el primero.
+ *
+ */
+int employee_compareBySalary(void* pElement1, void* pElement2);
 
 #endif // EMPLOYEE_H_INCLUDED

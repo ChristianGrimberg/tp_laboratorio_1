@@ -6,6 +6,8 @@
  *      mediante la biblioteca de LinkedList.
  *
  * Versiones:
+ *      v2.3 - Implementacion de ABM con LinkedList
+ *              [Fecha: 6 de noviembre de 2019]
  *      v2.2 - Implementacion de funciones de gestion de archivos
  *              [Fecha: 4 de noviembre de 2019]
  *      v2.1 - Implementacion de funciones de Empleados
@@ -14,7 +16,7 @@
  * Autor: Christian Grimberg
  *
  ************************************************************************/
-#include "menu.h"
+#include "Controller.h"
 
 int main()
 {
@@ -51,6 +53,8 @@ int main()
             }
         }
 
+        employeeQty = ll_len(listaEmpleados);
+
         switch(optionMenu)
         {
         case 1: /**< Cargar los datos de los empleados desde el archivo data.csv (modo texto). >*/
@@ -77,24 +81,76 @@ int main()
                 printf("No se puede cargar Empleados.\n");
             }
             break;
-        case 6:
-            employeeQty = 0;
+        case 3: /**< Alta de Empleado. >*/
+            inputs_clearScreen();
 
-            while(employeeQty < ll_len(listaEmpleados))
+            if(controller_addEmployee(listaEmpleados))
             {
-                inputs_clearScreen();
-
-                employeeQty += controller_ListEmployee(ll_subList(listaEmpleados, employeeQty, employeeQty + CONTROLLER_LIST_MAX));
-
-                if(employeeQty == 0)
+                printf("Empleado agregado con exito.\n");
+            }
+            else
+            {
+                printf("Error de carga del Empleado.\n");
+            }
+            break;
+        case 4: /**< Modificar datos de Empleado. >*/
+            if(employeeQty == 0)
+            {
+                printf("No hay Empleados cargados en el sistema.\n");
+            }
+            else
+            {
+                if(controller_editEmployee(listaEmpleados))
                 {
-                    printf("No hay Empleados cargados en el sistema.\n");
-                    break;
+                    printf("Empleado modificado con exito.\n");
                 }
-
-                if(employeeQty < ll_len(listaEmpleados))
+                else
                 {
-                    inputs_pauseScreen("Presione Enter para ver la siguiente pagina.");
+                    printf("Se cancelo la edicion.\n");
+                }
+            }
+            break;
+        case 5: /**< Baja de Empleado. >*/
+            if(employeeQty == 0)
+            {
+                printf("No hay Empleados cargados en el sistema.\n");
+            }
+            else
+            {
+                if(controller_removeEmployee(listaEmpleados))
+                {
+                    printf("Empleado dado de baja con exito.\n");
+                }
+                else
+                {
+                    printf("No se dio de baja ningun Empleado.\n");
+                }
+            }
+            break;
+        case 6: /**< Listar Empleados. >*/
+            if(employeeQty == 0)
+            {
+                printf("No hay Empleados cargados en el sistema.\n");
+            }
+            else
+            {
+                employeeQty = controller_ListEmployee(listaEmpleados);
+                if(employeeQty > 0)
+                {
+                    printf("Se listaron %d Empleados cargados en el sistema.\n", employeeQty);
+                }
+            }
+            break;
+        case 7: /**< Ordenar Empleados. >*/
+            if(employeeQty == 0)
+            {
+                printf("No hay Empleados cargados en el sistema.\n");
+            }
+            else
+            {
+                if(!controller_sortEmployee(listaEmpleados))
+                {
+                    printf("Error al efectuar el ordenamiento.\n");
                 }
             }
             break;
@@ -119,8 +175,8 @@ int main()
             }
             break;
         }
-        inputs_pauseScreen(CONTINUE_MESSAGE);
+        inputs_pauseScreen(MENU_MESSAGE);
     }while(lifeCycle == 0);
 
-    return 0;
+    return EXIT_SUCCESS;
 }

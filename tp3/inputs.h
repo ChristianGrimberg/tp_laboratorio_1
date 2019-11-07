@@ -9,10 +9,14 @@
 #define YES 'S' /**< Respuesta SI por teclado. >*/
 #define NO 'N' /**< Respuesta NO por teclado. >*/
 #define ERROR_MESSAGE "Intente nuevamente: " /**< Mensaje de solicitud de error al usuario. >*/
-/**< Mensaje en pantalla para presionar la tecla Enter y continuar. >*/
-#define CONTINUE_MESSAGE "Presione la tecla Enter volver al menu de opciones..."
+/**< Mensaje en pantalla para presionar la tecla Enter y volver al menu principal. >*/
+#define MENU_MESSAGE "Presione la tecla Enter volver al menu de opciones..."
 /**< Mensaje en pantalla para presionar la tecla Enter y salir del programa. >*/
 #define QUIT_MESSAGE "Presione la tecla Enter para salir del programa..."
+/**< Mensaje en pantalla para presionar la tecla Enter y continuar. >*/
+#define ENTER_MESSAGE "Presione la tecla Enter para continuar..."
+/**< Mensaje en pantalla para presionar la tecla Enter y ver la siguiente pagina. >*/
+#define PAGE_MESSAGE "Presione Enter para ver la siguiente pagina..."
 
 /** \brief Funcion que limpia el buffer de entrada a posterior del ingreso por teclado.
  *
@@ -135,6 +139,19 @@ int inputs_getChar(char* input, char message[], char eMessage[], char lowLimit, 
  *
  */
 int inputs_getString(char* input, char message[], char eMessage[], int lowLimit, int hiLimit);
+
+/** \brief Solicita una cadena de caracteres de solo letras al usuario y la valida.
+ *
+ * \param input char* Cadena de Caracteres a modificar.
+ * \param message[] char Es el mensaje a ser mostrado.
+ * \param eMessage[] char Es el mensaje a ser mostrado en caso de error.
+ * \param lowLimit int Longitud minima de la cadena.
+ * \param hiLimit int Longitud maxima de la cadena.
+ * \return int
+ *      Si obtuvo la cadena de solo letras devuelve [0] si no [-1].
+ *
+ */
+int inputs_getStringOnlyLetters(char* input, char message[], char eMessage[], int lowLimit, int hiLimit);
 
 /** \brief Solicita la carga de una fecha en pantalla
  *      en formato latinoamericano DD/MM/AAAA.
