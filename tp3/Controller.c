@@ -204,7 +204,7 @@ int controller_removeEmployee(LinkedList* pArrayListEmployee)
                     if(ll_remove(pArrayListEmployee, index) == 0)
                     {
                         returnValue = 1;
-                        free(aux);
+                        employee_delete(aux);
                         aux = NULL;
                     }
                 }

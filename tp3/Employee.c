@@ -132,7 +132,7 @@ sEmployee* employee_newWithParameters(int* id, char name[], int* workHours, int*
        || !employee_setWorkHours(aux, *workHours)
        || !employee_setSalary(aux, *salary)))
     {
-        free(aux);
+        employee_delete(aux);
         aux = NULL;
     }
 
@@ -142,7 +142,6 @@ sEmployee* employee_newWithParameters(int* id, char name[], int* workHours, int*
 void employee_delete(sEmployee* this)
 {
     free(this);
-    this = NULL;
 }
 
 int employee_print(sEmployee* this)
