@@ -1,5 +1,16 @@
 #include "inputs.h"
 
+/** \brief Funcion que indica si una cadena de caracteres
+ *          esta compuesta solo por letras.
+ *
+ * \param stringValue[] char Cadena de caracteres a evaluar.
+ * \return int
+ *          [0] Si tiene al menos un caracter que no es una letra.
+ *          [1] Si todos sus carateres son letras.
+ *
+ */
+static int stringOnlyLetters(char stringValue[]);
+
 void inputs_clearBufferAfter()
 {
     /**< Mientras que en el buffer no exista un Enter
@@ -367,6 +378,60 @@ int inputs_getString(char* input, char message[], char eMessage[], int lowLimit,
     return returnValue;
 }
 
+int inputs_getStringOnlyLetters(char* input, char message[], char eMessage[], int lowLimit, int hiLimit)
+{
+    int returnValue = -1; /**< Variable de retorno. >*/
+    int counter = 0; /**< Variable contador de ciclos de solicitudes al usuario. >*/
+    int sizeScan = 0; /**< Variable para almacenar el tamano de la cadena ingresada. >*/
+
+    char auxMessage[STRING_MAX]; /**< Variable para almacenar la cadena ingresada por teclado. >*/
+
+    if(input != NULL && message != NULL && eMessage != NULL
+        && hiLimit >= lowLimit && hiLimit < STRING_MAX && lowLimit > 0)
+    {
+        do
+        {
+            counter++;
+
+            if(counter == 1)
+            {
+                printf("%s", message);
+            }
+            else
+            {
+                if(counter > 1)
+                {
+                    printf("%s", eMessage);
+                }
+            }
+
+            setbuf(stdin, NULL); /**< Limpieza de buffer previo. */
+            if(scanf("%[^\n]s", auxMessage)) /**< Metodo para escanear la cadena completa con espacios */
+            {
+                sizeScan = strlen(auxMessage);
+            }
+            else
+            {
+                continue;
+            }
+        } while((sizeScan < lowLimit || sizeScan > hiLimit) || !stringOnlyLetters(auxMessage));
+
+        if(sizeScan >= lowLimit && sizeScan <= hiLimit
+            && sizeScan > 0 && hiLimit < STRING_MAX
+            && stringOnlyLetters(auxMessage))
+        {
+            /**< Se controla el uso de memoria agregando el caracter terminador. */
+            auxMessage[STRING_MAX-1] = EXIT_BUFFER;
+
+            strcpy(input, auxMessage);
+
+            returnValue = 0;
+        }
+    }
+
+    return returnValue;
+}
+
 int inputs_getDate(sDate* date, char message[], char eMessage[], sDate dateMin, sDate dateMax)
 {
     int returnValue = -1;
@@ -520,6 +585,29 @@ int inputs_userResponse(char message[])
         }
 
         inputs_clearBufferAfter();
+    }
+
+    return returnValue;
+}
+
+static int stringOnlyLetters(char stringValue[])
+{
+    int returnValue = 1;
+    int i = 0;
+
+    if(stringValue != NULL)
+    {
+        while(stringValue[i] != '\0')
+        {
+            if((stringValue[i] != ' ')
+               && (stringValue[i] < 'a' || stringValue[i] > 'z')
+               && (stringValue[i] < 'A' || stringValue[i] > 'Z'))
+            {
+                returnValue = 0;
+                break;
+            }
+            i++;
+        }
     }
 
     return returnValue;

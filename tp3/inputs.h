@@ -140,6 +140,19 @@ int inputs_getChar(char* input, char message[], char eMessage[], char lowLimit, 
  */
 int inputs_getString(char* input, char message[], char eMessage[], int lowLimit, int hiLimit);
 
+/** \brief Solicita una cadena de caracteres de solo letras al usuario y la valida.
+ *
+ * \param input char* Cadena de Caracteres a modificar.
+ * \param message[] char Es el mensaje a ser mostrado.
+ * \param eMessage[] char Es el mensaje a ser mostrado en caso de error.
+ * \param lowLimit int Longitud minima de la cadena.
+ * \param hiLimit int Longitud maxima de la cadena.
+ * \return int
+ *      Si obtuvo la cadena de solo letras devuelve [0] si no [-1].
+ *
+ */
+int inputs_getStringOnlyLetters(char* input, char message[], char eMessage[], int lowLimit, int hiLimit);
+
 /** \brief Solicita la carga de una fecha en pantalla
  *      en formato latinoamericano DD/MM/AAAA.
  *

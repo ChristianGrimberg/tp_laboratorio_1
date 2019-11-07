@@ -64,7 +64,7 @@ int controller_addEmployee(LinkedList* pArrayListEmployee)
         id = employee_getNextId(pArrayListEmployee);
 
         if(id != -1
-           && !inputs_getString(name, "Ingrese el nombre del Empleado: ", ERROR_MESSAGE, 1, EMPLOYEE_NAME_MAX)
+           && !inputs_getStringOnlyLetters(name, "Ingrese el nombre del Empleado: ", ERROR_MESSAGE, 1, EMPLOYEE_NAME_MAX)
            && !inputs_getInt(&workHours, "Ingrese las Horas Trabajadas: ", ERROR_MESSAGE, 0, EMPLOYEE_WORKHOURS_MAX)
            && !inputs_getInt(&salary, "Ingrese el Salario: ", ERROR_MESSAGE, 0, EMPLOYEE_SALARY_MAX))
         {
