@@ -87,29 +87,84 @@ int controller_editEmployee(LinkedList* pArrayListEmployee)
     int id;
     int max;
     int index;
-    sEmployee* aux = employee_new();
-    LinkedList* sublist;
+    int lifeCycle;
+    int editMenu;
+    sEmployee* beforeEdit = employee_new();
+    sEmployee* afterEdit;
 
-    if(pArrayListEmployee != NULL && aux != NULL)
+    if(pArrayListEmployee != NULL && beforeEdit != NULL)
     {
         max = employee_getNextId(pArrayListEmployee) - 1;
 
-        if(max > 0 && !inputs_getInt(&id, "Ingrese el ID del Empleado que desea modificar: ", ERROR_MESSAGE, 1, max))
+        if(max > 0 && !inputs_getInt(&id, "Ingrese el ID del Empleado que desea editar: ", ERROR_MESSAGE, 1, max))
         {
             index = getIndexByEmployeeID(pArrayListEmployee, id);
 
             if(index != -1)
             {
-                sublist = ll_subList(pArrayListEmployee, index, index + 1);
+                beforeEdit = (sEmployee*)ll_get(pArrayListEmployee, index);
 
-                if(sublist != NULL && controller_ListEmployee(sublist) == 1)
+                if(beforeEdit != NULL)
                 {
-                    aux = (sEmployee*)ll_get(pArrayListEmployee, index);
+                    afterEdit = employee_newWithParameters(&beforeEdit->id, beforeEdit->name, &beforeEdit->workHours, &beforeEdit->salary);
 
-                    if(aux != NULL)
+                    do
                     {
-                        returnValue = 1;
-                    }
+                        inputs_clearScreen();
+
+                        if(employee_print(afterEdit) == 0)
+                        {
+                            break;
+                        }
+
+                        lifeCycle = menu_edit(&editMenu);
+
+                        switch(editMenu)
+                        {
+                        case 1: /**< Editar el Nombre. >*/
+                            if(!inputs_getString(afterEdit->name, "Ingrese nuevo Nombre: ", ERROR_MESSAGE, 1, EMPLOYEE_NAME_MAX)
+                               && employee_setName(afterEdit, afterEdit->name))
+                            {
+                                printf("Nombre cambiado, elija la opcion %d para aplicarlo.\n", MENU_EDIT_MAX);
+                            }
+                            break;
+                        case 2: /**< Editar las Horas Trabajadas. >*/
+                            if(!inputs_getInt(&afterEdit->workHours, "Ingrese las Horas Trabajadas: ", ERROR_MESSAGE, 0, EMPLOYEE_WORKHOURS_MAX)
+                               && employee_setWorkHours(afterEdit, afterEdit->workHours))
+                            {
+                                printf("Horas Trabajadas cambiadas, elija la opcion %d para aplicarlo.\n", MENU_EDIT_MAX);
+                            }
+                            break;
+                        case 3: /**< Editar el Salario. >*/
+                            if(!inputs_getInt(&afterEdit->salary, "Ingresa el nuevo Salario: ", ERROR_MESSAGE, 0, EMPLOYEE_SALARY_MAX)
+                               && employee_setSalary(afterEdit, afterEdit->salary))
+                            {
+                                printf("Salario cambiado, elija la opcion %d para aplicarlo.\n", MENU_EDIT_MAX);
+                            }
+                            break;
+                        case 4: /**< Confirmar cambios y volver al menu principal. >*/
+                            inputs_clearScreen();
+
+                            printf("El siguiente Empleado:\n");
+                            if(employee_print(beforeEdit))
+                            {
+                                printf("Sera modificado de la siguiente forma:\n");
+                                if(employee_print(afterEdit)
+                                   && inputs_userResponse("Acepta la modificacion? [S] o [N]: ")
+                                   && ll_set(pArrayListEmployee, index, (sEmployee*)afterEdit) == 0)
+                                {
+                                    returnValue = 1;
+                                }
+                            }
+                            lifeCycle = 1;
+                            break;
+                        }
+
+                        if(editMenu < MENU_EDIT_MAX)
+                        {
+                            inputs_pauseScreen(ENTER_MESSAGE);
+                        }
+                    }while(lifeCycle == 0);
                 }
             }
             else
@@ -129,7 +184,6 @@ int controller_removeEmployee(LinkedList* pArrayListEmployee)
     int index;
     int max;
     sEmployee* aux = employee_new();
-    LinkedList* sublist;
 
     if(pArrayListEmployee != NULL && aux != NULL)
     {
@@ -141,18 +195,17 @@ int controller_removeEmployee(LinkedList* pArrayListEmployee)
 
             if(index != -1)
             {
-                sublist = ll_subList(pArrayListEmployee, index, index + 1);
+                aux = (sEmployee*)ll_get(pArrayListEmployee, index);
 
-                if(sublist != NULL && controller_ListEmployee(sublist) == 1
+                if(aux != NULL
+                   && employee_print(aux)
                    && inputs_userResponse("Desea dar de baja el Empleado? [S] o [N]: "))
                 {
-                    aux = (sEmployee*)ll_get(pArrayListEmployee, index);
-
-                    if(aux != NULL
-                       && ll_remove(pArrayListEmployee, index) == 0)
+                    if(ll_remove(pArrayListEmployee, index) == 0)
                     {
                         returnValue = 1;
-                        employee_delete(aux);
+                        free(aux);
+                        aux = NULL;
                     }
                 }
             }
@@ -189,7 +242,9 @@ int controller_ListEmployee(LinkedList* pArrayListEmployee)
 
             if(aux != NULL)
             {
-                printf("| %5d | %20s | %5d | %10d |\n", aux->id, aux->name, aux->workHours, aux->salary);
+                printf("| %5d | %20s | %5d | %10d |\n",
+                       aux->id, arrays_stringToCamelCase(aux->name, EMPLOYEE_NAME_MAX),
+                       aux->workHours, aux->salary);
             }
         }
 

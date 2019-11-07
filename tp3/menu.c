@@ -52,3 +52,24 @@ int menu_sort(int* option)
 
     return returnValue;
 }
+
+int menu_edit(int* option)
+{
+    int returnValue = -1;
+
+    printf("+===================================================+\n");
+    printf("|                   EDITAR EMPLEADO                 |\n");
+    printf("+===================================================+\n");
+    printf("|  [1] Editar el Nombre.                            |\n");
+    printf("|  [2] Editar las Horas Trabajadas.                 |\n");
+    printf("|  [3] Editar el Salario.                           |\n");
+    printf("|  [4] Aplicar cambios y volver al menu principal.  |\n");
+    printf("+---------------------------------------------------+\n\n");
+
+    if(!inputs_getInt(option, "Elija una opcion del menu: ", ERROR_MESSAGE, 1, MENU_SORT_MAX))
+    {
+        returnValue = 0;
+    }
+
+    return returnValue;
+}

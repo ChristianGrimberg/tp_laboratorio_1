@@ -72,7 +72,7 @@ int employee_getWorkHours(sEmployee* this, int* workHours)
 
     if(this != NULL)
     {
-        workHours = &(this->workHours);
+        *workHours = this->workHours;
         returnValue = 1;
     }
 
@@ -100,7 +100,7 @@ int employee_getSalary(sEmployee* this, int* salary)
 
     if(this != NULL)
     {
-        salary = &(this->salary);
+        *salary = this->salary;
         returnValue = 1;
     }
 
@@ -132,6 +132,7 @@ sEmployee* employee_newWithParameters(int* id, char name[], int* workHours, int*
        || !employee_setWorkHours(aux, *workHours)
        || !employee_setSalary(aux, *salary)))
     {
+        free(aux);
         aux = NULL;
     }
 
@@ -142,6 +143,33 @@ void employee_delete(sEmployee* this)
 {
     free(this);
     this = NULL;
+}
+
+int employee_print(sEmployee* this)
+{
+    int returnValue = -1;
+    int id;
+    char name[EMPLOYEE_NAME_MAX];
+    int workHours;
+    int salary;
+
+    if(this != NULL
+       && employee_getId(this, &id)
+       && employee_getName(this, name)
+       && employee_getWorkHours(this, &workHours)
+       && employee_getSalary(this, &salary))
+    {
+        printf("+=======+======================+=======+============+\n");
+        printf("|   ID  |        NOMBRE        | HORAS |   SALARIO  |\n");
+        printf("+=======+======================+=======+============+\n");
+        printf("| %5d | %20s | %5d | %10d |\n",
+               id, arrays_stringToCamelCase(name, EMPLOYEE_NAME_MAX), workHours, salary);
+        printf("+-------+----------------------+-------+------------+\n");
+
+        returnValue = 1;
+    }
+
+    return returnValue;
 }
 
 int employee_getNextId(LinkedList* pArrayListEmployee)

@@ -45,7 +45,10 @@ int main()
         {
             if(ll_clear(listaEmpleados) == 0
                && ll_len(listaEmpleados) == 0
-               && ll_deleteLinkedList(listaEmpleados) == 0)
+               && ll_deleteLinkedList(listaEmpleados) == 0
+               && ll_clear(subLista) == 0
+               && ll_len(subLista) == 0
+               && ll_deleteLinkedList(subLista) == 0)
             {
                 inputs_pauseScreen(QUIT_MESSAGE);
                 exit(EXIT_SUCCESS);
@@ -95,6 +98,25 @@ int main()
                 printf("Error de carga del Empleado.\n");
             }
             break;
+        case 4: /**< Modificar datos de Empleado. >*/
+            employeeQty = ll_len(listaEmpleados);
+
+            if(employeeQty == 0)
+            {
+                printf("No hay Empleados cargados en el sistema.\n");
+            }
+            else
+            {
+                if(controller_editEmployee(listaEmpleados))
+                {
+                    printf("Empleado modificado con exito.\n");
+                }
+                else
+                {
+                    printf("Se cancelo la edicion.\n");
+                }
+            }
+            break;
         case 5: /**< Baja de Empleado. >*/
             employeeQty = ll_len(listaEmpleados);
 
@@ -114,7 +136,7 @@ int main()
                 }
             }
             break;
-        case 6:
+        case 6: /**< Listar Empleados. >*/
             listMin = 0;
             counter = 0;
             employeeQty = ll_len(listaEmpleados);
@@ -190,5 +212,5 @@ int main()
         inputs_pauseScreen(MENU_MESSAGE);
     }while(lifeCycle == 0);
 
-    return 0;
+    return EXIT_SUCCESS;
 }

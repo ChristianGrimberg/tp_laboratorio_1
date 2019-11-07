@@ -140,6 +140,17 @@ sEmployee* employee_newWithParameters(int* id, char name[], int* workHours, int*
  */
 void employee_delete(sEmployee* this);
 
+/** \brief Funcion que imprime un Empleado en pantalla
+ *          si sus valores estan dentro del rango permitido.
+ *
+ * \param this sEmployee* Direccion de memoria de un Empleado.
+ * \return int
+ *          [0] Si no pudo imprimir el Empleado fuera de rango de valores.
+ *          [1] Si pudo imprimir el Empleado y liberar la memoria.
+ *
+ */
+int employee_print(sEmployee* this);
+
 /** \brief Obtiene el proximo ID de Empleado de un arreglo LinkedList.
  *
  * \param pArrayListEmployee LinkedList* Arreglo de tipo LinkedList.
