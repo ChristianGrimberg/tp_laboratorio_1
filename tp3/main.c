@@ -23,11 +23,7 @@ int main()
     int lifeCycle; /**< Indicador del ciclo de vida de ejecucion de cada menu. >*/
     int optionMenu; /**< Opcion elegida por el usuario de cada menu. >*/
     int employeeQty = 0; /**< Cantidad de Empleados cargados en el arreglo. >*/
-    int listMin; /**< Indice minimo del arreglo. >*/
-    int listMax; /**< Indice maximo del arreglo. >*/
-    int counter; /**< Contador de iteraciones. >*/
     LinkedList* listaEmpleados = ll_newLinkedList(); /**< Invocacion de arreglo generico. >*/
-    LinkedList* subLista = ll_newLinkedList(); /**< Sublista de arreglo generico. >*/
     char textPath[PATH_MAX] = "data.csv"; /**< Path del archivo de texto a trabajar. >*/
     char binaryPath[PATH_MAX] = "data.bin"; /**< Path del archivo binario a trabajar. >*/
 
@@ -45,10 +41,7 @@ int main()
         {
             if(ll_clear(listaEmpleados) == 0
                && ll_len(listaEmpleados) == 0
-               && ll_deleteLinkedList(listaEmpleados) == 0
-               && ll_clear(subLista) == 0
-               && ll_len(subLista) == 0
-               && ll_deleteLinkedList(subLista) == 0)
+               && ll_deleteLinkedList(listaEmpleados) == 0)
             {
                 inputs_pauseScreen(QUIT_MESSAGE);
                 exit(EXIT_SUCCESS);
@@ -137,8 +130,6 @@ int main()
             }
             break;
         case 6: /**< Listar Empleados. >*/
-            listMin = 0;
-            counter = 0;
             employeeQty = ll_len(listaEmpleados);
 
             if(employeeQty == 0)
@@ -147,29 +138,10 @@ int main()
             }
             else
             {
-                while(listMin < employeeQty)
+                employeeQty = controller_ListEmployee(listaEmpleados);
+                if(employeeQty > 0)
                 {
-                    inputs_clearScreen();
-
-                    counter++;
-
-                    if(employeeQty > (counter * CONTROLLER_LIST_MAX))
-                    {
-                        listMax = listMin + CONTROLLER_LIST_MAX;
-                    }
-                    else
-                    {
-                        listMax = employeeQty;
-                    }
-
-                    subLista = ll_subList(listaEmpleados, listMin, listMax);
-
-                    listMin += controller_ListEmployee(subLista);
-
-                    if(listMin < employeeQty)
-                    {
-                        inputs_pauseScreen(PAGE_MESSAGE);
-                    }
+                    printf("Se listaron %d Empleados cargados en el sistema.\n", employeeQty);
                 }
             }
             break;

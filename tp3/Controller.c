@@ -221,39 +221,68 @@ int controller_removeEmployee(LinkedList* pArrayListEmployee)
 
 int controller_ListEmployee(LinkedList* pArrayListEmployee)
 {
-    int counter = 0;
-    int arrayLength;
+    int counter;
+    int multiplier = 0;
+    int employeeQty;
+    int listMin = 0;
+    int listMax = 0;
     sEmployee* aux;
+    LinkedList* subList = ll_newLinkedList();
 
-    if(pArrayListEmployee != NULL)
+    if(pArrayListEmployee != NULL && subList != NULL)
     {
-        arrayLength = ll_len(pArrayListEmployee);
+        employeeQty = ll_len(pArrayListEmployee);
 
-        for(counter = 0; counter < arrayLength; counter++)
+        while(listMin < employeeQty)
         {
-            if(counter == 0)
+            inputs_clearScreen();
+
+            multiplier++;
+
+            if(employeeQty > (multiplier * CONTROLLER_LIST_MAX))
             {
-                printf("+=======+======================+=======+============+\n");
-                printf("|   ID  |        NOMBRE        | HORAS |   SALARIO  |\n");
-                printf("+=======+======================+=======+============+\n");
+                listMax = listMin + CONTROLLER_LIST_MAX;
+            }
+            else
+            {
+                listMax = employeeQty;
             }
 
-            aux = (sEmployee*)ll_get(pArrayListEmployee, counter);
+            subList = ll_subList(pArrayListEmployee, listMin, listMax);
 
-            if(aux != NULL)
+            for(counter = listMin; counter < listMax; counter++)
             {
-                printf("| %5d | %20s | %5d | %10d |\n",
-                       aux->id, arrays_stringToCamelCase(aux->name, EMPLOYEE_NAME_MAX),
-                       aux->workHours, aux->salary);
-            }
-        }
+                if(counter == listMin)
+                {
+                    printf("+=======+======================+=======+============+\n");
+                    printf("|   ID  |        NOMBRE        | HORAS |   SALARIO  |\n");
+                    printf("+=======+======================+=======+============+\n");
+                }
 
-        if(counter > 0 && counter == arrayLength)
-        {
-            printf("+-------+----------------------+-------+------------+\n");
+                aux = (sEmployee*)ll_get(pArrayListEmployee, counter);
+
+                if(aux != NULL)
+                {
+                    printf("| %5d | %20s | %5d | %10d |\n",
+                           aux->id, arrays_stringToCamelCase(aux->name, EMPLOYEE_NAME_MAX),
+                           aux->workHours, aux->salary);
+                }
+            }
+
+            if(counter > 0 && counter == listMax)
+            {
+                printf("+-------+----------------------+-------+------------+\n");
+            }
+
+            listMin = counter;
+
+            if(listMin < employeeQty)
+            {
+                inputs_pauseScreen(PAGE_MESSAGE);
+            }
         }
     }
-    return counter;
+    return listMax;
 }
 
 int controller_sortEmployee(LinkedList* pArrayListEmployee)
